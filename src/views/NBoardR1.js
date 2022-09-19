@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 
-class NboardR extends Component {
+class NBoardR extends Component {
     render(){
         return(
             <div className="container-fluid readBody px-5 my-5">
@@ -30,4 +30,4 @@ class NboardR extends Component {
         )
     }
 }
-export default NboardR;
+export default NBoardR;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import CBoardList from "./CBoardList";
-import CboardReadForm from "./CboardReadForm";
+import CBoardReadForm from "./CBoardReadForm";
 
 import CBoardCUD from "./CBoardCUD";
 
@@ -17,7 +17,7 @@ class CBoardComponent extends Component {
                 </div>
                 <Route path={"/Community"} component={CBoardList} exact={true} />
                 <Route path={"/Community/crud:crud"} component={CBoardCUD} />
-                <Route path={"/Community/view/bnum=:bnum"} component={CboardReadForm} />
+                <Route path={"/Community/view/bnum=:bnum"} component={CBoardReadForm} />
 
                 
             </div>

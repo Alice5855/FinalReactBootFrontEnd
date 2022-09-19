@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class NboardCUDForm extends Component {
+class NBoardCUDForm extends Component {
     render(){
         return(
             <div className="container-fluid">
@@ -9,4 +9,4 @@ class NboardCUDForm extends Component {
         )
     }
 }
-export default NboardCUDForm;
+export default NBoardCUDForm;

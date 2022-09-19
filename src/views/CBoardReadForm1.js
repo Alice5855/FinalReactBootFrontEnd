@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 import CBoardServices from "./CBoardServices";
 
-class CboardReadForm extends Component {
+class CBoardReadForm extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -109,4 +109,4 @@ class CboardReadForm extends Component {
         )
     }
 }
-export default CboardReadForm;
+export default CBoardReadForm;
