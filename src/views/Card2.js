@@ -2,7 +2,7 @@ import React from "react";
 
 const Card2 = () => {
     return(
-            <div className="px-3 py-5 my-5 text-center rounded-5" style={{backgroundColor: "#25C1FF"}}>
+            <div className="px-3 py-5 my-5 text-center rounded-5" style={{backgroundColor: "#24C7FB"}}>
                 <h1 className="display-5 fw-bold">Shops</h1>
                 <div className="col-lg-12 mx-auto">
                     <p className="my-5">

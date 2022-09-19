@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import NBoardServices from "./NBoardServices";
+import QBoardServices from "./QBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 
-class NBoardList extends Component{
+class QBoardList extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -67,7 +67,7 @@ class NBoardList extends Component{
     }
 
     getBoardListData(pageNum){  // 게시물 리스트를 초기화하는 메소드. 
-        NBoardServices.getBoardPage(pageNum).then((res)=>{
+        QBoardServices.getBoardPage(pageNum).then((res)=>{
             this.setState({
                 List: res.data.list,
                 currentPage: res.data.pageInfo.currentPage,
@@ -79,7 +79,7 @@ class NBoardList extends Component{
     render(){
         return(
             <>
-            <Link to="/Notice/crudInsert">
+            <Link to="/QnA/crudInsert">
                 <Button className="btn-sm float-end">
                     새 글 쓰기
                 </Button>
@@ -89,10 +89,11 @@ class NBoardList extends Component{
                             this.state.List.map(
                                 board =>
                 <div key={board.bnum} >
-                    <Link to={`/Notice/view/bnum=${board.bnum}`} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                    <Link to={`/QnA/view/bnum=${board.bnum}`} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                         <div className="d-flex gap-2 w-100 justify-content-between">
                             <div>
-                                <h6 className="mb-0">{board.btitle}</h6>
+                                <h6 className="mb-0">{board.bwriter}</h6>
+                                <p className="mb-0 opacity-75 ms-5">{board.btitle}</p>
                             </div>
                             <small className="opacity-50 text-nowrap">{board.bregDate}</small>
                         </div>
@@ -109,4 +110,4 @@ class NBoardList extends Component{
         );
     };
 };
-export default NBoardList;
+export default QBoardList;

@@ -2,15 +2,18 @@ import React from "react";
 
 const Card1 = () => {
     return(
-            <div className="px-4 py-5 my-5 text-center rounded-5" style={{backgroundColor: "#25C1FF"}}>
-                <h1 className="display-5 fw-bold">Centered hero</h1>
-                <div className="col-lg-6 mx-auto">
-                    <p className="lead mb-4">
-                        Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.
+            <div className="px-3 py-5 my-5 text-center rounded-5" style={{backgroundColor: "#5EDDEE"}}>
+                <h1 className="display-5 fw-bold">Meet us at Aniplus!</h1>
+                <div className="col-lg-12 mx-auto">
+                    <p className="my-5">
+                        <a href="https://www.aniplustv.com/storeCollaboCafe" target={'_blank'} className="cBanner" rel="noreferrer">
+                            <img src="http://localhost:3000/images/banner0.jpg" alt="aniplus banner" width="70%"/>
+                        </a>
                     </p>
                     <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <button type="button" className="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
-                        <button type="button" className="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+                        <p className="lead mb-4">
+                            2022/09/22까지 Aniplus에서 Holo Myth와 만나실 수 있습니다.
+                        </p>
                     </div>
                 </div>
             </div>

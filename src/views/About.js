@@ -16,7 +16,7 @@ class About extends Component {
                         <div class="container col-xxl-8 px-4 py-5">
                             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                                 <div class="col-10 col-sm-8 col-lg-6">
-                                    <img src="http://localhost:3000/images/bak1.jpg" class="d-block mx-lg-auto img-fluid" alt="Introduce" width="700" height="500" loading="lazy" />
+                                    <img src="http://localhost:3000/images/bak1.jpg" className="rounded shadow d-block mx-lg-auto img-fluid" alt="Introduce" width="700" height="500" loading="lazy" />
                                 </div>
                                 <div class="col-lg-6">
                                     <h1 class="display-5 fw-bold lh-1 mb-3">Make, Believe </h1>
@@ -32,7 +32,7 @@ class About extends Component {
                         <div class="container col-xxl-8 px-4 py-5">
                             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                                 <div class="col-10 col-sm-8 col-lg-6">
-                                    <img src="http://localhost:3000/images/bak1.jpg" class="d-block mx-lg-auto img-fluid" alt="Introduce" width="700" height="500" loading="lazy" />
+                                    <img src="http://localhost:3000/images/bak2.jpg" className="rounded shadow d-block mx-lg-auto img-fluid" alt="Introduce" width="800" height="600" loading="lazy" />
                                 </div>
                                 <div class="col-lg-6">
                                     <h1 class="display-5 fw-bold lh-1 mb-3">Imagination, Reality</h1>
@@ -48,7 +48,7 @@ class About extends Component {
                         <div class="container col-xxl-8 px-4 py-5">
                             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                                 <div class="col-10 col-sm-8 col-lg-6">
-                                    <img src="http://localhost:3000/images/bak1.jpg" class="d-block mx-lg-auto img-fluid" alt="Introduce" width="700" height="500" loading="lazy" />
+                                    <img src="http://localhost:3000/images/bak3.jpg" className="rounded shadow d-block mx-lg-auto img-fluid" alt="Introduce" width="800" height="600" loading="lazy" />
                                 </div>
                                 <div class="col-lg-6">
                                     <h1 class="display-5 fw-bold lh-1 mb-3">Faster Than Second</h1>
