@@ -1,0 +1,82 @@
+/* WIP */
+header {
+    width: 100%;
+}
+
+.navbar-brand {
+    width: 211.75px;
+}
+.imgWrapper {
+    height: 60px;
+}
+.imgWrapper img {
+    height: 100%;
+}
+#navmenu {
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
+}
+.nav-item {
+    text-align: center;
+}
+.navbar {
+    width: 100%;
+    background-color: #ddf5fb !important;
+}
+.subHeader {
+    width: 100%;
+    background-color: #ddf5fb !important;
+}
+.subMenu1 {
+    padding-left: 65%;
+}
+.subMenu2 {
+    padding-left: 70%;
+}
+.subMenu3 {
+    padding-left: 75%;
+}
+
+@media screen and (max-width: 1024px) {
+    .subMenu1 {
+        padding-left: 60%;
+    }
+    .subMenu2 {
+        padding-left: 65%;
+    }
+    .subMenu3 {
+        padding-left: 70%;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    .subMenu1 {
+        padding-left: 50%;
+    }
+    .subMenu2 {
+        padding-left: 55%;
+    }
+    .subMenu3 {
+        padding-left: 60%;
+    }
+    
+}
+
+@media screen and (max-width: 425px) {
+    .subMenu1 {
+        padding-left: 0;
+        text-align: center;
+    }
+    .subMenu2 {
+        padding-left: 0;
+        text-align: center;
+    }
+    .subMenu3 {
+        padding-left: 0;
+        text-align: center;
+    }
+    
+}
