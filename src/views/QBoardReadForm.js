@@ -13,7 +13,8 @@ class QBoardReadForm extends Component {
             btext: "",
             bnum: props.match.params.bnum,
             bregDate: "",
-            banswerText: ""
+            banswerText: "",
+            banswerRegdate: ""
         };
 
         console.log(this.state.bnum);
@@ -29,11 +30,11 @@ class QBoardReadForm extends Component {
                 bwriter: res.data.board.bwriter,
                 btext: res.data.board.btext,
                 bregDate: res.data.board.bregDate,
-                banswerText: res.data.board.banswerText
+                banswerText: res.data.board.banswerText,
+                banswerRegdate: res.data.board.banswerRegdate
             })
             console.log(this.state);
         })
-        
     }
 
     createAnswerArea(banswerText){
@@ -43,7 +44,11 @@ class QBoardReadForm extends Component {
                 <h3>
                     답글
                 </h3>
-
+                <div>
+                    <small className="text-muted float-end py-3">
+                        {this.state.banswerRegdate}
+                    </small>
+                </div>
                 <textarea
                 rows="10"
                 cols="20"
@@ -60,28 +65,30 @@ class QBoardReadForm extends Component {
             var randomCount = Math.floor(Math.random()*4);
             var imgLink;
             
-            if(randomCount == 0){
+            if(randomCount === 0){
                 imgLink = "http://192.168.0.26:3000/images/no_answer_gif.gif"
-            }else if(randomCount == 1){
+            }else if(randomCount === 1){
                 imgLink = "http://192.168.0.26:3000/images/no_answer_gif2.gif"
-            }else if(randomCount == 2){
+            }else if(randomCount === 2){
                 imgLink = "http://192.168.0.26:3000/images/no_answer_gif3.webp"
-            }else if(randomCount == 3){
+            }else if(randomCount === 3){
                 imgLink = "http://192.168.0.26:3000/images/no_answer_gif4.webp"
-            }else if(randomCount == 4){
+            }else if(randomCount === 4){
                 imgLink = "http://192.168.0.26:3000/images/no_answer_gif4.webp"
-            }else if(randomCount == 5){
+            }else if(randomCount === 5){
                 imgLink = "http://192.168.0.26:3000/images/no_answer_gif5.webp"
             }
 
 
             return(
                 <>
-                    <div className="nav flex flex-column justify-content-center">
-                            <img src={imgLink} className="justify-content-center" width="500rem" alt="no answer img"></img>
+                    <div>
+                        <div className="w-50 m-auto">
+                            <img src={imgLink} className="img-fluid m-auto" alt="no answer img"></img>
                             <br/>
+                        </div>
                             <div className="nav-item">
-                                아직 답변이 작성되지 않았어요!
+                                아직 답변이 작성되지 않았어요! <br/>
                                 조금만 기다려주시면 감사!
                             </div>
                     </div>
