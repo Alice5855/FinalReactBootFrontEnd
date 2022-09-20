@@ -3,6 +3,8 @@ import React, { Component } from "react";
 class About extends Component {
     render(){
         return(
+            <>
+            <div id="spaceFiller"></div>
             <div className="container-fluid">
                 <div>
                     <div className="mx-4 my-5">
@@ -62,6 +64,7 @@ class About extends Component {
                     <div className="divider" />
                 </div>
             </div>
+            </>
         )
     }
 }
