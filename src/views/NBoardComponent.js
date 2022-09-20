@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import NBoardList from "./NBoardList";
+import NBoardList from "./NboardList";
 import NBoardReadForm from "./NBoardReadForm";
 
 import NBoardCUD from "./NBoardCUD";

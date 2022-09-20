@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import QBoardServices from "./QBoardServices";
 import { Link } from "react-router-dom";
-import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Button, NavItem, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 
 class QBoardList extends Component{
@@ -75,6 +75,23 @@ class QBoardList extends Component{
             });
         });
     }
+
+    createIsAnswer(answer){
+        if(answer != null){
+            
+            return(
+                <div>
+                    답변있음
+                </div>
+            )
+        }else{
+            return(
+                <div>
+                    답변없음
+                </div>
+            )
+        }
+    }
     
     render(){
         return(
@@ -96,6 +113,7 @@ class QBoardList extends Component{
                                 <p className="mb-0 opacity-75 ms-5">{board.btitle}</p>
                             </div>
                             <small className="opacity-50 text-nowrap">{board.bregDate}</small>
+                            {this.createIsAnswer(board.banswerText)}
                         </div>
                     </Link>
                 </div>

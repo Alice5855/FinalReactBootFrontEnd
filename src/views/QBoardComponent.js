@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import QBoardList from "./QBoardList";
 import QboardReadForm from "./QBoardReadForm";
 import QBoardCUD from "./QBoardCUD";
+import QBoardAnswer from "./QBoardAnswer";
 
 class QBoardComponent extends Component {
     render(){
@@ -18,6 +19,7 @@ class QBoardComponent extends Component {
                 <Route path={"/QnA"} component={QBoardList} exact={true} />
                 <Route path={"/QnA/crud:crud"} component={QBoardCUD} />
                 <Route path={"/QnA/view/bnum=:bnum"} component={QboardReadForm} />
+                <Route path={"/QnA/answer/"} component={QBoardAnswer} />
                 
                 
             </div>

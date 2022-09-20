@@ -104,6 +104,21 @@ class QBoardReadForm extends Component {
                         }>
                             삭제
                         </Button>
+
+                        <Button className="btn-md btn-danger" onClick={() => 
+                            this.props.history.push({
+                                pathname: "/QnA/answer",
+                                state:{
+                                    bnum: this.state.bnum,
+                                    btitle: this.state.btitle,
+                                    bwriter: this.state.bwriter,
+                                    btext: this.state.btext,
+                                    bregDate: this.state.bregDate
+                                }
+                            })
+                        }>
+                            답변
+                        </Button>
                 </div>
             </div>
         )
