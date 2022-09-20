@@ -1,12 +1,12 @@
 import { Route } from "react-router-dom";
-import Header from "./views/Header";
+import Header from "./views/Commons/Header";
 import 'bootstrap/dist/css/bootstrap.css'
 import Main from "./views/Main";
-import Footer from "./views/Footer";
-import CBoardComponent from "./views/CBoardComponent";
+import Footer from "./views/Commons/Footer";
+import CBoardComponent from "./views/CBoard/CBoardComponent";
 import About from "./views/About";
-import NBoardComponent from "./views/NBoardComponent";
-import QBoardComponent from "./views/QBoardComponent";
+import NBoardComponent from "./views/NBoard/NBoardComponent";
+import QBoardComponent from "./views/QBoard/QBoardComponent";
 
 const App = () => {
   
