@@ -112,8 +112,13 @@ class QBoardList extends Component{
                                 <h6 className="mb-0">{board.bwriter}</h6>
                                 <p className="mb-0 opacity-75 ms-5">{board.btitle}</p>
                             </div>
+                            
+                            <div>
                             <small className="opacity-50 text-nowrap">{board.bregDate}</small>
-                            {this.createIsAnswer(board.banswerText)}
+                            <small className="opacity-50 text-nowrap">
+                                <p className="mb-0 opacity-75 ms-5">{this.createIsAnswer(board.banswerText)}</p>
+                            </small>
+                            </div>
                         </div>
                     </Link>
                 </div>
