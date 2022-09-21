@@ -6,9 +6,10 @@ class About extends Component {
         return(
             <>
             <div id="spaceFiller"></div>
-            <div className="d-flex flex-nowrap">
+            <div className="flex-nowrap subpage">
                 <Sidebar />
-                <div>
+                <div className="w-100">
+
                     <div className="mx-4 my-5">
                         <h1 className="abtTitle" style={{color: '#50A0F4'}}>
                             <img src="http://localhost:3000/images/Justlogo.png" alt="Logo" width={'50px'} style={{display: 'inline'}} />
@@ -64,6 +65,7 @@ class About extends Component {
                         </div>
                     </div>
                     <div className="divider" />
+                    
                 </div>
             </div>
             </>

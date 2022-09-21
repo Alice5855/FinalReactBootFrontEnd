@@ -2,11 +2,11 @@ const Head = () => {
     return(
         <>
             {/* masthead */}
-            <header class="masthead">
-                <div class="container">
-                    <div class="masthead-subheading">Welcome To Our Studio!</div>
-                    <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                    <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+            <header className="masthead">
+                <div className="container">
+                    <div className="masthead-subheading">Welcome To Alternative Society</div>
+                    <div className="masthead-heading text-uppercase">Where minor is new major</div>
+                    <a className="btn btn-warning text-white btn-lg text-uppercase" href="/About">About us</a>
                 </div>
             </header>
         </>
