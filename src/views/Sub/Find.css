@@ -14,7 +14,18 @@
 }
 
 .mapCover{
-    margin: auto;
+    
+}
+
+@media (min-width: 992px) {
+    .mapCover{
+        width: 100% !important;
+    }
+
+    
+}
+.googleMap{
+    height: 800px !important;
 }
 
 iframe{
@@ -26,4 +37,68 @@ iframe{
 .mapSizeController{
     margin-left: auto !important;
     margin-right: auto !important;
+}
+
+.find-subTitle{
+    font-size: 5vh;
+    animation: fadeInUp1 1s;
+}
+
+.find-Title{
+    animation: fadeInUp1 1.5s;
+}
+
+.ad{
+    animation: fadeInUp1 2s;
+}
+
+.googleMap{
+    animation: fadeInUp2 2s;
+}
+
+.text-align-center{
+    text-align: center !important;
+}
+
+.mt0{
+    margin-top: 0 !important;
+}
+
+@keyframes fadeInUp1 {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+@keyframes fadeInUp2 {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 30%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
+.mapContainer{
+    background-image: url("http://localhost:3000/images/bg.png");
+    background-size: cover;
+}
+
+.find-subTitle, .find-Title, .ad{
+    color: white;
+    text-shadow: #FC0 1px 0 10px;;
+}
+
+.myLogo{
+    height: 2.5rem !important;
+}
+
+.myImg{
+    height: 2.5rem !important;
 }
