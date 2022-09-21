@@ -12,7 +12,8 @@ class Find extends Component{
             <div id="spaceFiller"></div>
             <div className="d-flex flex-nowrap">
                 <Sidebar />
-                <div>
+                <div className="w-100">
+
                     <div className="mx-4 my-5">
                         <h1 className="abtTitle" style={{color: '#50A0F4'}}>
                             <img src="http://localhost:3000/images/Justlogo.png" alt="Logo" width={'50px'} style={{display: 'inline'}} />
@@ -66,6 +67,7 @@ class Find extends Component{
                         </div>
                     </div>
                     <div className="divider" />
+                    
                 </div>
             </div>
             </>

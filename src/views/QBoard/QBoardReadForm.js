@@ -160,7 +160,7 @@ class QBoardReadForm extends Component {
                             수정
                         </Button>
 
-                        <Button className="btn-md btn-danger" onClick={() => 
+                        <Button className="btn-md btn-danger me-3" onClick={() => 
                             this.props.history.push({
                                 pathname: "/QnA/crudDelete",
                                 state:{
@@ -175,7 +175,7 @@ class QBoardReadForm extends Component {
                             삭제
                         </Button>
 
-                        <Button className="btn-md btn-danger" onClick={() => 
+                        <Button className="btn-md btn-success" onClick={() => 
                             this.props.history.push({
                                 pathname: "/QnA/answer",
                                 state:{
