@@ -7,6 +7,7 @@ import NBoardComponent from "./views/NBoard/NBoardComponent";
 import QBoardComponent from "./views/QBoard/QBoardComponent";
 import Header from "./views/Commons/Header";
 import About from "./views/Sub/About";
+import Find from "./views/Sub/Find"
 
 const App = () => {
   
@@ -20,6 +21,7 @@ const App = () => {
       <Route path = "/Notice" component={NBoardComponent} />
       <Route path= "/QnA" component={QBoardComponent} />
       <Route path= "/About" component={About} />
+      <Route path= "/Find" component={Find} />
       <Footer />
     </>
   );
