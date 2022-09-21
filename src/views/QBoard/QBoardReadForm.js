@@ -12,7 +12,9 @@ class QBoardReadForm extends Component {
             bwriter: "",
             btext: "",
             bnum: props.match.params.bnum,
-            bregDate: ""
+            bregDate: "",
+            banswerText: "",
+            banswerRegdate: ""
         };
 
         console.log(this.state.bnum);
@@ -27,10 +29,72 @@ class QBoardReadForm extends Component {
                 btitle: res.data.board.btitle,
                 bwriter: res.data.board.bwriter,
                 btext: res.data.board.btext,
-                bregDate: res.data.board.bregDate
+                bregDate: res.data.board.bregDate,
+                banswerText: res.data.board.banswerText,
+                banswerRegdate: res.data.board.banswerRegdate
             })
             console.log(this.state);
         })
+    }
+
+    createAnswerArea(banswerText){
+        if(banswerText != null){
+            return(
+                <>
+                <h3>
+                    답글
+                </h3>
+                <div>
+                    <small className="text-muted float-end py-3">
+                        {this.state.banswerRegdate}
+                    </small>
+                </div>
+                <textarea
+                rows="10"
+                cols="20"
+                name={banswerText}
+                value={banswerText}
+                className="my-3 form-control inputText"
+                readOnly='readOnly'
+                style={{resize: 'none'}}
+                ></textarea>
+                </>
+                )
+        }else{
+
+            var randomCount = Math.floor(Math.random()*4);
+            var imgLink;
+            
+            if(randomCount === 0){
+                imgLink = "http://192.168.0.26:3000/images/no_answer_gif.gif"
+            }else if(randomCount === 1){
+                imgLink = "http://192.168.0.26:3000/images/no_answer_gif2.gif"
+            }else if(randomCount === 2){
+                imgLink = "http://192.168.0.26:3000/images/no_answer_gif3.webp"
+            }else if(randomCount === 3){
+                imgLink = "http://192.168.0.26:3000/images/no_answer_gif4.webp"
+            }else if(randomCount === 4){
+                imgLink = "http://192.168.0.26:3000/images/no_answer_gif4.webp"
+            }else if(randomCount === 5){
+                imgLink = "http://192.168.0.26:3000/images/no_answer_gif5.webp"
+            }
+
+
+            return(
+                <>
+                    <div>
+                        <div className="w-50 m-auto">
+                            <img src={imgLink} className="img-fluid m-auto" alt="no answer img"></img>
+                            <br/>
+                        </div>
+                            <div className="nav-item">
+                                아직 답변이 작성되지 않았어요! <br/>
+                                조금만 기다려주시면 감사!
+                            </div>
+                    </div>
+                </>
+            )
+        }
         
     }
 
@@ -67,6 +131,12 @@ class QBoardReadForm extends Component {
                             </small>
                         </div>
                     </div>
+                </Card>
+                <br/>
+                <Card className="d-flex px-5 py-5">
+                    {this.createAnswerArea(this.state.banswerText)}
+                    
+
                 </Card>
                 <div className="mt-5">
                     <Link to={"/QnA"}>
