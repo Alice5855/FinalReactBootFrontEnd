@@ -22,8 +22,6 @@ class QBoardComponent extends Component {
                 <Route path={"/QnA/crud:crud"} component={QBoardCUD} />
                 <Route path={"/QnA/view/bnum=:bnum"} component={QboardReadForm} />
                 <Route path={"/QnA/answer/"} component={QBoardAnswer} />
-                
-                
             </div>
             </>
         )

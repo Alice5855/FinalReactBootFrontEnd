@@ -20,8 +20,6 @@ class CBoardComponent extends Component {
                 <Route path={"/Community"} component={CBoardList} exact={true} />
                 <Route path={"/Community/crud:crud"} component={CBoardCUD} />
                 <Route path={"/Community/view/bnum=:bnum"} component={CBoardReadForm} />
-
-                
             </div>
             </>
         )

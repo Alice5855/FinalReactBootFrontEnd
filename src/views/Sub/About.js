@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import Sidebar from "./Sidebar";
 
 class About extends Component {
     render(){
         return(
             <>
             <div id="spaceFiller"></div>
-            <div className="container-fluid">
+            <div className="d-flex flex-nowrap">
+                <Sidebar />
                 <div>
                     <div className="mx-4 my-5">
                         <h1 className="abtTitle" style={{color: '#50A0F4'}}>
