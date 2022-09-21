@@ -66,17 +66,17 @@ class QBoardReadForm extends Component {
             var imgLink;
             
             if(randomCount === 0){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif.gif"
+                imgLink = "http://localhost:3000/images/no_answer_gif.gif"
             }else if(randomCount === 1){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif2.gif"
+                imgLink = "http://localhost:3000/images/no_answer_gif2.gif"
             }else if(randomCount === 2){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif3.webp"
+                imgLink = "http://localhost:3000/images/no_answer_gif3.webp"
             }else if(randomCount === 3){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif4.webp"
+                imgLink = "http://localhost:3000/images/no_answer_gif4.webp"
             }else if(randomCount === 4){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif4.webp"
+                imgLink = "http://localhost:3000/images/no_answer_gif4.webp"
             }else if(randomCount === 5){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif5.webp"
+                imgLink = "http://localhost:3000/images/no_answer_gif5.webp"
             }
 
 
