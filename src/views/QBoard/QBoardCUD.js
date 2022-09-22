@@ -20,7 +20,7 @@ class QBoardCUD extends Component {
             this.state = {
                 btitle: "",
                 btext: "",
-                bwriter:"",
+                bwriter: localStorage.getItem('nickname'),
                 crud:"Insert"
             }
         } else if (this.state.crud === "Update") {
@@ -240,7 +240,7 @@ class QBoardCUD extends Component {
                 ></textarea>
                 
                 <h3>글쓴이</h3>
-                <input
+                <input readOnly
                     type="text"
                     name={bwriter}
                     value={bwriter}

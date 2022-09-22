@@ -5,10 +5,10 @@ const LoginSuccessURL = "/auth/loginsuccess"
 
 class AuthenticationService {
     // send username, password to the SERVER
-    executeJwtAuthenticationService(userid, password) {
+    executeJwtAuthenticationService(mememail, mempw) {
         return axios.post(LoginURL , {
-            userid,
-            password
+            mememail,
+            mempw
         })
     }
 
@@ -77,8 +77,8 @@ class AuthenticationService {
     }
 
     getLoggedInUserInfo(user){
-        localStorage.setItem("nickname", user.data.nickname);
-        localStorage.setItem("role", user.data.authority);
+        localStorage.setItem("nickname", user.data.memnickname);
+        localStorage.setItem("role", user.data.memrole);
     }
 
     roleAdminCheck(){

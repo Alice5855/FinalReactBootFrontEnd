@@ -84,7 +84,7 @@ class QBoardReadForm extends Component {
             return(
                 <>
                     <div>
-                        <div className="w-50 m-auto">
+                        <div className="w-25 m-auto">
                             <img src={imgLink} className="img-fluid m-auto" alt="no answer img"></img>
                             <br/>
                         </div>
@@ -119,6 +119,48 @@ class QBoardReadForm extends Component {
             )
         }
     }
+
+    createDeleteBtnCheckNickname(){
+        if(localStorage.getItem("nickname")===this.state.bwriter || AuthService.roleAdminCheck()){
+            return(
+                <Button className="btn-md btn-danger" onClick={() => 
+                    this.props.history.push({
+                        pathname: "/QnA/crudDelete",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    삭제
+                </Button>
+            )
+        }
+    }
+
+    createModifyBtnCheckNickname(){
+        if(localStorage.getItem("nickname")===this.state.bwriter){
+            return(
+                <Button className="btn-md btn-warning me-3" onClick={() => 
+                    this.props.history.push({
+                        pathname: "/QnA/crudUpdate",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    수정
+                </Button>
+            )
+    }
+}
 
     render(){
         
@@ -167,35 +209,11 @@ class QBoardReadForm extends Component {
                         </Button>
                     </Link>
 
-                        <Button className="btn-md btn-warning me-3" onClick={() => 
-                            this.props.history.push({
-                                pathname: "/QnA/crudUpdate",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            수정
-                        </Button>
+                        {this.createModifyBtnCheckNickname()}
+                        
 
-                        <Button className="btn-md btn-danger" onClick={() => 
-                            this.props.history.push({
-                                pathname: "/QnA/crudDelete",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            삭제
-                        </Button>
+                        {this.createDeleteBtnCheckNickname()}
+                        
 
                         {this.createAnswerBtnCheckAdmin()}
                         

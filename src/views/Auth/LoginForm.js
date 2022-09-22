@@ -1,6 +1,5 @@
-import React, { Component, useState} from 'react'
+import React, { Component } from 'react'
 import AuthService from './AuthService';
-
 
 
 class LoginForm extends Component {
@@ -27,7 +26,13 @@ class LoginForm extends Component {
           console.log(res.data.accessToken);
 
           console.log("activate registerSuccessfulLoginForJwt")
-          AuthService.registerSuccessfulLoginForJwt(userId, res.data.accessToken);
+          AuthService.registerSuccessfulLoginForJwt(userId, res.data.accessToken)
+
+          AuthService.loginSuccessGetUserInfo(localStorage.getItem('token')).then(res=>{
+            console.log(res);
+            AuthService.getLoggedInUserInfo(res);
+          });
+
 
         }else{
           console.log("로그인 실패");
@@ -35,49 +40,18 @@ class LoginForm extends Component {
 
 
 
-        res.json();
       });
     console.log("111asfewfwqe");
   }
 
 
-
 render(){
-const id = this.state.userid;
-const pw = this.state.password;
   return(
     <>
-      <div> 
-        <div className="form">
-    <form>
-      <div className="input-container">
-        <label>Username </label>
-        <input type="text" name={id} value={id} onChange= {
-          (event) => {
-            this.setState({userid: event.target.value})
-           }
-          }  
-          required />
-
-      </div>
-      <div className="input-container">
-        <label>Password </label>
-        <input type="password" name={pw} value={pw}  onChange= {
-          (event) => {
-            this.setState({password: event.target.value})
-           }
-          }
-          required />
- 
-      </div>
-      <div className="button-container">
-      <button type='submit' onClick={() => 
-      this.loginProcess(id, pw)} >submit</button>
-      </div>
-    </form>
-  </div>
-  </div>
-    
+    <button className='tq' onClick={() => 
+      this.loginProcess("admin", "test")} >어드민로그인</button>
+    <button className='tq' onClick={() => 
+      this.loginProcess("qq@test.com", "test")} >회원로그인</button>
     </>
   )
 }
