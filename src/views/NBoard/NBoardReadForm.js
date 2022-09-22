@@ -51,7 +51,7 @@ class NBoardReadForm extends Component {
                         </div>
                         <div className="my-3">
                             <div className="mb-5">
-                                <p className="px-4 py-3 kfont2">
+                                <p className="px-4 py-3 kfont2" style={{whiteSpace: 'pre'}}>
                                     {this.state.btext}
                                 </p>
                             </div>

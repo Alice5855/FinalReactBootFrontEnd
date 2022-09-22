@@ -230,7 +230,6 @@ class NBoardCUD extends Component {
                         this.setState({ btext: event.target.value })
                     }
                 ></textarea>
-
                 
                     <div className="d-flex mt-5">
                         {this.createCrudBtn()}
