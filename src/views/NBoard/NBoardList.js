@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NBoardServices from "./NBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import ReactTube from "../ReactTube";
 
 
 class NBoardList extends Component{
@@ -79,26 +80,43 @@ class NBoardList extends Component{
     render(){
         return(
             <>
-            <Link to="/Notice/crudInsert">
-                <Button className="btn-sm float-end">
-                    새 글 쓰기
-                </Button>
-            </Link>
-            <div id="boardbody" className="list-group w-auto my-5">
-                {
-                            this.state.List.map(
-                                board =>
-                <div key={board.bnum} >
-                    <Link to={`/Notice/view/bnum=${board.bnum}`} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                        <div className="d-flex gap-2 w-100 justify-content-between">
-                            <div>
-                                <h6 className="mb-0">{board.btitle}</h6>
-                            </div>
-                            <small className="opacity-50 text-nowrap">{board.bregDate}</small>
-                        </div>
+            <div id="boardbody" className="w-auto my-5">
+                <table id="boardtable" className="table table-hover col-12">
+                    <colgroup>
+                        <col className="col-1"></col>
+                        <col className="col-9"></col>
+                        <col className="col-2"></col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col" className="text-center">#</th>
+                            <th scope="col" className="text-center">제목</th>
+                            <th scope="col" className="text-center">작성일</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {
+                                        this.state.List.map(
+                                            board =>
+                            <tr key={board.bnum} >
+                                    <td scope="row" className="text-center">{board.bnum}</td>
+                                    <td>
+                                        <Link to={`/Notice/view/bnum=${board.bnum}`} className="text-decoration-none d-block w-100 mcolor1" aria-current="true">
+                                            {board.btitle}
+                                        </Link>
+                                    </td>
+                                    <td className="text-muted fs-6 text-center">{board.bregDate}</td>
+                            </tr>
+                            )}
+                    </tbody>
+                </table>
+                <div className="d-flex flex-row-reverse">
+                    <Link to="/Notice/crudInsert">
+                        <Button className="btn-sm my-3">
+                            새 글 쓰기
+                        </Button>
                     </Link>
                 </div>
-                )}
                 <div className="d-flex justify-content-center mt-3">
                     <Pagination size="md" aria-label="Page navigation">
                         {this.createPageBtn(this.state.currentPage, this.state.maxPage)}

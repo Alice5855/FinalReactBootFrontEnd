@@ -12,6 +12,21 @@
 /* font-family: 'Raleway', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
+/* https://fonts.google.com/specimen/Hahmlet?subset=korean */
+/* font-family: 'Hahmlet', serif; */
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;700&display=swap');
+
+/* https://fonts.google.com/specimen/IBM+Plex+Sans+KR?subset=korean */
+/* font-family: 'IBM Plex Sans KR', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap');
+
+.kfont1 {
+  font-family: 'Hahmlet', serif;
+}
+
+.kfont2 {
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
 
 .font2 {
   font-family: 'Poppins', sans-serif;
@@ -23,6 +38,22 @@
 
 .font4 {
   font-family: 'Raleway', sans-serif;
+}
+
+.mcolor1 {
+  color: #4C51BD;
+}
+
+.mcolor2 {
+  color: #4A75D4;
+}
+
+.scolor1 {
+  color: #FCE73C;
+}
+
+.scolor2 {
+  color: #FEBC30;
 }
 
 #spaceFiller {
@@ -45,6 +76,17 @@
 
 .footlogo {
   width: 3rem;
+}
+
+#boardtitle {
+  border-bottom: 2px solid;
+  border-color: #4C51BD;
+}
+
+#boardtable th {
+  border-top: 2px solid;
+  border-color: #4C51BD;
+  color: #4A75D4;
 }
 
 @media (max-width: 991.98px) {

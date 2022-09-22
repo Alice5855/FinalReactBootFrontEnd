@@ -211,10 +211,8 @@ class NBoardCUD extends Component {
                     value={btitle}
                     className='my-3 form-control inputTitle'
                     onChange={(event) =>{
-                        
                         this.setState({ btitle: event.target.value })
-                    }
-                        
+                        }
                     }
                 />
                 {/* input form에 값이 변경되었을 때에(onChange)

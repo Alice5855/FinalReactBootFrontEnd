@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card } from "reactstrap";
+import { Button } from "reactstrap";
 import NBoardServices from "./NBoardServices";
 
 class NBoardReadForm extends Component {
@@ -35,36 +35,36 @@ class NBoardReadForm extends Component {
     render(){
         
         return(
-            <div className="container-fluid readBody px-5 my-5">
-                <Card className="d-flex px-5 py-5">
-                    <div>
-                        <div>
-                            <h2 className="py-3">
-                                    {this.state.btitle}
-                            </h2>
-                        </div>
-                        <div>
+            <>
+                <div className="container readBody px-5 my-5" style={{borderTop: '2px solid', borderBottom: '2px solid', borderColor: '#4C51BD'}}>
+                        <div id="boardTitle" className="border-bottom mx-3 my-5">
                             <div>
-                                <p className="px-4 py-3">
+                                <h2 className="py-3">
+                                        {this.state.btitle}
+                                </h2>
+                            </div>
+                            <div className="d-flex flex-row-reverse py-3">
+                                <small className="text-muted">
+                                    {this.state.bregDate}
+                                </small>
+                            </div>
+                        </div>
+                        <div className="my-3">
+                            <div className="mb-5">
+                                <p className="px-4 py-3 kfont2">
                                     {this.state.btext}
                                 </p>
                             </div>
                         </div>
-                        <div>
-                            <small className="text-muted float-end py-3">
-                                {this.state.bregDate}
-                            </small>
-                        </div>
-                    </div>
-                </Card>
-                <div className="mt-5">
+                </div>
+                <div className="my-5">
                     <Link to={"/Notice"}>
-                        <Button className="btn-info float-end">
+                        <Button className="float-end" color="primary" outline>
                             리스트
                         </Button>
                     </Link>
 
-                        <Button className="btn-md btn-warning me-3" onClick={() => 
+                        <Button className="me-3" color="primary" outline onClick={() => 
                             this.props.history.push({
                                 pathname: "/Notice/crudUpdate",
                                 state:{
@@ -78,7 +78,7 @@ class NBoardReadForm extends Component {
                             수정
                         </Button>
 
-                        <Button className="btn-md btn-danger" onClick={() => 
+                        <Button className="" color="secondary" outline onClick={() => 
                             this.props.history.push({
                                 pathname: "/Notice/crudDelete",
                                 state:{
@@ -92,7 +92,7 @@ class NBoardReadForm extends Component {
                             삭제
                         </Button>
                 </div>
-            </div>
+            </>
         )
     }
 }

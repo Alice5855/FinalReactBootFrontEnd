@@ -19,15 +19,6 @@ class Main extends Component {
                     <Section2 />
                     <ReactTube />
                     <Section3 />
-                    <div className="d-flex row py-5 mx-5 cardWrapper">
-                        <Card1 />
-                    </div>
-                    <div className="d-flex row py-5 mx-5 cardWrapper">
-                        <Card2 />
-                    </div>
-                    <div className="d-flex row py-5 mx-5 cardWrapper">
-                        <Card3 />
-                    </div>
             </>
         )
     }

@@ -11,7 +11,7 @@ class Footer extends Component {
                         <div className="col-lg-6 my-3 my-lg-0">
                             <a className="text-decoration-none font4" href="http://localhost:3000/">
                                 <img className="me-2 footlogo" src="http://localhost:3000/images/testlogo2.png" />
-                                <span className="text-primary fs-4 fw-bold">
+                                <span className="mcolor2 fs-4 fw-bold">
                                     Anibucket Shop
                                 </span>
                             </a>

@@ -16,7 +16,7 @@ const Section2 = () => {
                                 <div className="portfolio-hover">
                                     <div className="portfolio-hover-content"><i class="bi bi-plus-lg fs-1"></i></div>
                                 </div>
-                                <img className="img-fluid" src="images/no_answer_gif4.webp" alt="..." />
+                                <img className="img-fluid" src="images/Note.png" alt="..." />
                             </a>
                             <div className="portfolio-caption">
                                 <div className="portfolio-caption-heading">Notice</div>
@@ -31,7 +31,7 @@ const Section2 = () => {
                                 <div className="portfolio-hover">
                                     <div className="portfolio-hover-content"><i class="bi bi-plus-lg fs-1"></i></div>
                                 </div>
-                                <img className="img-fluid" src="images/no_answer_gif3.webp" alt="..." />
+                                <img className="img-fluid" src="images/Commu.png" alt="..." />
                             </a>
                             <div className="portfolio-caption">
                                 <div className="portfolio-caption-heading">Community</div>
@@ -46,7 +46,7 @@ const Section2 = () => {
                                 <div className="portfolio-hover">
                                     <div className="portfolio-hover-content"><i class="bi bi-plus-lg fs-1"></i></div>
                                 </div>
-                                <img className="img-fluid" src="images/no_answer_gif5.webp" alt="..." />
+                                <img className="img-fluid" src="images/qna.png" alt="..." />
                             </a>
                             <div className="portfolio-caption">
                                 <div className="portfolio-caption-heading">Q&A</div>
