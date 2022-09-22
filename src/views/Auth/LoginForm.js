@@ -49,9 +49,9 @@ render(){
   return(
     <>
     <button className='tq' onClick={() => 
-      this.loginProcess("memid2", "mempw2")} >어드민로그인</button>
+      this.loginProcess("admin", "test")} >어드민로그인</button>
     <button className='tq' onClick={() => 
-      this.loginProcess("memid", "mempw")} >회원로그인</button>
+      this.loginProcess("qq@test.com", "test")} >회원로그인</button>
     </>
   )
 }
