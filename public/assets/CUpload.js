@@ -1,4 +1,8 @@
-
+$(".Trigger").on("click" , function(){
+    document.getElementById("fileName").click();
+    document.getElementById("uuid").click();
+    document.getElementById("folderPath").click();
+})
 
 
 $('.uploadBtn').click(function( ) {
@@ -19,6 +23,7 @@ $('.uploadBtn').click(function( ) {
         console.log(files[i]);
         formData.append("uploadFiles", files[i]);
     }
+ 
 
     //실제 업로드 부분
     //upload ajax

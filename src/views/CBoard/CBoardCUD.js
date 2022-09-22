@@ -38,6 +38,9 @@ class CBoardCUD extends Component {
                 btitle: this.props.location.state.btitle,
                 btext: this.props.location.state.btext,
                 bwriter: this.props.location.state.bwriter,
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud: "Update"
             };
         } else if(this.state.crud === "Delete"){
@@ -46,9 +49,13 @@ class CBoardCUD extends Component {
                 btitle: this.props.location.state.btitle,
                 btext: this.props.location.state.btext,
                 bwriter: this.props.location.state.bwriter,
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud: "Delete"
             };
         }
+        
         
     }
     /*
@@ -281,7 +288,6 @@ class CBoardCUD extends Component {
                     value={btitle}
                     className='my-3 form-control inputTitle'
                     onChange={(event) =>{
-                        
                         this.setState({ btitle: event.target.value })
                     }
                         
@@ -302,27 +308,43 @@ class CBoardCUD extends Component {
                         this.setState({ btext: event.target.value })
                     }
                 ></textarea>
-                <p>{this.state.btitle}</p>
+                
                 
                 <h3>File upload</h3>
             
-               
+                
                 <input name="uploadFiles" type="file" accept="image/*"  
                     className="my-3 form-control inputText"
                 />
-                <input type={"text"} name ="fileName" id="fileName"
+                <input type={"hidden"} name ="fileName" id="fileName"
                     className="my-3 form-control inputText"
-                    value={this.setState()}
-                    onChange={(event) => console.log("실행?")}
+                    onClick={(event) =>
+                        this.setState({ fileName: event.target.value })
+                    }
                 ></input>
-                <p>{this.state.fileName}</p>
-                <input type={"text"} name ="uuid" id="uuid"
-                    value={uuid}
+
+               
+
+                <input type={"hidden"} name ="uuid" id="uuid"
+                    onClick={(event) =>
+                        this.setState({ uuid: event.target.value })
+                    }
                 ></input>
-                <input type={"text"} name ="folderPath" id="folderPath"
-                    onChange={this.handleFolderPath}
+
+               
+
+                <input type={"hidden"} name ="folderPath" id="folderPath"
+                    onClick={(event) =>
+                        this.setState({ folderPath: event.target.value })
+                    }
                 ></input>
-                <button class="uploadBtn">Upload</button>
+
+                
+                <div className="float-end">
+                    <button class="uploadBtn btn btn-md btn-success">
+                        <p class="float-start">Upload</p>
+                    </button>
+                </div>
 
                 <div class="uploadResult">
 
@@ -343,7 +365,7 @@ class CBoardCUD extends Component {
 
                 
                 <br /> <br />
-                    <div className="float-end">
+                    <div className="float-end Trigger">
                         {this.createCrudBtn()}
                     </div>
                     {/* createCrudBtn() method 선언부 참고 */}

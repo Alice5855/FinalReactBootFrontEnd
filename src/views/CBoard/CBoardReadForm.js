@@ -12,11 +12,14 @@ class CBoardReadForm extends Component {
             bwriter: "",
             btext: "",
             bnum: props.match.params.bnum,
+            fullName:"",
             bregDate: ""
         };
 
         console.log(this.state.bnum);
+        console.log(this.state.fullName);
         this.getBoardData(this.state.bnum);
+        
     }
 
     getBoardData(bnum){
@@ -27,7 +30,8 @@ class CBoardReadForm extends Component {
                 btitle: res.data.board.btitle,
                 bwriter: res.data.board.bwriter,
                 btext: res.data.board.btext,
-                bregDate: res.data.board.bregDate
+                bregDate: res.data.board.bregDate,
+                fullName:res.data.board.fullName,
             })
             console.log(this.state);
         })
@@ -53,6 +57,13 @@ class CBoardReadForm extends Component {
                                     </small>
                                 </div>
                             </div>
+                        </div>
+
+                        <div>
+                            <div>
+                                <img src= {"/CUpload/display?fileName=" + this.state.fullName} />
+                            </div>
+
                         </div>
                         <div>
                             <div>
