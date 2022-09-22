@@ -6,9 +6,8 @@ class AuthenticationService {
     // send username, password to the SERVER
     executeJwtAuthenticationService(userid, password) {
         return axios.post(LoginURL , {
-             userid,
-             password
-
+            userid,
+            password
         })
     }
 
@@ -38,6 +37,8 @@ class AuthenticationService {
                     config.headers['Authorization'] = 'Bearer ' + token;
                 }
                 // config.headers['Content-Type'] = 'application/json';
+                console.log(config);
+
                 return config;
             },
             error => {
