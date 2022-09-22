@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 
+
+
 class CBoardCUD extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +13,11 @@ class CBoardCUD extends Component {
             btitle: "",
             btext: "",
             bwriter: "",
-            crud: props.match.params.crud
+            fileName:"",
+            folderPath:"",
+            uuid:"",
+            crud: props.match.params.crud,
+           
         };
 
         console.log(this.state);
@@ -21,6 +27,9 @@ class CBoardCUD extends Component {
                 btitle: "",
                 btext: "",
                 bwriter:"",
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud:"Insert"
             }
         } else if (this.state.crud === "Update") {
@@ -40,6 +49,7 @@ class CBoardCUD extends Component {
                 crud: "Delete"
             };
         }
+        
     }
     /*
     props에 VO에 저장된 column명으로 data를 저장할 수 있도록 함
@@ -50,6 +60,11 @@ class CBoardCUD extends Component {
     Insert의 경우 현재 form에 입력된 값을 data로 저장해 axios로
     값을 백으로 넘기게 됨
     */
+
+    
+
+   
+    
 
     createHeaderName() {
         const crud = this.state.crud;
@@ -95,7 +110,7 @@ class CBoardCUD extends Component {
     // btn에 기능정의를 따로 하지 않음
 
     crud() {
-        const {bnum, btitle, btext, crud, bwriter,bregdate } = this.state;
+        const {bnum, btitle, btext, crud, bwriter,bregdate ,fileName,uuid,folderPath} = this.state;
         let crudType = "";
         console.log("bnum : " + bnum);
         if (crud === "Update") {
@@ -116,6 +131,9 @@ class CBoardCUD extends Component {
         form.append("Btext", btext);
         form.append("Btitle", btitle);
         form.append("Bwriter", bwriter);
+        form.append("fileName", fileName);
+        form.append("folderPath", folderPath);
+        form.append("uuid", uuid);
         
         if (crud !== "Insert") {
             form.append("BNum", bnum);
@@ -131,12 +149,14 @@ class CBoardCUD extends Component {
             .then((res) => {
                 console.log(form);
                 console.log(crudType);
-                alert("요청이 처리되었습니다");
+                alert("요청이 처리되었습니다" + folderPath);
                 this.props.history.push("/Community");
+                
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
             });
+            
         }else if(crud ==="Update"){
             axios
             .post(crudType, form)
@@ -171,6 +191,10 @@ class CBoardCUD extends Component {
         // 실패했을 때(.catch) error message를 alert
     }
 
+
+    
+
+
     getData() {
         axios.get("/Community/view.do?=").then((res) => {
             const data = res.data;
@@ -182,6 +206,17 @@ class CBoardCUD extends Component {
         });
     }
 
+    upload() {
+        axios.post("/CUpload/uploadAjax").then((res) => {
+            const data = res.data;
+            this.setState({
+                fileName: data.fileName,
+                uuid: data.uuid,
+                folderPath: data.folderPath,
+            });
+        });
+    }
+   
     
     // view에서 넘어올 때에는 controller에서 넘어온 data를 props에 붙여
     // 출력할 수 있도록 함
@@ -198,13 +233,42 @@ class CBoardCUD extends Component {
     // Insert를 제외한 기능의 경우 이미 존재하는 값을 받아오기 때문에
     // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
+    
+
+    
+ 
+
+    handleFileName(event){
+        this.setState({fileName:event.target.value})
+    }
+
+    handleUUID(event){
+        this.setState({uuid:event.target.value})
+    }
+
+    handleFolderPath(event){
+        this.setState({folderPath:event.target.value})
+    }
+
+   
+
     render() {
+  
+        
+   
+     
         const btitle = this.state.btitle;
         const btext = this.state.btext;
         const bwriter = this.state.bwriter;
-        
+        const fileName = this.state.fileName;
+        const uuid = this.state.uuid;
+        const folderPath = this.state.folderPath;
+     
+
+          
 
         return (
+            
             <div className="container-fluid px-5 my-5">
                 <Card className="px-5 py-5 d-flex formBody">
                 {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
@@ -238,6 +302,31 @@ class CBoardCUD extends Component {
                         this.setState({ btext: event.target.value })
                     }
                 ></textarea>
+                <p>{this.state.btitle}</p>
+                
+                <h3>File upload</h3>
+            
+               
+                <input name="uploadFiles" type="file" accept="image/*"  
+                    className="my-3 form-control inputText"
+                />
+                <input type={"text"} name ="fileName" id="fileName"
+                    className="my-3 form-control inputText"
+                    value={this.setState()}
+                    onChange={(event) => console.log("실행?")}
+                ></input>
+                <p>{this.state.fileName}</p>
+                <input type={"text"} name ="uuid" id="uuid"
+                    value={uuid}
+                ></input>
+                <input type={"text"} name ="folderPath" id="folderPath"
+                    onChange={this.handleFolderPath}
+                ></input>
+                <button class="uploadBtn">Upload</button>
+
+                <div class="uploadResult">
+
+                </div>
                 
                 <h3>글쓴이</h3>
                 <input
@@ -266,8 +355,10 @@ class CBoardCUD extends Component {
                         </Button>
                     </Link>
                 </div>
+               
                 
             </div>
+
         );
     }
 }
