@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, useState} from 'react'
 import AuthService from './AuthService';
+
 
 
 class LoginForm extends Component {
@@ -26,13 +27,7 @@ class LoginForm extends Component {
           console.log(res.data.accessToken);
 
           console.log("activate registerSuccessfulLoginForJwt")
-          AuthService.registerSuccessfulLoginForJwt(userId, res.data.accessToken)
-
-          AuthService.loginSuccessGetUserInfo(localStorage.getItem('token')).then(res=>{
-            console.log(res);
-            AuthService.getLoggedInUserInfo(res);
-          });
-
+          AuthService.registerSuccessfulLoginForJwt(userId, res.data.accessToken);
 
         }else{
           console.log("로그인 실패");
@@ -46,11 +41,43 @@ class LoginForm extends Component {
   }
 
 
+
 render(){
+const id = this.state.userid;
+const pw = this.state.password;
   return(
     <>
-    <button className='tq' onClick={() => 
-      this.loginProcess("memid", "mempw")} >zzzzzzzzzzzzzzzzz</button>
+      <div> 
+        <div className="form">
+    <form>
+      <div className="input-container">
+        <label>Username </label>
+        <input type="text" name={id} value={id} onChange= {
+          (event) => {
+            this.setState({userid: event.target.value})
+           }
+          }  
+          required />
+
+      </div>
+      <div className="input-container">
+        <label>Password </label>
+        <input type="password" name={pw} value={pw}  onChange= {
+          (event) => {
+            this.setState({password: event.target.value})
+           }
+          }
+          required />
+ 
+      </div>
+      <div className="button-container">
+      <button type='submit' onClick={() => 
+      this.loginProcess(id, pw)} >submit</button>
+      </div>
+    </form>
+  </div>
+  </div>
+    
     </>
   )
 }
