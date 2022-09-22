@@ -83,7 +83,7 @@ class QBoardReadForm extends Component {
             return(
                 <>
                     <div>
-                        <div className="w-50 m-auto">
+                        <div className="w-25 m-auto">
                             <img src={imgLink} className="img-fluid m-auto" alt="no answer img"></img>
                             <br/>
                         </div>
