@@ -40,7 +40,6 @@ class LoginForm extends Component {
 
 
 
-        res.json();
       });
     console.log("111asfewfwqe");
   }
@@ -50,7 +49,9 @@ render(){
   return(
     <>
     <button className='tq' onClick={() => 
-      this.loginProcess("memid", "mempw")} >zzzzzzzzzzzzzzzzz</button>
+      this.loginProcess("memid2", "mempw2")} >어드민로그인</button>
+    <button className='tq' onClick={() => 
+      this.loginProcess("memid", "mempw")} >회원로그인</button>
     </>
   )
 }
