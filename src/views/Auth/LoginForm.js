@@ -26,7 +26,13 @@ class LoginForm extends Component {
           console.log(res.data.accessToken);
 
           console.log("activate registerSuccessfulLoginForJwt")
-          AuthService.registerSuccessfulLoginForJwt(userId, res.data.accessToken);
+          AuthService.registerSuccessfulLoginForJwt(userId, res.data.accessToken)
+
+          AuthService.loginSuccessGetUserInfo(localStorage.getItem('token')).then(res=>{
+            console.log(res);
+            AuthService.getLoggedInUserInfo(res);
+          });
+
 
         }else{
           console.log("로그인 실패");
@@ -44,7 +50,7 @@ render(){
   return(
     <>
     <button className='tq' onClick={() => 
-      this.loginProcess("memid2", "mempw2")} >zzzzzzzzzzzzzzzzz</button>
+      this.loginProcess("memid", "mempw")} >zzzzzzzzzzzzzzzzz</button>
     </>
   )
 }

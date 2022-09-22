@@ -16,6 +16,19 @@ class QBoardList extends Component{
         this.getBoardListData(this.state.currentPage);
     }
 
+    btnCreateBoardCheckLogin(){
+        if(localStorage.getItem('token')){
+            return(
+                <Link to="/QnA/crudInsert">
+                    <Button className="btn-sm float-end">
+                        새 글 쓰기
+                    </Button>
+                </Link>
+            )
+        }
+    }
+
+
     // 페이지 이동 버튼 출력하는 메소드
     createPageBtn(currentPage, maxPage){
     
@@ -96,11 +109,7 @@ class QBoardList extends Component{
     render(){
         return(
             <>
-            <Link to="/QnA/crudInsert">
-                <Button className="btn-sm float-end">
-                    새 글 쓰기
-                </Button>
-            </Link>
+            {this.btnCreateBoardCheckLogin()}
             <div id="boardbody" className="list-group w-auto my-5">
                 {
                             this.state.List.map(

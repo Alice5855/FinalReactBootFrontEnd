@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
+import AuthService from "../Auth/AuthService";
 import QBoardServices from "./QBoardServices";
 
 class QBoardReadForm extends Component {
@@ -98,6 +99,27 @@ class QBoardReadForm extends Component {
         
     }
 
+    createAnswerBtnCheckAdmin(){
+        if(AuthService.roleAdminCheck()){
+            return(
+                <Button className="btn-md btn-danger" onClick={() => 
+                            this.props.history.push({
+                                pathname: "/QnA/answer",
+                                state:{
+                                    bnum: this.state.bnum,
+                                    btitle: this.state.btitle,
+                                    bwriter: this.state.bwriter,
+                                    btext: this.state.btext,
+                                    bregDate: this.state.bregDate
+                                }
+                            })
+                        }>
+                    답변
+                </Button>
+            )
+        }
+    }
+
     render(){
         
         return(
@@ -175,20 +197,8 @@ class QBoardReadForm extends Component {
                             삭제
                         </Button>
 
-                        <Button className="btn-md btn-danger" onClick={() => 
-                            this.props.history.push({
-                                pathname: "/QnA/answer",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            답변
-                        </Button>
+                        {this.createAnswerBtnCheckAdmin()}
+                        
                 </div>
             </div>
         )

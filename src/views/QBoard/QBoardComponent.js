@@ -7,6 +7,7 @@ import QBoardCUD from "./QBoardCUD";
 import QBoardAnswer from "./QBoardAnswer";
 
 class QBoardComponent extends Component {
+
     render(){
         
         return(
@@ -20,6 +21,7 @@ class QBoardComponent extends Component {
                 </div>
                 <Route path={"/QnA"} component={QBoardList} exact={true} />
                 <Route path={"/QnA/crud:crud"} component={QBoardCUD} />
+
                 <Route path={"/QnA/view/bnum=:bnum"} component={QboardReadForm} />
                 <Route path={"/QnA/answer/"} component={QBoardAnswer} />
             </div>

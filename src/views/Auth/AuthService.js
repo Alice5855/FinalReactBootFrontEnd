@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const LoginURL = "/auth/login"
+const LoginSuccessURL = "/auth/loginsuccess"
 
 class AuthenticationService {
     // send username, password to the SERVER
@@ -70,6 +71,26 @@ class AuthenticationService {
         if(user===null) return '';
         return user;
     }
+
+    loginSuccessGetUserInfo(accessToken){
+        return axios.post(LoginSuccessURL, {accessToken});
+    }
+
+    getLoggedInUserInfo(user){
+        localStorage.setItem("nickname", user.data.nickname);
+        localStorage.setItem("role", user.data.authority);
+    }
+
+    roleAdminCheck(){
+        if(localStorage.getItem("role") === "ROLE_ADMIN"){
+            console.log("지금 로그인한 계정 어드민임");
+            return true;
+        }else{
+            console.log("이사람 어드민아님");
+            return false;
+        }
+    }
+
 }
 
 export default new AuthenticationService()
