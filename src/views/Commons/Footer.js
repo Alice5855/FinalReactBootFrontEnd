@@ -4,7 +4,7 @@ class Footer extends Component {
     render(){
         return(
             <>
-            <footer className="footer py-4 font2">
+            <footer className="footer py-4 font2 bg-light">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-3 text-lg-start">Copyright &copy; Alternative Society 2022</div>

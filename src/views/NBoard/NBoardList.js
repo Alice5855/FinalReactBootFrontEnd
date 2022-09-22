@@ -101,7 +101,7 @@ class NBoardList extends Component{
                             <tr key={board.bnum} >
                                     <td scope="row" className="text-center">{board.bnum}</td>
                                     <td>
-                                        <Link to={`/Notice/view/bnum=${board.bnum}`} className="text-decoration-none d-block w-100 mcolor1" aria-current="true">
+                                        <Link to={`/Notice/view/bnum=${board.bnum}`} className="text-decoration-none d-block w-100 mcolor2" aria-current="true">
                                             {board.btitle}
                                         </Link>
                                     </td>
@@ -112,7 +112,7 @@ class NBoardList extends Component{
                 </table>
                 <div className="d-flex flex-row-reverse">
                     <Link to="/Notice/crudInsert">
-                        <Button className="btn-sm my-3">
+                        <Button className="btn-sm my-3" color="primary" outline>
                             새 글 쓰기
                         </Button>
                     </Link>

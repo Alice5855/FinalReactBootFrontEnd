@@ -20,11 +20,6 @@ const Sidebar = () => {
                         </a>
                     </li>
                     <li>
-                        <a className="nav-link text-white" href="/Contact">
-                        Contact
-                        </a>
-                    </li>
-                    <li>
                         <a className="nav-link text-white" href="/FAQ">
                         FAQ
                         </a>

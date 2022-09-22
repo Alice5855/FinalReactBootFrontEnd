@@ -107,3 +107,25 @@
     display: block;
   }
 }
+
+@media (max-width: 425px) {
+  #cudbody{
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  #cudbody .formBody {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  #cudbody{
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+  }
+  #cudbody .formBody {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+}
