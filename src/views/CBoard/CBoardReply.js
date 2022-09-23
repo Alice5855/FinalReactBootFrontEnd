@@ -2,60 +2,57 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
+import CBoardReadForm from "./CBoardReadForm";
+import {useState} from "react";
+import CBoardServices from "./CBoardServices";
 
 
 
-class CBoardCUD extends Component {
+class CBoardReply extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bnum : "",
-            btitle: "",
-            btext: "",
-            bwriter: "",
-            fileName:"",
-            folderPath:"",
-            uuid:"",
-            crud: props.match.params.crud,
+            bnum:localStorage.getItem('bnum'),
+            rnum:"",
+            reply:"",
+            replyer:"",
+            replyDate:"",
+            crud: "Insert",
            
         };
-
-        console.log(this.state);
+        // this.getData();
+        
+        localStorage.removeItem('bnum');
+        
         
         if(this.state.crud === "Insert"){
             this.state = {
-                btitle: "",
-                btext: "",
-                bwriter:"",
-                fileName:"",
-                folderPath:"",
-                uuid:"",
+                bnum:this.state.bnum,
+                rnum:"",
+                reply:"",
+                replyer:"",
+                replyDate:"",
                 crud:"Insert"
             }
         } else if (this.state.crud === "Update") {
             this.state = {
-                bnum: this.props.location.state.bnum,
-                btitle: this.props.location.state.btitle,
-                btext: this.props.location.state.btext,
-                bwriter: this.props.location.state.bwriter,
-                fileName:"",
-                folderPath:"",
-                uuid:"",
+                rnum:this.props.location.state.rnum,
+                reply:this.props.location.state.reply,
+                replyer:this.props.location.state.replyer,
+                replyDate:this.props.location.state.replyDate,
                 crud: "Update"
             };
         } else if(this.state.crud === "Delete"){
             this.state = {
-                bnum: this.props.location.state.bnum,
-                btitle: this.props.location.state.btitle,
-                btext: this.props.location.state.btext,
-                bwriter: this.props.location.state.bwriter,
-                fileName:"",
-                folderPath:"",
-                uuid:"",
+                rnum: this.props.location.state.rnum,
+                reply: this.props.location.state.reply,
+                replyer: this.props.location.state.replyer,
+                replyDate: this.props.location.state.replyDate,
                 crud: "Delete"
             };
         }
         
+        console.log(this.state.rnum + "뭐야")
 
     }
     /*
@@ -115,20 +112,23 @@ class CBoardCUD extends Component {
     // 기능정의되어 넘어온 crud값을 통해 button text와 onClick 링크를
     // 버튼에 mapping 해줌. view의 경우 이미 data가 넘어온 상태일 것이므로
     // btn에 기능정의를 따로 하지 않음
-    
+ 
 
     crud() {
-        const {bnum, btitle, btext, crud, bwriter,bregdate ,fileName,uuid,folderPath} = this.state;
+        const {bnum, rnum, reply, replyer, crud, replyDate} = this.state;
         let crudType = "";
-        console.log("bnum : " + bnum);
+        console.log("rnum : " + rnum);
+        console.log("reply : " + reply);
+        console.log("replyer : " + replyer);
+        console.log("bnum : "  + bnum);
         if (crud === "Update") {
-            crudType = "/Community/modify.do";
+            crudType = "/CReply/modify";
         } else if (crud === "Delete") {
-            crudType = "/Community/delete.do";
+            crudType = "/CReply/delete";
         } else if (crud === "Insert") {
-            crudType = "/Community/insertProcess.do";
+            crudType = "/CReply/insert";
         } else if (crud === "View") {
-            return null;
+            crudType ="/CReply/read"
         }
         console.log(crud);
         // crud에 정의된 기능에 따라 controller의 기능으로 url을 넘겨줌
@@ -136,16 +136,20 @@ class CBoardCUD extends Component {
         // 값들 (const {}부분)이 된다.
 
         let form = new FormData();  
-        form.append("Btext", btext);
-        form.append("Btitle", btitle);
-        form.append("Bwriter", bwriter);
-        form.append("fileName", fileName);
-        form.append("folderPath", folderPath);
-        form.append("uuid", uuid);
-        
+        form.append("Reply", reply);
+        form.append("Replyer", replyer);
+        form.append("BNum", bnum)
+        // form.append("RNum", rnum);
+        // form.append("ReplyDate", replyDate);
+        // form.append("")
+
         if (crud !== "Insert") {
-            form.append("BNum", bnum);
+            form.append("RNum", rnum);
         }
+        
+       
+        
+        
        
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
@@ -207,41 +211,32 @@ class CBoardCUD extends Component {
         axios.get("/Community/view.do?=").then((res) => {
             const data = res.data;
             this.setState({
-                bnum: data.bnum,
-                btitle: data.btitle,
-                btext: data.btext,
+                rnum: data.bnum,
             });
         });
     }
 
-    upload() {
-        axios.post("/CUpload/uploadAjax").then((res) => {
-            const data = res.data;
-            this.setState({
-                fileName: data.fileName,
-                uuid: data.uuid,
-                folderPath: data.folderPath,
-            });
-        });
-    }
+   
    
     
     // view에서 넘어올 때에는 controller에서 넘어온 data를 props에 붙여
     // 출력할 수 있도록 함
 
     createArticleIdTag() {
-        const bnum = this.state.bnum;
-        const crud = this.state.crud;
-        if (crud !== "Insert") {
-            return <input type="hidden" value={bnum} readOnly />;
-        } else {
-            return null;
-        }
+        const rnum = this.state.rnum;
+        
+        
+            return <input type="hidden" value={rnum} readOnly />;
+         
+           
+        
     }
     // Insert를 제외한 기능의 경우 이미 존재하는 값을 받아오기 때문에
     // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
- 
+    replyInsert(){
+        
+    }
    
 
     render() {
@@ -249,12 +244,10 @@ class CBoardCUD extends Component {
         
    
      
-        const btitle = this.state.btitle;
-        const btext = this.state.btext;
-        const bwriter = this.state.bwriter;
-        const fileName = this.state.fileName;
-        const uuid = this.state.uuid;
-        const folderPath = this.state.folderPath;
+        const reply = this.state.reply;
+        const replyer = this.state.replyer;
+        const replyDate = this.state.replyDate;
+       
      
 
           
@@ -265,16 +258,16 @@ class CBoardCUD extends Component {
                 <div className="container-fluid px-5 my-5">
                     <Card className="px-5 py-5 d-flex formBody">
                     {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
-                    <h1>게시글 {this.createHeaderName()}</h1>
+                    <h1>댓글 등록</h1>
                     {this.createArticleIdTag()}
-                    <h3>제목</h3>
+                    <h3>댓글내용</h3>
                     <input
                         type="text"
-                        name={btitle}
-                        value={btitle}
+                        name={reply}
+                        value={reply}
                         className='my-3 form-control inputTitle'
                         onChange={(event) =>{
-                            this.setState({ btitle: event.target.value })
+                            this.setState({ reply: event.target.value })
                         }
                             
                         }
@@ -282,76 +275,31 @@ class CBoardCUD extends Component {
                     {/* input form에 값이 변경되었을 때에(onChange)
                         해당 값을 props에 setState로 저장함 */}
                     <br />
-                    <h3>내용</h3>
-                    <textarea
-                        rows="10"
-                        cols="20"
-                        name={btext}
-                        value={btext}
+                    <h3>작성자</h3>
+                    <input
+                      
+                        name={replyer}
+                        value={replyer}
                         className="my-3 form-control inputText"
                         style={{resize: 'none'}}
                         onChange={(event) =>
-                            this.setState({ btext: event.target.value })
-                        }
-                    ></textarea>
-                    
-                    
-                    <h3>File upload</h3>
-                
-                    
-                    <input name="uploadFiles" type="file" accept="image/*"  
-                        className="my-3 form-control inputText"
-                    />
-                    <input type={"hidden"} name ="fileName" id="fileName"
-                        className="my-3 form-control inputText"
-                        onClick={(event) =>
-                            this.setState({ fileName: event.target.value })
+                            this.setState({ replyer: event.target.value })
                         }
                     ></input>
-
-                
-
-                    <input type={"hidden"} name ="uuid" id="uuid"
-                        onClick={(event) =>
-                            this.setState({ uuid: event.target.value })
-                        }
-                    ></input>
-
-                
-
-                    <input type={"hidden"} name ="folderPath" id="folderPath"
-                        onClick={(event) =>
-                            this.setState({ folderPath: event.target.value })
-                        }
-                    ></input>
+                    
+                    
+                   
 
                     
-                    <div className="float-end">
-                        <button class="uploadBtn btn btn-md btn-success">
-                            <p class="float-start" style={{marginBottom:'auto'}}>Upload</p>
-                        </button>
-                    </div>
-
-                    <div class="uploadResult">
-
-                    </div>
                     
-                    <h3>글쓴이</h3>
-                    <input
-                        type="text"
-                        name={bwriter}
-                        value={bwriter}
-                        className="my-3 form-control inputRegdate"
-                        onChange={(event) =>{
-                            this.setState({ bwriter: event.target.value })
-                        }
-                            
-                        }
-                    />
+
+                   
+                    
+                    
 
                     
                     <br /> <br />
-                        <div className="float-end Trigger">
+                        <div className="float-end">
                             {this.createCrudBtn()}
                         </div>
                         {/* createCrudBtn() method 선언부 참고 */}
@@ -373,4 +321,4 @@ class CBoardCUD extends Component {
     }
 }
 
-export default CBoardCUD;
+export default CBoardReply;
