@@ -13,13 +13,13 @@ class NBoardComponent extends Component {
             <>
             <SpaceFiller/>
             <div className="container py-5 px-5" style={{paddingTop:'30%'}}>
-                <div>
+                <div className="mb-5">
                     <p id="boardtitle" className="kfont2 fs-2 mcolor1">
                         공지사항
                     </p>
                 </div>
                 <div className="w-50 m-auto">
-                    <img className="img-fluid rounded" src="http://localhost:3000/images/test.jpg" />
+                    <img className="img-fluid rounded" src="http://localhost:3000/images/bleh.webp" />
                 </div>
                 <Route path={"/Notice"} component={NBoardList} exact={true} />
                 <Route path={"/Notice/crud:crud"} component={NBoardCUD} />
