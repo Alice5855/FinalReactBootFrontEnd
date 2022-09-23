@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import QBoardServices from "./QBoardServices";
 import { Link } from "react-router-dom";
-import { Button, NavItem, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 
 class QBoardList extends Component{

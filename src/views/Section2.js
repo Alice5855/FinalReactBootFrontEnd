@@ -16,11 +16,15 @@ const Section2 = () => {
                                 <div className="portfolio-hover">
                                     <div className="portfolio-hover-content"><i class="bi bi-plus-lg fs-1"></i></div>
                                 </div>
-                                <img className="img-fluid" src="images/Note.png" alt="..." />
+                                <div className="m-auto" style={{width: '65.8%'}}>
+                                    {/* <img className="img-fluid" src="images/Note.png" alt="Notice" /> */}
+                                    <img className="img-fluid" src="images/testboardimagen.webp" alt="Notice" />
+                                </div>
                             </a>
-                            <div className="portfolio-caption">
+                            <div className="portfolio-caption font2">
                                 <div className="portfolio-caption-heading">Notice</div>
-                                <div className="portfolio-caption-subheading text-muted">공지사항</div>
+                                <div className="portfolio-caption-subheading text-muted mb-2">공지사항</div>
+                                <em className="text-muted" style={{fontSize: '0.5rem'}}>Art by <a className="text-muted text-decoration-none" href="https://twitter.com/walfieee" target={'_blank'} rel="noreferrer">Walfie</a></em>
                             </div>
                         </div>
                     </div>
@@ -31,11 +35,15 @@ const Section2 = () => {
                                 <div className="portfolio-hover">
                                     <div className="portfolio-hover-content"><i class="bi bi-plus-lg fs-1"></i></div>
                                 </div>
-                                <img className="img-fluid" src="images/Commu.png" alt="..." />
+                                <div>
+                                    {/* <img className="img-fluid" src="images/Commu.png" alt="Community" /> */}
+                                    <img className="img-fluid" src="images/testboardimagec.webp" alt="Community" />
+                                </div>
                             </a>
-                            <div className="portfolio-caption">
+                            <div className="portfolio-caption font2">
                                 <div className="portfolio-caption-heading">Community</div>
-                                <div className="portfolio-caption-subheading text-muted">자유게시판</div>
+                                <div className="portfolio-caption-subheading text-muted mb-2">자유게시판</div>
+                                <em className="text-muted" style={{fontSize: '0.5rem'}}>Art by <a className="text-muted text-decoration-none" href="https://twitter.com/walfieee" target={'_blank'} rel="noreferrer">Walfie</a></em>
                             </div>
                         </div>
                     </div>
@@ -46,11 +54,15 @@ const Section2 = () => {
                                 <div className="portfolio-hover">
                                     <div className="portfolio-hover-content"><i class="bi bi-plus-lg fs-1"></i></div>
                                 </div>
-                                <img className="img-fluid" src="images/qna.png" alt="..." />
+                                <div className="m-auto" style={{width: '84.8%'}}>
+                                {/* <img className="img-fluid" src="images/qna.png" alt="Q&A" /> */}
+                                    <img className="img-fluid my-auto" src="images/testboardimageq.webp" alt="Q&A" />
+                                </div>
                             </a>
-                            <div className="portfolio-caption">
+                            <div className="portfolio-caption font2">
                                 <div className="portfolio-caption-heading">Q&A</div>
-                                <div className="portfolio-caption-subheading text-muted">Q&A게시판</div>
+                                <div className="portfolio-caption-subheading text-muted mb-2">Q&A게시판</div>
+                                <em className="text-muted" style={{fontSize: '0.5rem'}}>Art by <a className="text-muted text-decoration-none" href="https://twitter.com/walfieee" target={'_blank'} rel="noreferrer">Walfie</a></em>
                             </div>
                         </div>
                     </div>

@@ -4,13 +4,14 @@ import NBoardList from "./NBoardList";
 import NBoardReadForm from "./NBoardReadForm";
 
 import NBoardCUD from "./NBoardCUD";
+import SpaceFiller from "../../SpaceFiller";
 
 class NBoardComponent extends Component {
     render(){
         
         return(
             <>
-            <div id="spaceFiller"></div>
+            <SpaceFiller/>
             <div className="container py-5 px-5" style={{paddingTop:'30%'}}>
                 <div>
                     <p id="boardtitle" className="kfont2 fs-2 mcolor1">
@@ -18,7 +19,7 @@ class NBoardComponent extends Component {
                     </p>
                 </div>
                 <div className="w-50 m-auto">
-                    <img className="img-fluid" src="http://localhost:3000/images/test.jpg" />
+                    <img className="img-fluid rounded" src="http://localhost:3000/images/test.jpg" />
                 </div>
                 <Route path={"/Notice"} component={NBoardList} exact={true} />
                 <Route path={"/Notice/crud:crud"} component={NBoardCUD} />

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import NBoardServices from "./NBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import ReactTube from "../ReactTube";
 
 
 class NBoardList extends Component{
