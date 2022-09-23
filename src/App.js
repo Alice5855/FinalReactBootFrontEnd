@@ -8,6 +8,7 @@ import QBoardComponent from "./views/QBoard/QBoardComponent";
 import Header from "./views/Commons/Header";
 import About from "./views/Sub/About";
 import Find from "./views/Sub/Find"
+import FAQ from "./views/Sub/FAQ";
 
 const App = () => {
   
@@ -22,6 +23,7 @@ const App = () => {
       <Route path= "/QnA" component={QBoardComponent} />
       <Route path= "/About" component={About} />
       <Route path= "/Find" component={Find} />
+      <Route path= "/Faq" component={FAQ} />
       <Footer />
     </>
   );
