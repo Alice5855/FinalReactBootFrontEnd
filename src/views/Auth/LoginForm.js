@@ -45,15 +45,46 @@ class LoginForm extends Component {
   }
 
 
-render(){
-  return(
-    <>
-    <button className='tq' onClick={() => 
-      this.loginProcess("admin", "test")} >어드민로그인</button>
-    <button className='tq' onClick={() => 
-      this.loginProcess("qq@test.com", "test")} >회원로그인</button>
-    </>
-  )
-}
-}
+  render(){
+    const id = this.state.userid;
+    const pw = this.state.password;
+      return(
+        <>
+        <div id="spaceFiller"></div>
+          <div> 
+            <div className="form">
+       
+          <div className="input-container">
+            <label>Username </label>
+            <input type="text" name={id} value={id} onChange= {
+              (event) => {
+                this.setState({userid: event.target.value})
+               }
+              }  
+              required />
+    
+          </div>
+    
+          <div className="input-container">
+            <label>Password </label>
+            <input type="password" name={pw} value={pw}  onChange= {
+              (event) => {
+                this.setState({password: event.target.value})
+               }
+              }
+              required />
+          <a href='http://192.168.0.26:9005/member/join'>회원가입</a>
+          </div>
+          <div className="button-container">
+          <button onClick={() => 
+          this.loginProcess(id, pw)} >submit</button>
+          </div>
+       
+      </div>
+      </div>
+        
+        </>
+      )
+    }
+    }
 export default LoginForm;
