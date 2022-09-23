@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 import CBoardServices from "./CBoardServices";
 import CBoardReply from "./CBoardReply";
+import CBoardReplyList from "./CBoardReplyList";
+
 
 class CBoardReadForm extends Component {
     constructor(props){
@@ -35,7 +37,9 @@ class CBoardReadForm extends Component {
                 fullName:res.data.board.fullName,
                 
             })
-            console.log(this.state);
+
+            console.log("겟보드데이터의 res.data" + res.data);
+            
         })
         
     }
@@ -46,6 +50,14 @@ class CBoardReadForm extends Component {
                 <img src= {"/CUpload/display?fileName=" + this.state.fullName} />
                 )
         }
+    }
+
+    replyResist(){
+        
+        return(
+            <CBoardReply>
+            </CBoardReply>
+        )
     }
 
     render(){
@@ -131,10 +143,19 @@ class CBoardReadForm extends Component {
                 </div>
 
                 
-                <CBoardReply>
+                {/* <CBoardReply>
 
 
-                </CBoardReply>
+                </CBoardReply> */}
+                {/* <button onClick={this.replyResist()}>
+                    댓글등록
+                </button> */}
+
+                {this.replyResist()}
+
+                <CBoardReplyList>
+
+                </CBoardReplyList>
 
                 
 

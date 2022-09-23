@@ -5,6 +5,8 @@ import { Button, Card } from "reactstrap";
 import CBoardReadForm from "./CBoardReadForm";
 import {useState} from "react";
 import CBoardServices from "./CBoardServices";
+import CBoardReplyList from "./CBoardReplyList";
+
 
 
 
@@ -22,7 +24,7 @@ class CBoardReply extends Component {
         };
         // this.getData();
         
-        localStorage.removeItem('bnum');
+        // localStorage.removeItem('bnum');
         
         
         if(this.state.crud === "Insert"){
@@ -108,6 +110,7 @@ class CBoardReply extends Component {
                 <button className={btnColor} onClick={() => this.crud()}>{crudName}</button>
             );
         }
+
     }
     // 기능정의되어 넘어온 crud값을 통해 button text와 onClick 링크를
     // 버튼에 mapping 해줌. view의 경우 이미 data가 넘어온 상태일 것이므로
@@ -162,7 +165,6 @@ class CBoardReply extends Component {
                 console.log(form);
                 console.log(crudType);
                 alert("요청이 처리되었습니다");
-                this.props.history.push("/Community");
                 
             })
             .catch((err) => {
@@ -177,7 +179,7 @@ class CBoardReply extends Component {
                 console.log(form);
                 console.log(crudType);
                 alert("요청이 처리되었습니다");
-                this.props.history.push("/Community");
+                
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
@@ -191,7 +193,7 @@ class CBoardReply extends Component {
                 console.log(form);
                 console.log(crudType);
                 alert("요청이 처리되었습니다");
-                this.props.history.push("/Community");
+                
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
@@ -201,6 +203,10 @@ class CBoardReply extends Component {
         // axios의 post method로 props의 data(crudType, form)를 넘기고
         // 성공했을 때(.then) .push('/')로 메인 페이지로 forward해주고
         // 실패했을 때(.catch) error message를 alert
+
+        
+        window.location.reload();
+
     }
 
 
@@ -304,14 +310,7 @@ class CBoardReply extends Component {
                         </div>
                         {/* createCrudBtn() method 선언부 참고 */}
                     </Card>
-                    <div className="mt-5">
-                        <Link to={"/Community"}>
-                            <Button className="btn-info float-end">
-                                취소
-                            </Button>
-                        </Link>
-                    </div>
-                
+                    
                     
                 </div>
 

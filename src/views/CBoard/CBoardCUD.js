@@ -252,9 +252,7 @@ class CBoardCUD extends Component {
         const btitle = this.state.btitle;
         const btext = this.state.btext;
         const bwriter = this.state.bwriter;
-        const fileName = this.state.fileName;
-        const uuid = this.state.uuid;
-        const folderPath = this.state.folderPath;
+       
      
 
           
