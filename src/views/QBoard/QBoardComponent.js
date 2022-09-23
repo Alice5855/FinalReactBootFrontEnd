@@ -13,11 +13,12 @@ class QBoardComponent extends Component {
         return(
             <>
             <div id="spaceFiller"></div>
-            <div className="container-fluid py-5 px-5" style={{paddingTop:'30%'}}>
+            <div className="container py-5 px-5" style=
+            {{paddingTop:'30%'}}>
                 <div>
-                    <h1 className="Title" style={{color: '#25C1FF'}}>
+                    <p id="boardtitle" className="kfont2 fs-2 mcolor1">
                         Q&A
-                    </h1>
+                    </p>
                 </div>
                 <Route path={"/QnA"} component={QBoardList} exact={true} />
                 <Route path={"/QnA/crud:crud"} component={QBoardCUD} />

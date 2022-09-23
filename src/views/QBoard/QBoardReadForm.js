@@ -165,37 +165,29 @@ class QBoardReadForm extends Component {
     render(){
         
         return(
-            <div className="container-fluid readBody px-5 my-5">
-                <Card className="d-flex px-5 py-5">
-                    <div>
-                        <div>
-                            <h2 className="py-3">
+            <div className="container readBody px-5 my-5" style={{borderTop: '2px solid', borderBottom: '2px solid', borderColor: '#4C51BD'}}>
+                    <div id="boardTitle" className="border-bottom mx-3 my-5">
+                        <div className="d-flex flex-row justify-content-between align-items-end">
+                            <h2 className="py-3 d-inline">
                                     {this.state.btitle}
                             </h2>
-                        </div>
-                        <div>
                             <div>
-                                <div className="py-3 pe-4">
-                                    <small className="text-muted float-end">
-                                        {this.state.bwriter}
-                                    </small>
-                                </div>
+                                <small className="text-muted mx-2">
+                                            {this.state.bwriter}
+                                </small>
+                                <small className="text-muted py-3">
+                                    {this.state.bregDate}
+                                </small>
                             </div>
                         </div>
-                        <div>
-                            <div>
-                                <p className="px-4 py-3">
+                        <div className="my-3">
+                            <div className="mb-5">
+                            <p className="px-4 py-3 kfont2" style={{whiteSpace: 'pre'}}>
                                     {this.state.btext}
                                 </p>
                             </div>
                         </div>
-                        <div>
-                            <small className="text-muted float-end py-3">
-                                {this.state.bregDate}
-                            </small>
-                        </div>
                     </div>
-                </Card>
                 <br/>
                 <Card className="d-flex px-5 py-5">
                     {this.createAnswerArea(this.state.banswerText)}
