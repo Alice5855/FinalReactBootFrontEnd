@@ -1,6 +1,30 @@
 import React from "react";
 
 const Header = () => {
+    
+    const funcLogout = () =>{
+        alert("로그아웃 되었습니다");
+        localStorage.clear();
+        window.location.reload();
+    }
+
+    const islogoutCreateBtnLogout = () => {
+        if(localStorage.getItem('token')){
+            return(
+                <li class="nav-item" ><a class="nav-link" onClick={() =>funcLogout()} style={{cursor:"pointer"}}>Logout</a></li>
+            )
+        }
+    }
+
+    const isloginCreateBtnLogin = () => {
+        if(!localStorage.getItem('token')){
+            return(
+                <li class="nav-item"><a class="nav-link" href="/LoginForm">Login</a></li>
+            )
+        }
+    }
+
+
     return(
         <>
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -20,8 +44,8 @@ const Header = () => {
                             <li class="nav-item"><a class="nav-link" href="/About">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="/Find">Find</a></li>
                             <li class="nav-item"><a class="nav-link" href="/Contact">Contact</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/LoginForm">Login</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/Logout">Logout</a></li>
+                            {isloginCreateBtnLogin()}
+                            {islogoutCreateBtnLogout()}
                         </ul>
                     </div>
                 </div>
