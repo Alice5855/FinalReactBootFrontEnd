@@ -1,12 +1,36 @@
 import React from "react";
 
 const Header = () => {
+    
+    const funcLogout = () =>{
+        alert("로그아웃 되었습니다");
+        localStorage.clear();
+        window.location.reload();
+    }
+
+    const islogoutCreateBtnLogout = () => {
+        if(localStorage.getItem('token')){
+            return(
+                <li class="nav-item" ><a class="nav-link" onClick={() =>funcLogout()} style={{cursor:"pointer"}}>Logout</a></li>
+            )
+        }
+    }
+
+    const isloginCreateBtnLogin = () => {
+        if(!localStorage.getItem('token')){
+            return(
+                <li class="nav-item"><a class="nav-link" href="/LoginForm">Login</a></li>
+            )
+        }
+    }
+
+
     return(
         <>
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <div class="container">
-                    <a class="navbar-brand" href="/">
-                        <img src="http://localhost:3000/images/testlogo3.png" alt="Alternative Society" />
+                    <a class="navbar-brand" href="http://localhost:3000/">
+                        <img src="http://localhost:3000/images/testlogo3.png" alt="logo" />
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
@@ -19,8 +43,9 @@ const Header = () => {
                             <li class="nav-item"><a class="nav-link" href="/QnA">Q&A</a></li>
                             <li class="nav-item"><a class="nav-link" href="/About">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="/Find">Find</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/FAQ">FAQ</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/Login">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Contact">Contact</a></li>
+                            {isloginCreateBtnLogin()}
+                            {islogoutCreateBtnLogout()}
                         </ul>
                     </div>
                 </div>

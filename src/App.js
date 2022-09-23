@@ -8,14 +8,13 @@ import QBoardComponent from "./views/QBoard/QBoardComponent";
 import Header from "./views/Commons/Header";
 import About from "./views/Sub/About";
 import Find from "./views/Sub/Find"
-import FAQ from "./views/Sub/FAQ";
-
+import LoginForm from "./views/Auth/LoginForm";
 const App = () => {
   
 
   return (
     <>
-      <Header />
+      <Header /> 
       <Route path = "/" component = {Main} exact={true} />
       {/* exact 속성을 state에 붙임. url이 정확히 '/'일 때만 Main component를 표시 */}
       <Route path = "/Community" component={CBoardComponent} />
@@ -23,7 +22,7 @@ const App = () => {
       <Route path= "/QnA" component={QBoardComponent} />
       <Route path= "/About" component={About} />
       <Route path= "/Find" component={Find} />
-      <Route path= "/Faq" component={FAQ} />
+      <Route path='/LoginForm' component={LoginForm} /> 
       <Footer />
     </>
   );

@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 
+
+
 class CBoardCUD extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +13,11 @@ class CBoardCUD extends Component {
             btitle: "",
             btext: "",
             bwriter: "",
-            crud: props.match.params.crud
+            fileName:"",
+            folderPath:"",
+            uuid:"",
+            crud: props.match.params.crud,
+           
         };
 
         console.log(this.state);
@@ -21,6 +27,9 @@ class CBoardCUD extends Component {
                 btitle: "",
                 btext: "",
                 bwriter:"",
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud:"Insert"
             }
         } else if (this.state.crud === "Update") {
@@ -29,6 +38,9 @@ class CBoardCUD extends Component {
                 btitle: this.props.location.state.btitle,
                 btext: this.props.location.state.btext,
                 bwriter: this.props.location.state.bwriter,
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud: "Update"
             };
         } else if(this.state.crud === "Delete"){
@@ -37,9 +49,14 @@ class CBoardCUD extends Component {
                 btitle: this.props.location.state.btitle,
                 btext: this.props.location.state.btext,
                 bwriter: this.props.location.state.bwriter,
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud: "Delete"
             };
         }
+        
+
     }
     /*
     props에 VO에 저장된 column명으로 data를 저장할 수 있도록 함
@@ -50,6 +67,11 @@ class CBoardCUD extends Component {
     Insert의 경우 현재 form에 입력된 값을 data로 저장해 axios로
     값을 백으로 넘기게 됨
     */
+
+    
+
+   
+    
 
     createHeaderName() {
         const crud = this.state.crud;
@@ -93,9 +115,10 @@ class CBoardCUD extends Component {
     // 기능정의되어 넘어온 crud값을 통해 button text와 onClick 링크를
     // 버튼에 mapping 해줌. view의 경우 이미 data가 넘어온 상태일 것이므로
     // btn에 기능정의를 따로 하지 않음
+    
 
     crud() {
-        const {bnum, btitle, btext, crud, bwriter,bregdate } = this.state;
+        const {bnum, btitle, btext, crud, bwriter,bregdate ,fileName,uuid,folderPath} = this.state;
         let crudType = "";
         console.log("bnum : " + bnum);
         if (crud === "Update") {
@@ -116,11 +139,14 @@ class CBoardCUD extends Component {
         form.append("Btext", btext);
         form.append("Btitle", btitle);
         form.append("Bwriter", bwriter);
+        form.append("fileName", fileName);
+        form.append("folderPath", folderPath);
+        form.append("uuid", uuid);
         
         if (crud !== "Insert") {
             form.append("BNum", bnum);
         }
-        console.log();
+       
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
         // 사용함
@@ -133,10 +159,12 @@ class CBoardCUD extends Component {
                 console.log(crudType);
                 alert("요청이 처리되었습니다");
                 this.props.history.push("/Community");
+                
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
             });
+            
         }else if(crud ==="Update"){
             axios
             .post(crudType, form)
@@ -171,6 +199,10 @@ class CBoardCUD extends Component {
         // 실패했을 때(.catch) error message를 alert
     }
 
+
+    
+
+
     getData() {
         axios.get("/Community/view.do?=").then((res) => {
             const data = res.data;
@@ -182,6 +214,17 @@ class CBoardCUD extends Component {
         });
     }
 
+    upload() {
+        axios.post("/CUpload/uploadAjax").then((res) => {
+            const data = res.data;
+            this.setState({
+                fileName: data.fileName,
+                uuid: data.uuid,
+                folderPath: data.folderPath,
+            });
+        });
+    }
+   
     
     // view에서 넘어올 때에는 controller에서 넘어온 data를 props에 붙여
     // 출력할 수 있도록 함
@@ -198,76 +241,134 @@ class CBoardCUD extends Component {
     // Insert를 제외한 기능의 경우 이미 존재하는 값을 받아오기 때문에
     // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
+ 
+   
+
     render() {
+  
+        
+   
+     
         const btitle = this.state.btitle;
         const btext = this.state.btext;
         const bwriter = this.state.bwriter;
-        
+        const fileName = this.state.fileName;
+        const uuid = this.state.uuid;
+        const folderPath = this.state.folderPath;
+     
+
+          
 
         return (
-            <div className="container-fluid px-5 my-5">
-                <Card className="px-5 py-5 d-flex formBody">
-                {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
-                <h1>게시글 {this.createHeaderName()}</h1>
-                {this.createArticleIdTag()}
-                <h3>제목</h3>
-                <input
-                    type="text"
-                    name={btitle}
-                    value={btitle}
-                    className='my-3 form-control inputTitle'
-                    onChange={(event) =>{
-                        
-                        this.setState({ btitle: event.target.value })
-                    }
-                        
-                    }
-                />
-                {/* input form에 값이 변경되었을 때에(onChange)
-                    해당 값을 props에 setState로 저장함 */}
-                <br />
-                <h3>내용</h3>
-                <textarea
-                    rows="10"
-                    cols="20"
-                    name={btext}
-                    value={btext}
-                    className="my-3 form-control inputText"
-                    style={{resize: 'none'}}
-                    onChange={(event) =>
-                        this.setState({ btext: event.target.value })
-                    }
-                ></textarea>
+            
+            <>
+                <div className="container-fluid px-5 my-5">
+                    <Card className="px-5 py-5 d-flex formBody">
+                    {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
+                    <h1>게시글 {this.createHeaderName()}</h1>
+                    {this.createArticleIdTag()}
+                    <h3>제목</h3>
+                    <input
+                        type="text"
+                        name={btitle}
+                        value={btitle}
+                        className='my-3 form-control inputTitle'
+                        onChange={(event) =>{
+                            this.setState({ btitle: event.target.value })
+                        }
+                            
+                        }
+                    />
+                    {/* input form에 값이 변경되었을 때에(onChange)
+                        해당 값을 props에 setState로 저장함 */}
+                    <br />
+                    <h3>내용</h3>
+                    <textarea
+                        rows="10"
+                        cols="20"
+                        name={btext}
+                        value={btext}
+                        className="my-3 form-control inputText"
+                        style={{resize: 'none'}}
+                        onChange={(event) =>
+                            this.setState({ btext: event.target.value })
+                        }
+                    ></textarea>
+                    
+                    
+                    <h3>File upload</h3>
                 
-                <h3>글쓴이</h3>
-                <input
-                    type="text"
-                    name={bwriter}
-                    value={bwriter}
-                    className="my-3 form-control inputRegdate"
-                    onChange={(event) =>{
-                        this.setState({ bwriter: event.target.value })
-                    }
-                        
-                    }
-                />
+                    
+                    <input name="uploadFiles" type="file" accept="image/*"  
+                        className="my-3 form-control inputText"
+                    />
+                    <input type={"hidden"} name ="fileName" id="fileName"
+                        className="my-3 form-control inputText"
+                        onClick={(event) =>
+                            this.setState({ fileName: event.target.value })
+                        }
+                    ></input>
 
                 
-                <br /> <br />
-                    <div className="float-end">
-                        {this.createCrudBtn()}
-                    </div>
-                    {/* createCrudBtn() method 선언부 참고 */}
-                </Card>
-                <div className="mt-5">
-                    <Link to={"/Community"}>
-                        <Button className="btn-info float-end">
-                            취소
-                        </Button>
-                    </Link>
-                </div>
+
+                    <input type={"hidden"} name ="uuid" id="uuid"
+                        onClick={(event) =>
+                            this.setState({ uuid: event.target.value })
+                        }
+                    ></input>
+
                 
-            </div>
+
+                    <input type={"hidden"} name ="folderPath" id="folderPath"
+                        onClick={(event) =>
+                            this.setState({ folderPath: event.target.value })
+                        }
+                    ></input>
+
+                    
+                    <div className="float-end">
+                        <button class="uploadBtn btn btn-md btn-success">
+                            <p class="float-start" style={{marginBottom:'auto'}}>Upload</p>
+                        </button>
+                    </div>
+
+                    <div class="uploadResult">
+
+                    </div>
+                    
+                    <h3>글쓴이</h3>
+                    <input
+                        type="text"
+                        name={bwriter}
+                        value={bwriter}
+                        className="my-3 form-control inputRegdate"
+                        onChange={(event) =>{
+                            this.setState({ bwriter: event.target.value })
+                        }
+                            
+                        }
+                    />
+
+                    
+                    <br /> <br />
+                        <div className="float-end Trigger">
+                            {this.createCrudBtn()}
+                        </div>
+                        {/* createCrudBtn() method 선언부 참고 */}
+                    </Card>
+                    <div className="mt-5">
+                        <Link to={"/Community"}>
+                            <Button className="btn-info float-end">
+                                취소
+                            </Button>
+                        </Link>
+                    </div>
+                
+                    
+                </div>
+
+            </>
+
         );
     }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
+import AuthService from "../Auth/AuthService";
 import QBoardServices from "./QBoardServices";
 
 class QBoardReadForm extends Component {
@@ -98,40 +99,95 @@ class QBoardReadForm extends Component {
         
     }
 
+    createAnswerBtnCheckAdmin(){
+        if(AuthService.roleAdminCheck()){
+            return(
+                <Button className="btn-md btn-danger" onClick={() => 
+                            this.props.history.push({
+                                pathname: "/QnA/answer",
+                                state:{
+                                    bnum: this.state.bnum,
+                                    btitle: this.state.btitle,
+                                    bwriter: this.state.bwriter,
+                                    btext: this.state.btext,
+                                    bregDate: this.state.bregDate
+                                }
+                            })
+                        }>
+                    답변
+                </Button>
+            )
+        }
+    }
+
+    createDeleteBtnCheckNickname(){
+        if(localStorage.getItem("nickname")===this.state.bwriter || AuthService.roleAdminCheck()){
+            return(
+                <Button className="btn-md btn-danger" onClick={() => 
+                    this.props.history.push({
+                        pathname: "/QnA/crudDelete",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    삭제
+                </Button>
+            )
+        }
+    }
+
+    createModifyBtnCheckNickname(){
+        if(localStorage.getItem("nickname")===this.state.bwriter){
+            return(
+                <Button className="btn-md btn-warning me-3" onClick={() => 
+                    this.props.history.push({
+                        pathname: "/QnA/crudUpdate",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    수정
+                </Button>
+            )
+    }
+}
+
     render(){
         
         return(
-            <div className="container-fluid readBody px-5 my-5">
-                <Card className="d-flex px-5 py-5">
-                    <div>
-                        <div>
-                            <h2 className="py-3">
+            <div className="container readBody px-5 my-5" style={{borderTop: '2px solid', borderBottom: '2px solid', borderColor: '#4C51BD'}}>
+                    <div id="boardTitle" className="border-bottom mx-3 my-5">
+                        <div className="d-flex flex-row justify-content-between align-items-end">
+                            <h2 className="py-3 d-inline">
                                     {this.state.btitle}
                             </h2>
-                        </div>
-                        <div>
                             <div>
-                                <div className="py-3 pe-4">
-                                    <small className="text-muted float-end">
-                                        {this.state.bwriter}
-                                    </small>
-                                </div>
+                                <small className="text-muted mx-2">
+                                            {this.state.bwriter}
+                                </small>
+                                <small className="text-muted py-3">
+                                    {this.state.bregDate}
+                                </small>
                             </div>
                         </div>
-                        <div>
-                            <div>
-                                <p className="px-4 py-3">
+                        <div className="my-3">
+                            <div className="mb-5">
+                            <p className="px-4 py-3 kfont2" style={{whiteSpace: 'pre'}}>
                                     {this.state.btext}
                                 </p>
                             </div>
                         </div>
-                        <div>
-                            <small className="text-muted float-end py-3">
-                                {this.state.bregDate}
-                            </small>
-                        </div>
                     </div>
-                </Card>
                 <br/>
                 <Card className="d-flex px-5 py-5">
                     {this.createAnswerArea(this.state.banswerText)}
@@ -145,50 +201,14 @@ class QBoardReadForm extends Component {
                         </Button>
                     </Link>
 
-                        <Button className="btn-md btn-warning me-3" onClick={() => 
-                            this.props.history.push({
-                                pathname: "/QnA/crudUpdate",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            수정
-                        </Button>
+                        {this.createModifyBtnCheckNickname()}
+                        
 
-                        <Button className="btn-md btn-danger me-3" onClick={() => 
-                            this.props.history.push({
-                                pathname: "/QnA/crudDelete",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            삭제
-                        </Button>
+                        {this.createDeleteBtnCheckNickname()}
+                        
 
-                        <Button className="btn-md btn-success" onClick={() => 
-                            this.props.history.push({
-                                pathname: "/QnA/answer",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            답변
-                        </Button>
+                        {this.createAnswerBtnCheckAdmin()}
+                        
                 </div>
             </div>
         )
