@@ -14,15 +14,15 @@ const App = () => {
 
   return (
     <>
-      {/* <Header /> */}
-      <Route path = "/" component = {LoginForm} exact={true} />
+      <Header /> 
+      <Route path = "/" component = {Main} exact={true} />
       {/* exact 속성을 state에 붙임. url이 정확히 '/'일 때만 Main component를 표시 */}
       <Route path = "/Community" component={CBoardComponent} />
       <Route path = "/Notice" component={NBoardComponent} />
       <Route path= "/QnA" component={QBoardComponent} />
       <Route path= "/About" component={About} />
       <Route path= "/Find" component={Find} />
-      {/* <Route path='/login' component={Login} /> */}
+      <Route path='/LoginForm' component={LoginForm} /> 
       <Footer />
     </>
   );
