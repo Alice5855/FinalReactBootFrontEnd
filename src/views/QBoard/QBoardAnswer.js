@@ -2,9 +2,6 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
-import QboardReadForm from "./QBoardReadForm";
-import QBoardServices from "./QBoardServices";
-
 
 class QBoardAnswer extends Component {
     constructor(props) {

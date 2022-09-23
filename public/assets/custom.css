@@ -20,12 +20,32 @@
 /* font-family: 'IBM Plex Sans KR', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap');
 
+/* https://fonts.google.com/specimen/Nanum+Gothic+Coding?subset=korean */
+/* font-family: 'Nanum Gothic Coding', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
+
+/* https://fonts.google.com/specimen/Gothic+A1?subset=korean */
+/* font-family: 'Gothic A1', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;700&display=swap');
+
 .kfont1 {
   font-family: 'Hahmlet', serif;
 }
 
 .kfont2 {
   font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.kfont3 {
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.kfont4 {
+  font-family: 'Gothic A1', sans-serif;
+}
+
+.font1 {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .font2 {
@@ -38,6 +58,10 @@
 
 .font4 {
   font-family: 'Raleway', sans-serif;
+}
+
+.font5 {
+  font-family: 'Roboto Slab', sans-serif;
 }
 
 .mcolor1 {
@@ -102,9 +126,6 @@
 @media (max-width: 768px) {
   .sidebar {
     display: none !important;
-  }
-  .subpage {
-    display: block;
   }
 }
 

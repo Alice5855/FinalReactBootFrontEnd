@@ -1,8 +1,8 @@
-import React, { Component, useEffect } from "react";
-import { Button, Card } from "reactstrap";
+import React, { Component } from "react";
 import "./Find.css";
 import Sidebar from "./Sidebar";
 import { Parallax } from "react-parallax";
+import SpaceFiller from "../../SpaceFiller";
 
 
 class Find extends Component{
@@ -17,7 +17,7 @@ class Find extends Component{
             <>
             <Parallax bgImage={"http://localhost:3000/images/animeBuildingBlur.jpg"} strength={900}>
 
-            <div id="spaceFiller"></div>
+            <SpaceFiller/>
             <div className="d-flex flex-nowrap">
                 <Sidebar />
                 <div className="w-100">
