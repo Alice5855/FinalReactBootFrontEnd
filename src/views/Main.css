@@ -22,68 +22,17 @@ body{
     left: -25%;
 }
 
-.list-group-item {
-    background-color: #DDF5FB;
-}
-
-.formBody {
-    background-color: #5EDDEE;
-}
-
-.divider {
-    height: 3rem;
-    background-color: rgba(0, 0, 0, .1);
-    border: solid rgba(0, 0, 0, .15);
-    border-width: 1px 0;
-    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-}
-
 @media screen and (max-width: 768px) {
-    .cBanner img{
-        width: 70%;
-    }
     .player iframe {
         width: 150% !important;
         height: 150% !important;
         top: -25%;
     }
-    .secretLink {
-        width: 50px !important;
-        height: 100px !important;
-    }
 }
 
 @media screen and (max-width: 425px) {
-    .cBanner img{
-        width: 90%;
-    }
     .player iframe {
         width: 300% !important;
         left: -100%;
-    }
-    .snsLinks {
-        display: block !important;
-        width: 100%;
-        margin-right: 0 !important;
-        margin-left: 50%;
-    }
-    .linkIcon {
-        display: inline-block;
-        width: 20%;
-        margin-left: 10% !important;
-    }
-    .linkIcon img {
-        width: 50px;
-    }
-    .logoImg {
-        width: 35% !important;
-    }
-    .filler {
-        width: 0;
-        display: block;
-    }
-    .secretLink {
-        width: 30px !important;
-        height: 55px !important;
     }
 }

@@ -67,13 +67,13 @@ class NBoardCUD extends Component {
 
         let btnColor = "";
         if (crud === "Insert") {
-            btnColor = "btn btn-md btn-success"
+            btnColor = "btn btn-md btn-outline-primary"
         } else if (crud === "Update") {
-            btnColor = "btn btn-md btn-warning"
+            btnColor = "btn btn-md btn-outline-info"
         } else if (crud === "Delete") {
-            btnColor = "btn btn-md btn-danger"
+            btnColor = "btn btn-md btn-outline-danger"
         } else {
-            btnColor = "btn btn-md"
+            btnColor = "btn btn-md btn-outline-secondary"
         }
 
         if (crud === "View") {
@@ -199,50 +199,46 @@ class NBoardCUD extends Component {
         
 
         return (
-            <div className="container-fluid px-5 my-5">
-                <Card className="px-5 py-5 d-flex formBody">
+            <div className="container-fluid px-5 my-5" id="cudbody">
+                <Card className="px-5 py-5 d-flex bg-body formBody kfont2" style={{borderColor: "#4C51BD"}}>
                 {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
-                <h1>게시글 {this.createHeaderName()}</h1>
+                <p className="fs-2 my-3 pb-2 mcolor1" style={{borderBottom: "1px solid", borderColor: "#4C51BD"}}>게시글 {this.createHeaderName()}</p>
                 {this.createArticleIdTag()}
-                <h3>제목</h3>
+                <p className="fs-4 my-2">제목</p>
                 <input
                     type="text"
                     name={btitle}
                     value={btitle}
-                    className='my-3 form-control inputTitle'
+                    className='my-2 form-control inputTitle'
                     onChange={(event) =>{
-                        
                         this.setState({ btitle: event.target.value })
-                    }
-                        
+                        }
                     }
                 />
                 {/* input form에 값이 변경되었을 때에(onChange)
                     해당 값을 props에 setState로 저장함 */}
                 <br />
-                <h3>내용</h3>
+                <p className="fs-4 my-2">내용</p>
                 <textarea
                     rows="10"
                     cols="20"
                     name={btext}
                     value={btext}
-                    className="my-3 form-control inputText"
+                    className="my-2 form-control inputText"
                     style={{resize: 'none'}}
                     onChange={(event) =>
                         this.setState({ btext: event.target.value })
                     }
                 ></textarea>
-
                 
-                <br /> <br />
-                    <div className="float-end">
+                    <div className="d-flex mt-5">
                         {this.createCrudBtn()}
                     </div>
                     {/* createCrudBtn() method 선언부 참고 */}
                 </Card>
-                <div className="mt-5">
+                <div className="my-5 d-flex flex-row-reverse">
                     <Link to={"/Notice"}>
-                        <Button className="btn-info float-end">
+                        <Button className="" color="dark" outline>
                             취소
                         </Button>
                     </Link>
