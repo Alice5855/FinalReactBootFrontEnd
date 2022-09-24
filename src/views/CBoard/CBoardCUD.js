@@ -17,7 +17,7 @@ class CBoardCUD extends Component {
             folderPath:"",
             uuid:"",
             crud: props.match.params.crud,
-           
+            
         };
 
         console.log(this.state);
@@ -70,7 +70,7 @@ class CBoardCUD extends Component {
 
     
 
-   
+    
     
 
     createHeaderName() {
@@ -146,7 +146,7 @@ class CBoardCUD extends Component {
         if (crud !== "Insert") {
             form.append("BNum", bnum);
         }
-       
+        
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
         // 사용함
@@ -224,7 +224,7 @@ class CBoardCUD extends Component {
             });
         });
     }
-   
+    
     
     // view에서 넘어올 때에는 controller에서 넘어온 data를 props에 붙여
     // 출력할 수 있도록 함
@@ -241,23 +241,15 @@ class CBoardCUD extends Component {
     // Insert를 제외한 기능의 경우 이미 존재하는 값을 받아오기 때문에
     // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
- 
-   
 
     render() {
-  
-        
-   
-     
+    
         const btitle = this.state.btitle;
         const btext = this.state.btext;
         const bwriter = this.state.bwriter;
         const fileName = this.state.fileName;
         const uuid = this.state.uuid;
         const folderPath = this.state.folderPath;
-     
-
-          
 
         return (
             
