@@ -2,8 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
-
-
+import $ from "jquery";
 
 class CBoardCUD extends Component {
     constructor(props) {
@@ -68,10 +67,113 @@ class CBoardCUD extends Component {
     값을 백으로 넘기게 됨
     */
 
+    // IT WORKS!
+    componentDidMount() {
+        $(".trigger").on("click" , function(){
+            document.getElementById("fileName").click();
+            document.getElementById("uuid").click();
+            document.getElementById("folderPath").click();
+        })
     
+        $('.uploadBtn').click(function( ) {
+    
+            var formData = new FormData();
+    
+            var inputFile = $("input[type='file']");
+    
+            var files = inputFile[0].files;
+    
+            var fileResult = {
+                fileName : "",
+                uuid : "",
+                folderPath : ""
+            };
+    
+            for (var i = 0; i < files.length; i++) {
+                console.log(files[i]);
+                formData.append("uploadFiles", files[i]);
+            }
+    
+            //upload ajax
+            $.ajax({
+                url: '/CUpload/uploadAjax',
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                dataType:'json',
+                success: function(result){
+                    console.log(result);
+                    //나중에 화면 처리
+                    var fileName = result[0].fileName;
+                    var uuid = result[0].uuid;
+                    var folderPath = result[0].folderPath;
 
+                    $('input[name=fileName]').attr('value', fileName);
+                    $('input[name=uuid]').attr('value', uuid);
+                    $('input[name=folderPath]').attr('value', folderPath);
+
+                    // console.log("뭐드감?" + result[i].folderPath);
+                    // console.log("뭐드감?" +result[i].uuid);
+                    // console.log("뭐드감?" +result[i].fileName);
+
+                    console.log("뭐드감?" + folderPath);
+                    console.log("뭐드감?" + uuid);
+                    console.log("뭐드감?" + fileName);
+                    
+                    console.log(result[0].folderPath);
+                    console.log(result[0].uuid);
+                    console.log(result[0].fileName);
+                    console.log("뭐드감?" + result.length);
+                    
+                    // 추가
+                    showUploadedImages(result);
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(textStatus);
+                }
+            }); //$.ajax
     
+        }); //end click
     
+        function showUploadedImages(arr){
+    
+            console.log(arr);
+    
+            var divArea = $(".uploadResult");
+    
+            var str = "";
+    
+            for(var i = 0; i < arr.length; i++){
+                str += "<div>";
+                str += "<img src='/CUpload/display?fileName=" + arr[i].thumbnailURL + "'>";
+                str += "<button class='removeBtn' data-name='" + arr[i].imageURL + "'>REMOVE</button>"
+                str += "<div>"
+            }
+            divArea.append(str);
+    
+        }
+    
+        $(".uploadResult").on("click", ".removeBtn", function(e){
+            
+            var target = $(this);
+            var fileName = target.data("name");
+            var targetDiv = $(this).closest("div");
+            var targetImg = $(this).closest("img");
+    
+            console.log(fileName);
+    
+            $.post('/CUpload/removeFile', {fileName: fileName}, function(result){
+                console.log(result);
+                if(result === true){
+                    targetDiv.remove();
+                }else{
+                    console.log("targetDiv remove()ed?" + targetDiv)
+                }
+            } )
+    
+        });
+    }
 
     createHeaderName() {
         const crud = this.state.crud;
@@ -93,13 +195,13 @@ class CBoardCUD extends Component {
 
         let btnColor = "";
         if (crud === "Insert") {
-            btnColor = "btn btn-md btn-success"
+            btnColor = "btn btn-md btn-outline-primary"
         } else if (crud === "Update") {
-            btnColor = "btn btn-md btn-warning"
+            btnColor = "btn btn-md btn-outline-info"
         } else if (crud === "Delete") {
-            btnColor = "btn btn-md btn-danger"
+            btnColor = "btn btn-md btn-outline-danger"
         } else {
-            btnColor = "btn btn-md"
+            btnColor = "btn btn-md btn-outline-secondary"
         }
 
         if (crud === "View") {
@@ -118,7 +220,7 @@ class CBoardCUD extends Component {
     
 
     crud() {
-        const {bnum, btitle, btext, crud, bwriter,bregdate ,fileName,uuid,folderPath} = this.state;
+        const {bnum, btitle, btext, crud, bwriter, bregdate, fileName, uuid, folderPath} = this.state;
         let crudType = "";
         console.log("bnum : " + bnum);
         if (crud === "Update") {
@@ -165,7 +267,7 @@ class CBoardCUD extends Component {
                 alert("error: " + err.response.data.msg);
             });
             
-        }else if(crud ==="Update"){
+        } else if(crud ==="Update"){
             axios
             .post(crudType, form)
             
@@ -198,10 +300,6 @@ class CBoardCUD extends Component {
         // 성공했을 때(.then) .push('/')로 메인 페이지로 forward해주고
         // 실패했을 때(.catch) error message를 alert
     }
-
-
-    
-
 
     getData() {
         axios.get("/Community/view.do?=").then((res) => {
@@ -241,6 +339,9 @@ class CBoardCUD extends Component {
     // Insert를 제외한 기능의 경우 이미 존재하는 값을 받아오기 때문에
     // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
+    // TEST
+    
+
 
     render() {
     
@@ -254,17 +355,17 @@ class CBoardCUD extends Component {
         return (
             
             <>
-                <div className="container-fluid px-5 my-5">
-                    <Card className="px-5 py-5 d-flex formBody">
+                <div className="container-fluid px-5 my-5" id="cudbody">
+                    <Card className="px-5 py-5 d-flex bg-body formBody kfont2" style={{borderColor: "#4C51BD"}}>
                     {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
-                    <h1>게시글 {this.createHeaderName()}</h1>
+                    <p className="fs-2 my-3 pb-2 mcolor1" style={{borderBottom: "1px solid", borderColor: "#4C51BD"}}>게시글 {this.createHeaderName()}</p>
                     {this.createArticleIdTag()}
-                    <h3>제목</h3>
+                    <p className="fs-4 my-2">제목</p>
                     <input
                         type="text"
                         name={btitle}
                         value={btitle}
-                        className='my-3 form-control inputTitle'
+                        className='my-2 form-control inputTitle'
                         onChange={(event) =>{
                             this.setState({ btitle: event.target.value })
                         }
@@ -274,13 +375,13 @@ class CBoardCUD extends Component {
                     {/* input form에 값이 변경되었을 때에(onChange)
                         해당 값을 props에 setState로 저장함 */}
                     <br />
-                    <h3>내용</h3>
+                    <p className="fs-4 my-2">내용</p>
                     <textarea
                         rows="10"
                         cols="20"
                         name={btext}
                         value={btext}
-                        className="my-3 form-control inputText"
+                        className='mb-2 form-control'
                         style={{resize: 'none'}}
                         onChange={(event) =>
                             this.setState({ btext: event.target.value })
@@ -288,77 +389,72 @@ class CBoardCUD extends Component {
                     ></textarea>
                     
                     
-                    <h3>File upload</h3>
-                
-                    
-                    <input name="uploadFiles" type="file" accept="image/*"  
-                        className="my-3 form-control inputText"
-                    />
-                    <input type={"hidden"} name ="fileName" id="fileName"
-                        className="my-3 form-control inputText"
-                        onClick={(event) =>
-                            this.setState({ fileName: event.target.value })
-                        }
-                    ></input>
+                    <p className="fs-3 mt-2">File upload</p>
+                    <div className="input-group mb-5">
+                        <input name="uploadFiles" type="file" accept="image/*"  
+                            className="form-control inputText"
+                        />
 
-                
+                        <input type={"hidden"} name ="fileName" id="fileName"
+                            onClick={(event) =>
+                                this.setState({ fileName: event.target.value })
+                            }
+                        ></input>
 
-                    <input type={"hidden"} name ="uuid" id="uuid"
-                        onClick={(event) =>
-                            this.setState({ uuid: event.target.value })
-                        }
-                    ></input>
+                        <input type={"hidden"} name ="uuid" id="uuid"
+                            onClick={(event) =>
+                                this.setState({ uuid: event.target.value })
+                            }
+                        ></input>
 
-                
+                        <input type={"hidden"} name ="folderPath" id="folderPath"
+                            onClick={(event) =>
+                                this.setState({ folderPath: event.target.value })
+                            }
+                        ></input>
 
-                    <input type={"hidden"} name ="folderPath" id="folderPath"
-                        onClick={(event) =>
-                            this.setState({ folderPath: event.target.value })
-                        }
-                    ></input>
+                        <button className="uploadBtn btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+                    </div>
 
-                    
-                    <div className="float-end">
+
+                    {/* <div className="float-end">
                         <button class="uploadBtn btn btn-md btn-success">
                             <p class="float-start" style={{marginBottom:'auto'}}>Upload</p>
                         </button>
-                    </div>
+                    </div> */}
 
                     <div class="uploadResult">
 
                     </div>
                     
-                    <h3>글쓴이</h3>
+                    <p className="fs-4">글쓴이</p>
                     <input
                         type="text"
                         name={bwriter}
                         value={bwriter}
-                        className="my-3 form-control inputRegdate"
+                        className="form-control inputRegdate"
                         onChange={(event) =>{
                             this.setState({ bwriter: event.target.value })
                         }
-                            
                         }
                     />
 
                     
                     <br /> <br />
-                        <div className="float-end Trigger">
+                        <div className="d-flex mt-2 trigger">
                             {this.createCrudBtn()}
                         </div>
                         {/* createCrudBtn() method 선언부 참고 */}
                     </Card>
-                    <div className="mt-5">
+                    <div className="mt-5 d-flex flex-row-reverse">
                         <Link to={"/Community"}>
-                            <Button className="btn-info float-end">
+                            <Button className="" color="dark" outline>
                                 취소
                             </Button>
                         </Link>
                     </div>
                 
-                    
                 </div>
-
             </>
 
         );
