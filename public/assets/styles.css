@@ -11267,9 +11267,10 @@ header.masthead .masthead-heading {
 
 section#contact {
   background-color: #212529;
-  background-image: url("../images/map-image.png");
+  background-image: url("../images/rm373batch2-04.jpg");
   background-repeat: no-repeat;
-  background-position: center;
+  background-size: cover;
+  background-position: bottom;
 }
 section#contact .section-heading {
   color: #fff;

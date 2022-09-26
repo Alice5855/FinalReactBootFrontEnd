@@ -19,7 +19,6 @@ class NBoardReadForm extends Component {
         console.log(this.state.bnum);
         console.log(this.state.filePath);
         this.getBoardData(this.state.bnum);
-        localStorage.setItem("bnum",this.state.bnum);
     }
 
     getBoardData(bnum){
