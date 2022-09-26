@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import NBoardServices from "./NBoardServices";
+import AuthService from "../Auth/AuthService";
 import $ from "jquery";
 
 class NBoardReadForm extends Component {
@@ -65,6 +66,42 @@ class NBoardReadForm extends Component {
         });
     }
 
+    createBtnAdmin(){
+        if(AuthService.roleAdminCheck()){
+            return(
+                <>
+                <Button className="me-3" color="primary" outline onClick={() => 
+                    this.props.history.push({
+                        pathname: "/Notice/crudUpdate",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    수정
+                </Button>
+
+                <Button className="" color="secondary" outline onClick={() => 
+                    this.props.history.push({
+                        pathname: "/Notice/crudDelete",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    삭제
+                </Button>
+                </>
+            )
+        }
+    }
+
     render(){
         
         return(
@@ -98,40 +135,13 @@ class NBoardReadForm extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="my-5">
+                <div>
+                    {this.createBtnAdmin()}
                     <Link to={"/Notice"}>
                         <Button className="float-end" color="primary" outline>
                             리스트
                         </Button>
                     </Link>
-
-                    <Button className="me-3" color="primary" outline onClick={() => 
-                        this.props.history.push({
-                            pathname: "/Notice/crudUpdate",
-                            state:{
-                                bnum: this.state.bnum,
-                                btitle: this.state.btitle,
-                                btext: this.state.btext,
-                                bregDate: this.state.bregDate
-                            }
-                        })
-                    }>
-                        수정
-                    </Button>
-
-                    <Button className="" color="secondary" outline onClick={() => 
-                        this.props.history.push({
-                            pathname: "/Notice/crudDelete",
-                            state:{
-                                bnum: this.state.bnum,
-                                btitle: this.state.btitle,
-                                btext: this.state.btext,
-                                bregDate: this.state.bregDate
-                            }
-                        })
-                    }>
-                        삭제
-                    </Button>
                 </div>
             </>
         )
