@@ -9,6 +9,7 @@ import Header from "./views/Commons/Header";
 import About from "./views/Sub/About";
 import Find from "./views/Sub/Find"
 import LoginForm from "./views/Auth/LoginForm";
+import FAQ from "./views/Sub/FAQ";
 const App = () => {
   
 
@@ -22,6 +23,7 @@ const App = () => {
       <Route path= "/QnA" component={QBoardComponent} />
       <Route path= "/About" component={About} />
       <Route path= "/Find" component={Find} />
+      <Route path= "/FAQ" component={FAQ} />
       <Route path='/LoginForm' component={LoginForm} /> 
       <Footer />
     </>

@@ -11,11 +11,14 @@ class NBoardReadForm extends Component {
             btitle: "",
             btext: "",
             bnum: props.match.params.bnum,
+            filePath: "",
             bregDate: ""
         };
 
         console.log(this.state.bnum);
+        console.log(this.state.filePath);
         this.getBoardData(this.state.bnum);
+        localStorage.setItem("bnum",this.state.bnum);
     }
 
     getBoardData(bnum){
@@ -25,11 +28,20 @@ class NBoardReadForm extends Component {
                 bnum:res.data.board.bnum,
                 btitle: res.data.board.btitle,
                 btext: res.data.board.btext,
-                bregDate: res.data.board.bregDate
+                bregDate: res.data.board.bregDate,
+                filePath: res.data.board.filePath
             })
             console.log(this.state);
         })
         
+    }
+
+    imgCheck(){
+        if (this.state.filePath != null && this.state.filePath != "/s_") {
+            return(
+                <img src= {"/NUpload/display?fileName=" + this.state.filePath} />
+                )
+        }
     }
 
     render(){
@@ -37,25 +49,28 @@ class NBoardReadForm extends Component {
         return(
             <>
                 <div className="container readBody px-5 my-5" style={{borderTop: '2px solid', borderBottom: '2px solid', borderColor: '#4C51BD'}}>
-                        <div id="boardTitle" className="border-bottom mx-3 my-5">
-                            <div>
-                                <h2 className="py-3">
-                                        {this.state.btitle}
-                                </h2>
-                            </div>
-                            <div className="d-flex flex-row-reverse py-3">
-                                <small className="text-muted">
-                                    {this.state.bregDate}
-                                </small>
-                            </div>
+                    <div id="boardTitle" className="border-bottom mx-3 my-5">
+                        <div>
+                            <h2 className="py-3">
+                                    {this.state.btitle}
+                            </h2>
                         </div>
-                        <div className="my-3">
-                            <div className="mb-5">
-                                <p className="px-4 py-3 kfont2" style={{whiteSpace: 'pre'}}>
-                                    {this.state.btext}
-                                </p>
-                            </div>
+                        <div className="d-flex flex-row-reverse py-3">
+                            <small className="text-muted">
+                                {this.state.bregDate}
+                            </small>
                         </div>
+                    </div>
+                    <div className="my-3">
+                        <div className="mb-5">
+                            <div className="my-2 mx-4">
+                                {this.imgCheck()}
+                            </div>
+                            <p className="px-4 py-3 kfont2" style={{whiteSpace: 'pre'}}>
+                                {this.state.btext}
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div className="my-5">
                     <Link to={"/Notice"}>
@@ -64,33 +79,33 @@ class NBoardReadForm extends Component {
                         </Button>
                     </Link>
 
-                        <Button className="me-3" color="primary" outline onClick={() => 
-                            this.props.history.push({
-                                pathname: "/Notice/crudUpdate",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            수정
-                        </Button>
+                    <Button className="me-3" color="primary" outline onClick={() => 
+                        this.props.history.push({
+                            pathname: "/Notice/crudUpdate",
+                            state:{
+                                bnum: this.state.bnum,
+                                btitle: this.state.btitle,
+                                btext: this.state.btext,
+                                bregDate: this.state.bregDate
+                            }
+                        })
+                    }>
+                        수정
+                    </Button>
 
-                        <Button className="" color="secondary" outline onClick={() => 
-                            this.props.history.push({
-                                pathname: "/Notice/crudDelete",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            삭제
-                        </Button>
+                    <Button className="" color="secondary" outline onClick={() => 
+                        this.props.history.push({
+                            pathname: "/Notice/crudDelete",
+                            state:{
+                                bnum: this.state.bnum,
+                                btitle: this.state.btitle,
+                                btext: this.state.btext,
+                                bregDate: this.state.bregDate
+                            }
+                        })
+                    }>
+                        삭제
+                    </Button>
                 </div>
             </>
         )

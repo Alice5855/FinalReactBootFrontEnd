@@ -20,6 +20,8 @@ body{
     height: 230% !important;
     top: -70%;
     left: -25%;
+    /* GOD CODE */
+    pointer-events: none;
 }
 
 @media screen and (max-width: 768px) {

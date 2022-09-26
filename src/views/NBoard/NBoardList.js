@@ -98,13 +98,13 @@ class NBoardList extends Component{
                                         this.state.List.map(
                                             board =>
                             <tr key={board.bnum} >
-                                    <td scope="row" className="text-center">{board.bnum}</td>
-                                    <td>
-                                        <Link to={`/Notice/view/bnum=${board.bnum}`} className="text-decoration-none d-block w-100 mcolor2" aria-current="true">
-                                            {board.btitle}
-                                        </Link>
-                                    </td>
-                                    <td className="text-muted fs-6 text-center">{board.bregDate}</td>
+                                <td scope="row" className="text-center">{board.bnum}</td>
+                                <td>
+                                    <Link to={`/Notice/view/bnum=${board.bnum}`} className="text-decoration-none d-block w-100 mcolor2" aria-current="true">
+                                        {board.btitle}
+                                    </Link>
+                                </td>
+                                <td className="text-muted fs-6 text-center">{board.bregDate}</td>
                             </tr>
                             )}
                     </tbody>

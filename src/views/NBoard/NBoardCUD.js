@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
+import $ from "jquery";
 
 class NBoardCUD extends Component {
     constructor(props) {
@@ -10,6 +11,9 @@ class NBoardCUD extends Component {
             bnum : "",
             btitle: "",
             btext: "",
+            fileName:"",
+            folderPath:"",
+            uuid:"",
             crud: props.match.params.crud
         };
 
@@ -19,6 +23,9 @@ class NBoardCUD extends Component {
             this.state = {
                 btitle: "",
                 btext: "",
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud:"Insert"
             }
         } else if (this.state.crud === "Update") {
@@ -26,6 +33,9 @@ class NBoardCUD extends Component {
                 bnum: this.props.location.state.bnum,
                 btitle: this.props.location.state.btitle,
                 btext: this.props.location.state.btext,
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud: "Update"
             };
         } else if(this.state.crud === "Delete"){
@@ -33,6 +43,9 @@ class NBoardCUD extends Component {
                 bnum: this.props.location.state.bnum,
                 btitle: this.props.location.state.btitle,
                 btext: this.props.location.state.btext,
+                fileName:"",
+                folderPath:"",
+                uuid:"",
                 crud: "Delete"
             };
         }
@@ -46,6 +59,115 @@ class NBoardCUD extends Component {
     Insert의 경우 현재 form에 입력된 값을 data로 저장해 axios로
     값을 백으로 넘기게 됨
     */
+
+    // IT WORKS!
+    componentDidMount() {
+        $(".trigger").on("click" , function(){
+            document.getElementById("fileName").click();
+            document.getElementById("uuid").click();
+            document.getElementById("folderPath").click();
+        })
+    
+    
+        $('.uploadBtn').click(function( ) {
+    
+            var formData = new FormData();
+    
+            var inputFile = $("input[type='file']");
+    
+            var files = inputFile[0].files;
+    
+            var fileResult = {
+                fileName : "",
+                uuid : "",
+                folderPath : ""
+            };
+    
+            for (var i = 0; i < files.length; i++) {
+                console.log(files[i]);
+                formData.append("uploadFiles", files[i]);
+            }
+    
+            //upload ajax
+            $.ajax({
+                url: '/NUpload/uploadAjax',
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                dataType:'json',
+                success: function(result){
+                    console.log(result);
+                    //나중에 화면 처리
+                    var fileName = result[0].fileName;
+                    var uuid = result[0].uuid;
+                    var folderPath = result[0].folderPath;
+
+                    $('input[name=fileName]').attr('value', fileName);
+                    $('input[name=uuid]').attr('value', uuid);
+                    $('input[name=folderPath]').attr('value', folderPath);
+
+                    // console.log("뭐드감?" + result[i].folderPath);
+                    // console.log("뭐드감?" +result[i].uuid);
+                    // console.log("뭐드감?" +result[i].fileName);
+
+                    console.log("뭐드감?" + folderPath);
+                    console.log("뭐드감?" + uuid);
+                    console.log("뭐드감?" + fileName);
+                    
+                    console.log(result[0].folderPath);
+                    console.log(result[0].uuid);
+                    console.log(result[0].fileName);
+                    console.log("뭐드감?" + result.length);
+                    
+                    // 추가
+                    showUploadedImages(result);
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(textStatus);
+                }
+            }); //$.ajax
+    
+        }); //end click
+    
+        function showUploadedImages(arr){
+    
+            console.log(arr);
+    
+            var divArea = $(".uploadResult");
+    
+            var str = "";
+    
+            for(var i = 0; i < arr.length; i++){
+                str += "<div>";
+                str += "<img src='/NUpload/display?fileName=" + arr[i].thumbnailURL + "'>";
+                str += "<button class='removeBtn' data-name='" + arr[i].imageURL + "'>REMOVE</button>"
+                str += "<div>"
+            }
+            divArea.append(str);
+    
+        }
+    
+        $(".uploadResult").on("click", ".removeBtn", function(e){
+            
+            var target = $(this);
+            var fileName = target.data("name");
+            var targetDiv = $(this).closest("div");
+            var targetImg = $(this).closest("img");
+    
+            console.log(fileName);
+    
+            $.post('/NUpload/removeFile', {fileName: fileName}, function(result){
+                console.log(result);
+                if(result === true){
+                    targetDiv.remove();
+                }else{
+                    console.log("targetDiv remove()ed?" + targetDiv)
+                }
+            } )
+    
+        });
+    }
 
     createHeaderName() {
         const crud = this.state.crud;
@@ -91,7 +213,7 @@ class NBoardCUD extends Component {
     // btn에 기능정의를 따로 하지 않음
 
     crud() {
-        const {bnum, btitle, btext, crud, bregdate } = this.state;
+        const {bnum, btitle, btext, crud, bregdate, fileName, uuid, folderPath} = this.state;
         let crudType = "";
         console.log("bnum : " + bnum);
         if (crud === "Update") {
@@ -111,6 +233,9 @@ class NBoardCUD extends Component {
         let form = new FormData();  
         form.append("Btext", btext);
         form.append("Btitle", btitle);
+        form.append("fileName", fileName);
+        form.append("folderPath", folderPath);
+        form.append("uuid", uuid);
         
         if (crud !== "Insert") {
             form.append("BNum", bnum);
@@ -132,7 +257,7 @@ class NBoardCUD extends Component {
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
             });
-        }else if(crud ==="Update"){
+        } else if(crud ==="Update"){
             axios
             .post(crudType, form)
             
@@ -176,10 +301,19 @@ class NBoardCUD extends Component {
             });
         });
     }
-
-    
     // view에서 넘어올 때에는 controller에서 넘어온 data를 props에 붙여
     // 출력할 수 있도록 함
+
+    upload() {
+        axios.post("/NUpload/uploadAjax").then((res) => {
+            const data = res.data;
+            this.setState({
+                fileName: data.fileName,
+                uuid: data.uuid,
+                folderPath: data.folderPath,
+            });
+        });
+    }
 
     createArticleIdTag() {
         const bnum = this.state.bnum;
@@ -196,7 +330,9 @@ class NBoardCUD extends Component {
     render() {
         const btitle = this.state.btitle;
         const btext = this.state.btext;
-        
+        const fileName = this.state.fileName;
+        const uuid = this.state.uuid;
+        const folderPath = this.state.folderPath;
 
         return (
             <div className="container-fluid px-5 my-5" id="cudbody">
@@ -230,8 +366,38 @@ class NBoardCUD extends Component {
                         this.setState({ btext: event.target.value })
                     }
                 ></textarea>
+
+                    <p className="fs-3 mt-2">File upload</p>
+                    <div className="input-group mb-5">
+                        <input name="uploadFiles" type="file" accept="image/*"  
+                            className="form-control inputText"
+                        />
+                        <button className="uploadBtn btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+                    </div>
+
+                    <input type={"hidden"} name ="fileName" id="fileName"
+                        onClick={(event) =>
+                            this.setState({ fileName: event.target.value })
+                        }
+                    ></input>
+
+                    <input type={"hidden"} name ="uuid" id="uuid"
+                        onClick={(event) =>
+                            this.setState({ uuid: event.target.value })
+                        }
+                    ></input>
+
+                    <input type={"hidden"} name ="folderPath" id="folderPath"
+                        onClick={(event) =>
+                            this.setState({ folderPath: event.target.value })
+                        }
+                    ></input>
+
+                    <div class="uploadResult">
+
+                    </div>
                 
-                    <div className="d-flex mt-5">
+                    <div className="d-flex mt-5 trigger">
                         {this.createCrudBtn()}
                     </div>
                     {/* createCrudBtn() method 선언부 참고 */}
