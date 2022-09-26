@@ -92,7 +92,7 @@ class AuthenticationService {
     }
 
     roleAnyCheck(){
-        if (localStorage.getItem("role") === "ROLE_MEMBER") {
+        if (localStorage.getItem("role") === "ROLE_MEMBER" || localStorage.getItem("role") === "ROLE_ADMIN") {
             console.log("지금 로인한거 어쨋든 로그인중임");
             return true;
         }else{

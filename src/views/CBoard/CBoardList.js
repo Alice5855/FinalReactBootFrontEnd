@@ -13,7 +13,7 @@ class CBoardList extends Component{
             currentPage: 0,
             maxPage: 0
         };
-
+       
         this.getBoardListData(this.state.currentPage);
     }
 
@@ -79,7 +79,7 @@ class CBoardList extends Component{
     
 
     btnCreateBoardCheckLogin(){
-        if(AuthService.roleAnyCheck()){
+        if(localStorage.getItem('token')){
             return(
                 <Link to="/Community/crudInsert">
                     <Button className="btn-sm my-3 float-end" color="primary" outline>
@@ -89,6 +89,7 @@ class CBoardList extends Component{
             )
         }
     }
+
 
 
     render(){

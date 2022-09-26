@@ -98,8 +98,8 @@ class CBoardReplyList extends Component {
 
         return(
             <>
-             <div id = "replybody" className="list-group w-auto my-5" style={{borderBottom: '2px solid', borderColor: '#4C51BD'}}>
-                <h3 style={{marginBottom:"10%"}}>댓글 목록</h3>
+             <div id = "replybody" className="list-group w-auto my-5">
+                
                 {this.replyCheck()}
                 
                 

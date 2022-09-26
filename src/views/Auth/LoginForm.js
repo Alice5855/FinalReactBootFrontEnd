@@ -32,7 +32,9 @@ class LoginForm extends Component {
 
             AuthService.loginSuccessGetUserInfo(localStorage.getItem('token')).then(res => {
               console.log(res);
+              console.log("여기는 찍어..?");
               AuthService.getLoggedInUserInfo(res);
+              console.log("겟로그드인유저인포가 뭐 찍을까" + res);
             });
             alert("로그인성공함");
             window.location.href="/";

@@ -157,19 +157,25 @@ class CBoardReadForm extends Component {
                 </div>
                 
 
-            <div className="">
+            
              
             
 
-            <CBoardReplyList>
+            <section class="mb-5">
+                        <div class="card bg-light">
+                            <div class="card-body">
 
-            </CBoardReplyList>
+                                <CBoardReplyList>
 
-            <CBoardReply>
+                                </CBoardReplyList>
 
-            </CBoardReply>
+                                <CBoardReply>
 
-            </div>
+                                </CBoardReply>
+
+                        </div>
+                    </div>
+            </section>
 
        
 
