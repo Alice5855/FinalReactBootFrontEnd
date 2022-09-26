@@ -9,10 +9,12 @@ class CBoardReplyList extends Component {
         super(props);
         this.state = {
             bnum:localStorage.getItem('bnum'),
-            reply:[]
+            reply:[],
             
 
         };
+
+        
 
         localStorage.setItem("rnum",this.state.reply.rnum);
         this.getReplyListData(this.state.bnum);
@@ -26,6 +28,8 @@ class CBoardReplyList extends Component {
         
     }
 
+
+    
 
 
     replyCheck(){
@@ -81,6 +85,8 @@ class CBoardReplyList extends Component {
 
    
 
+
+
     CBoardReplyDelete(RNum){
         
         console.log("왜 안돼 씨팔" + RNum);
@@ -89,6 +95,8 @@ class CBoardReplyList extends Component {
         axios.post("/Community/deleteReply", form);
 
         window.location.reload();
+
+        
 
         
     }

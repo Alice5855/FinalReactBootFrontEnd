@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 import $ from "jquery";
+import AuthService from "../Auth/AuthService";
 
 class CBoardCUD extends Component {
     constructor(props) {
@@ -16,8 +17,11 @@ class CBoardCUD extends Component {
             folderPath:"",
             uuid:"",
             crud: props.match.params.crud,
+            nickname: "",
+            role: ""
             
         };
+        this.sendToken();
 
         console.log(this.state);
         
@@ -56,6 +60,18 @@ class CBoardCUD extends Component {
         }
         
 
+    }
+
+    sendToken(){
+        AuthService.setupAxiosInterceptors();
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                bwriter:res.data.memnickname,
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            })
+        })
     }
     /*
     props에 VO에 저장된 column명으로 data를 저장할 수 있도록 함

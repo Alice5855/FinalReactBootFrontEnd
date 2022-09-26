@@ -11,10 +11,24 @@ class CBoardList extends Component{
         this.state = {
             List: [],
             currentPage: 0,
-            maxPage: 0
+            maxPage: 0,
+            nickname: "",
+            role: ""
         };
-       
+        this.sendToken();
         this.getBoardListData(this.state.currentPage);
+    }
+
+
+    sendToken(){
+
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            })
+        })
     }
 
     // 페이지 이동 버튼 출력하는 메소드

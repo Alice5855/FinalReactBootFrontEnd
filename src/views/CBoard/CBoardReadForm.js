@@ -6,6 +6,7 @@ import CBoardReply from "./CBoardReply";
 import CBoardReplyList from "./CBoardReplyList";
 import $ from "jquery";
 import axios from "axios";
+import AuthService from "../Auth/AuthService";
 
 class CBoardReadForm extends Component {
     constructor(props){
@@ -17,8 +18,12 @@ class CBoardReadForm extends Component {
             btext: "",
             bnum: props.match.params.bnum,
             fullName:"",
-            bregDate: ""
+            bregDate: "",
+            nickname: "",
+            role: ""
         };
+
+        this.sendToken();
 
         console.log(this.state.bnum);
         console.log(this.state.fullName);
@@ -27,9 +32,20 @@ class CBoardReadForm extends Component {
     }
 
 
+    sendToken(){
+
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            })
+        })
+    }
+
    UpdateHits(bnum){
     axios.post("/Community/updateHit").then((res)=>{
-        
+
     })
    }
 
@@ -51,7 +67,7 @@ class CBoardReadForm extends Component {
     }
 
     imgCheck(){
-        if (this.state.fullName != null && this.state.fullName != "/s_") {
+        if (this.state.fullName != null && this.state.fullName != "/s__") {
             return(
                 <img src= {"/CUpload/display?fileName=" + this.state.fullName} onClick={() => {this.showImage()}} />
                 )
@@ -78,6 +94,67 @@ class CBoardReadForm extends Component {
             }, 150);
         });
     }
+
+    btnNickNameCheck(){
+        if(this.state.bwriter === this.state.nickname){
+            return(
+                <>
+                <Button className="me-3" color="primary" outline onClick={() => 
+                    this.props.history.push({
+                        pathname: "/Community/crudUpdate",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    수정
+                </Button>
+
+                <Button className="" color="secondary" outline onClick={() => 
+                    this.props.history.push({
+                        pathname: "/Community/crudDelete",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    삭제
+                </Button>
+                </>
+            )
+        }else if(this.state.role === 'ROLE_ADMIN'){
+            return(
+                <>
+                     <Button className="" color="secondary" outline onClick={() => 
+                    this.props.history.push({
+                        pathname: "/Community/crudDelete",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    삭제
+                </Button>
+                </>
+
+            )
+        }
+    }
+
+   
+
 
 
     render(){
@@ -130,35 +207,8 @@ class CBoardReadForm extends Component {
                         </Button>
                     </Link>
 
-                    <Button className="me-3" color="primary" outline onClick={() => 
-                        this.props.history.push({
-                            pathname: "/Community/crudUpdate",
-                            state:{
-                                bnum: this.state.bnum,
-                                btitle: this.state.btitle,
-                                bwriter: this.state.bwriter,
-                                btext: this.state.btext,
-                                bregDate: this.state.bregDate
-                            }
-                        })
-                    }>
-                        수정
-                    </Button>
-
-                    <Button className="" color="secondary" outline onClick={() => 
-                        this.props.history.push({
-                            pathname: "/Community/crudDelete",
-                            state:{
-                                bnum: this.state.bnum,
-                                btitle: this.state.btitle,
-                                bwriter: this.state.bwriter,
-                                btext: this.state.btext,
-                                bregDate: this.state.bregDate
-                            }
-                        })
-                    }>
-                        삭제
-                    </Button>
+                    {this.btnNickNameCheck()}
+                    
                 </div>
                 
 
