@@ -1,0 +1,10 @@
+#faq-background{
+    background-image: url('http://localhost:3000/images/faqBG.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.accordion-body{
+    background-color: rgb(180, 205, 255);
+}
