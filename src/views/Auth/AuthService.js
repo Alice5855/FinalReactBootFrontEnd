@@ -91,6 +91,16 @@ class AuthenticationService {
         }
     }
 
+    roleAnyCheck(){
+        if (localStorage.getItem("role") === "ROLE_MEMBER") {
+            console.log("지금 로인한거 어쨋든 로그인중임");
+            return true;
+        }else{
+            console.log("암튼 로그인 아님");
+            return false;
+        }
+    }
+
 }
 
 export default new AuthenticationService()
