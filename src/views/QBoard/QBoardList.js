@@ -114,13 +114,15 @@ class QBoardList extends Component{
                 <table id="boardtable" className="table table-hover col-12">
                     <colgroup>
                         <col className="col-1"></col>
-                        <col className="col-7"></col>
+                        <col className="col-5"></col>
+                        <col className="col-2"></col>
                         <col className="col-2"></col>
                         <col className="col-2"></col>
                     </colgroup>
                     <thead>
                         <th scope="col" className="text-center">#</th>
                         <th scope="col" className="text-center">제목</th>
+                        <th scope="col" className="text-center">작성자</th>
                         <th scope="col" className="text-center">작성일</th>
                         <th scope="col" className="text-center">답변</th>
                     </thead>
@@ -134,6 +136,7 @@ class QBoardList extends Component{
                                     {board.btitle}
                                 </Link>
                             </td>
+                            <td className="text-muted fs-6 text-center">{board.bwriter}</td>
                             <td className="text-muted fs-6 text-center">{board.bregDate}</td>
                             <td className="text-muted fs-6 text-center">
                                 {this.createIsAnswer(board.banswerText)}

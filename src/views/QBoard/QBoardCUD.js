@@ -70,12 +70,16 @@ class QBoardCUD extends Component {
         const crud = this.state.crud;
 
         let btnColor = "";
+        let btnOutlineColor = "";
         if (crud === "Insert") {
-            btnColor = "btn btn-md btn-success"
+            btnColor = "btn btn-md"
+            btnOutlineColor = "primary"
         } else if (crud === "Update") {
-            btnColor = "btn btn-md btn-warning"
+            btnColor = "btn btn-md"
+            btnOutlineColor = "info"
         } else if (crud === "Delete") {
-            btnColor = "btn btn-md btn-danger"
+            btnColor = "btn btn-md"
+            btnOutlineColor = "danger"
         } else {
             btnColor = "btn btn-md"
         }
@@ -86,7 +90,7 @@ class QBoardCUD extends Component {
             const crudName =
             crud === "Update" ? "수정" : crud === "Insert" ? "등록" : "삭제";
             return (
-            <button className={btnColor} onClick={() => this.crud()}>{crudName}</button>
+            <Button outline color={btnOutlineColor} className={btnColor} onClick={() => this.crud()}>{crudName}</Button>
             );
         }
     }
@@ -261,7 +265,7 @@ class QBoardCUD extends Component {
                 </Card>
                 <div className="mt-5">
                     <Link to={"/QnA"}>
-                        <Button className="btn-info float-end">
+                        <Button className="float-end" outline color="warning">
                             취소
                         </Button>
                     </Link>
