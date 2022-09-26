@@ -15,9 +15,9 @@ class FAQ extends Component {
                 <div className="d-flex flex-nowrap">
                     <Sidebar/>
                     <div className="w-100 h-100 kfont2" id="faq-background">
-                        <div className="container col-xxl-8 px-4 py-5">
+                        <div className="container col-xxl-8 px-4 py-5 my-5" id="accordionWrapper">
                         {/* accordion Start */}
-                        <div className="accordion" id="accordionExample ">
+                        <div className="accordion m-5" id="accordionExample ">
                             {/* First item Start */}
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="headingFirst">
@@ -30,7 +30,7 @@ class FAQ extends Component {
                                     <strong>AniBucket</strong> 은 SubCulture 굿즈와 각종 이벤트 상품들을 판매하는 Alternative Society가 제공하는 온 / 오프라인 샵입니다.
                                     <br/>
                                     <br/>
-                                    <strong>AniPlus, Hololive, NIJISANJI, VShojo, MARVEL</strong> 등 여러 코믹스 및 각종 매체와 협력관계로 보다 다양한 상품들을 선보이고 있습니다.
+                                    <strong>AniPlus, Hololive, NIJISANJI, VShojo, MARVEL</strong> 등 각종 매체와의 협력관계로 보다 다양한 상품들을 선보이고 있습니다.
                                 </div>
                                 </div>
                             </div>

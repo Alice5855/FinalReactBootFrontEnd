@@ -9,3 +9,24 @@
     text-decoration: none;
     color: #4C51BD;
 }
+
+@media (max-width: 1024px) {
+    div#accordionWrapper {
+        margin-top: 0rem !important;
+        margin-bottom: 0rem !important;
+    }
+}
+
+@media (max-width: 500px) {
+    div.accordion {
+        margin-right: 1rem !important;
+        margin-left: 1rem !important;
+    }
+}
+
+@media (max-width: 320px) {
+    div.accordion {
+        margin-right: 0rem !important;
+        margin-left: 0rem !important;
+    }
+}
