@@ -5,6 +5,7 @@ import CBoardServices from "./CBoardServices";
 import CBoardReply from "./CBoardReply";
 import CBoardReplyList from "./CBoardReplyList";
 import $ from "jquery";
+import axios from "axios";
 
 class CBoardReadForm extends Component {
     constructor(props){
@@ -26,7 +27,11 @@ class CBoardReadForm extends Component {
     }
 
 
-   
+   UpdateHits(bnum){
+    axios.post("/Community/updateHit").then((res)=>{
+        
+    })
+   }
 
     getBoardData(bnum){
         console.log("겟보드데이터 실행")
