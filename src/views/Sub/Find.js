@@ -1,8 +1,8 @@
-import React, { Component, useEffect } from "react";
-import { Button, Card } from "reactstrap";
+import React, { Component } from "react";
 import "./Find.css";
 import Sidebar from "./Sidebar";
 import { Parallax } from "react-parallax";
+import SpaceFiller from "../../SpaceFiller";
 
 
 class Find extends Component{
@@ -15,16 +15,16 @@ class Find extends Component{
 
         return(
             <>
-            <Parallax bgImage={"http://192.168.0.26:3000/images/animeBuildingBlur.jpg"} strength={900}>
+            <Parallax bgImage={"http://localhost:3000/images/animeBuildingBlur.jpg"} strength={900}>
 
-            <div id="spaceFiller"></div>
+            <SpaceFiller/>
             <div className="d-flex flex-nowrap">
                 <Sidebar />
                 <div className="w-100">
                     
                     <div>
                         <div class="container col-xxl-8 px-4 py-5 ">
-                            <div class="row flex-lg-row align-items-center g-5 py-5" style={textAlign}>
+                            <div class="row flex-lg-row align-items-center g-5 py-5 kfont1" style={textAlign}>
                                 <div className="display-5 fw-bold lh-1 mt0 find-subTitle fs-6">찾 아 오 는 길</div>
                                 <h1 class="display-5 fw-bold lh-1 mt-3 find-Title">방문을 환영합니다!</h1>
                                 <div className="mt-4 ad">
