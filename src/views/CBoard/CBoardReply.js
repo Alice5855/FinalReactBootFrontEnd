@@ -270,7 +270,7 @@ class CBoardReply extends Component {
                       name={replyer}
                       value={this.state.replyer}
                       className="my-3 form-control inputText"
-                      style={{resize: 'none', width: '33%', backgroundColor : "#fff"}}
+                      style={{resize: 'none', width: '33%', backgroundColor : "#fff",opacity:"0.7"}}
                       readOnly
                   ></input>
                                     <textarea class="form-control"  placeholder="Join the discussion and leave a comment!"
