@@ -186,3 +186,11 @@
     padding-left: 1rem !important;
   }
 }
+
+.CBoardReply{
+  border-bottom: 1px solid #333;
+}
+
+.CBoardReply:last-child{
+  border-bottom: none !important;
+}

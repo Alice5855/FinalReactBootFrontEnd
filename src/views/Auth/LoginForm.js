@@ -93,7 +93,7 @@ class LoginForm extends Component {
 
                           <div class="d-flex align-items-center justify-content-center pb-4">
                             <p class="mb-0 me-2">Don't have an account?</p>
-                            <a href= 'http://192.168.0.26:9005/member/join'>Create new</a>
+                            <a href= 'http://192.168.0.95:9005/member/join'>Create new</a>
                           </div>
                       </div>
                     </div>

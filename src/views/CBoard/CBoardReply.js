@@ -31,7 +31,7 @@ class CBoardReply extends Component {
                 bnum:this.state.bnum,
                 rnum:"",
                 reply:"",
-                replyer:"",
+                replyer:localStorage.getItem('authenticatedUser'),
                 replyDate:"",
                 crud:"Insert"
             }
@@ -270,12 +270,10 @@ class CBoardReply extends Component {
                     <input
                       
                         name={replyer}
-                        value={replyer}
+                        value={this.state.replyer}
                         className="my-3 form-control inputText"
                         style={{resize: 'none', width: '30%'}}
-                        onChange={(event) =>
-                            this.setState({ replyer: event.target.value })
-                        }
+                        readOnly
                     ></input>
 
 

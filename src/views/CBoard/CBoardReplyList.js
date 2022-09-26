@@ -119,12 +119,12 @@ class CBoardReplyList extends Component {
                   } */}
                   {this.state.reply.map(
                     obj=>
-                    <div key={obj.rnum}>
+                    <div key={obj.rnum} className ="CBoardReply">
                         
                         <div className="d-flex gap-2 w-100 justify-content-between">
                             <div>
-                                <h6 className="mb-0">{obj.reply}</h6>
-                                <p className="mb-0 opacity-75 ms-5">{obj.replyer}</p>
+                                <p className="mb-0 opacity-75">{obj.replyer}</p>
+                                <h6 className="mb-0 ms-5">{obj.reply}</h6>
                             </div>
                             <small className="opacity-50 text-nowrap">{obj.replyDate}</small>
                             

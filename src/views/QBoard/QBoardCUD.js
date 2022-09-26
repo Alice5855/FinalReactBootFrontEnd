@@ -249,11 +249,11 @@ class QBoardCUD extends Component {
                     name={bwriter}
                     value={bwriter}
                     className="my-3 form-control inputRegdate"
-                    onChange={(event) =>{
-                        this.setState({ bwriter: event.target.value })
-                    }
+                    // onChange={(event) =>{
+                    //     this.setState({ bwriter: event.target.value })
+                    // }
                         
-                    }
+                    // }
                 />
 
                 
