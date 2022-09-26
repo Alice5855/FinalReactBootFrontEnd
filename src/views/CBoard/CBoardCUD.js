@@ -25,7 +25,7 @@ class CBoardCUD extends Component {
             this.state = {
                 btitle: "",
                 btext: "",
-                bwriter:"",
+                bwriter:localStorage.getItem('authenticatedUser'),
                 fileName:"",
                 folderPath:"",
                 uuid:"",
@@ -147,7 +147,7 @@ class CBoardCUD extends Component {
             for(var i = 0; i < arr.length; i++){
                 str += "<div>";
                 str += "<img src='/CUpload/display?fileName=" + arr[i].thumbnailURL + "'>";
-                str += "<button class='removeBtn btn btn-close ms-2' data-name='" + arr[i].imageURL + "' aria-label='Close'></button>"
+                str += "<button class='removeBtn' data-name='" + arr[i].imageURL + "'>REMOVE</button>"
                 str += "<div>"
             }
             divArea.append(str);
@@ -348,9 +348,7 @@ class CBoardCUD extends Component {
         const btitle = this.state.btitle;
         const btext = this.state.btext;
         const bwriter = this.state.bwriter;
-        const fileName = this.state.fileName;
-        const uuid = this.state.uuid;
-        const folderPath = this.state.folderPath;
+        
 
         return (
             
@@ -431,12 +429,9 @@ class CBoardCUD extends Component {
                     <input
                         type="text"
                         name={bwriter}
-                        value={bwriter}
+                        value={this.state.bwriter}
                         className="form-control inputRegdate"
-                        onChange={(event) =>{
-                            this.setState({ bwriter: event.target.value })
-                        }
-                        }
+                        readOnly
                     />
 
                     

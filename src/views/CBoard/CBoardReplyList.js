@@ -3,6 +3,7 @@ import CBoardServices from "./CBoardServices";
 import axios from "axios";
 import CBoardReplyDelete from "./CBoardReplyDelete";
 
+
 class CBoardReplyList extends Component {
     constructor(props){
         super(props);
@@ -15,7 +16,7 @@ class CBoardReplyList extends Component {
 
         localStorage.setItem("rnum",this.state.reply.rnum);
         this.getReplyListData(this.state.bnum);
-        localStorage.removeItem("bnum");
+        
    
         console.log(this.state.bnum);
         console.log(this.state.rnum);
@@ -25,6 +26,21 @@ class CBoardReplyList extends Component {
         
     }
 
+
+
+    replyCheck(){
+        if (this.state.reply.length == 0) {
+
+            return(
+            <>
+              
+                <h6 className="mb-0">등록된 댓글이 없습니다.</h6>
+            </>
+            )
+        }
+        console.log("댓글 있냐?" + this.state.reply);
+        
+    }
 
     createPageBtn(currentPage, maxPage){
     
@@ -84,6 +100,9 @@ class CBoardReplyList extends Component {
             <>
              <div id = "replybody" className="list-group w-auto my-5">
                 
+                {this.replyCheck()}
+                
+                
                   {/* {
                     this.state.rnum.map(
                         reply =>
@@ -101,17 +120,18 @@ class CBoardReplyList extends Component {
                   {this.state.reply.map(
                     obj=>
                     <div key={obj.rnum}>
-                        <div className="d-flex gap-2 w-100 justify-content-between">
+                        
+                        <div className="ms-3">
                             <div>
-                                <h6 className="mb-0">{obj.reply}</h6>
-                                <p className="mb-0 opacity-75 ms-5">{obj.replyer}</p>
+                                <p className="mb-0 fw-bold">{obj.replyer}</p>
+                                <h6 className="">{obj.reply}</h6>
                             </div>
                             <small className="opacity-50 text-nowrap">{obj.replyDate}</small>
                             
                         </div>
-                        <button onClick={()=>this.CBoardReplyDelete(obj.rnum)}>
+                        <button onClick={()=>this.CBoardReplyDelete(obj.rnum)} className='removeBtn btn btn-close ms-2' style={{float:"right"}} >
                             <input type={"hidden"} value={obj.rnum} ></input>
-                            삭제하기
+                           
                         </button>
                     </div>
                   )}

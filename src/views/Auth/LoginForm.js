@@ -32,7 +32,9 @@ class LoginForm extends Component {
 
             AuthService.loginSuccessGetUserInfo(localStorage.getItem('token')).then(res => {
               console.log(res);
+              console.log("여기는 찍어..?");
               AuthService.getLoggedInUserInfo(res);
+              console.log("겟로그드인유저인포가 뭐 찍을까" + res);
             });
             alert("로그인성공함");
             window.location.href="/";
@@ -92,7 +94,7 @@ class LoginForm extends Component {
 
                           <div class="d-flex align-items-center justify-content-center pb-4">
                             <p class="mb-0 me-2">Don't have an account?</p>
-                            <a href= 'http://192.168.0.26:9005/member/join'>Create new</a>
+                            <a href= 'http://192.168.0.95:9005/member/join'>Create new</a>
                           </div>
                       </div>
                     </div>

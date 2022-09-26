@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CBoardServices from "./CBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import AuthService from "../Auth/AuthService";
 
 
 class CBoardList extends Component{
@@ -12,7 +13,7 @@ class CBoardList extends Component{
             currentPage: 0,
             maxPage: 0
         };
-
+       
         this.getBoardListData(this.state.currentPage);
     }
 
@@ -76,6 +77,21 @@ class CBoardList extends Component{
         });
     }
     
+
+    btnCreateBoardCheckLogin(){
+        if(localStorage.getItem('token')){
+            return(
+                <Link to="/Community/crudInsert">
+                    <Button className="btn-sm my-3 float-end" color="primary" outline>
+                        새 글 쓰기
+                    </Button>
+                </Link>
+            )
+        }
+    }
+
+
+
     render(){
         return(
             <>
@@ -113,11 +129,7 @@ class CBoardList extends Component{
                     </tbody>
                 </table>
                 <div className="d-flex flex-row-reverse">
-                    <Link to="/Community/crudInsert">
-                        <Button className="btn-sm my-3" color="primary" outline>
-                            새 글 쓰기
-                        </Button>
-                    </Link>
+                    {this.btnCreateBoardCheckLogin()}
                 </div>
                 <div className="d-flex justify-content-center mt-3">
                     <Pagination size="md" aria-label="Page navigation">

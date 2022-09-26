@@ -22,9 +22,8 @@ class CBoardReply extends Component {
             crud: "Insert",
            
         };
-        // this.getData();
-        
-        // localStorage.removeItem('bnum');
+       
+        localStorage.removeItem("bnum");
         
         
         if(this.state.crud === "Insert"){
@@ -32,7 +31,7 @@ class CBoardReply extends Component {
                 bnum:this.state.bnum,
                 rnum:"",
                 reply:"",
-                replyer:"",
+                replyer:localStorage.getItem('authenticatedUser'),
                 replyDate:"",
                 crud:"Insert"
             }
@@ -164,7 +163,7 @@ class CBoardReply extends Component {
             .then((res) => {
                 console.log(form);
                 console.log(crudType);
-                alert("요청이 처리되었습니다");
+                alert("댓글이 등록 됐습니다.");
                 
             })
             .catch((err) => {
@@ -192,7 +191,7 @@ class CBoardReply extends Component {
             .then((res) => {
                 console.log(form);
                 console.log(crudType);
-                alert("요청이 처리되었습니다");
+                alert("댓글을 삭제 했습니다.");
                 
             })
             .catch((err) => {
@@ -261,13 +260,23 @@ class CBoardReply extends Component {
         return (
             
             <>
-                <div className="container-fluid px-5 my-5">
-                    <Card className="px-5 py-5 d-flex formBody">
-                    {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
-                    <h1>댓글 등록</h1>
-                    {this.createArticleIdTag()}
-                    <h3>댓글내용</h3>
-                    <input
+                
+
+
+             
+                               
+                <input
+                      
+                      name={replyer}
+                      value={this.state.replyer}
+                      className="my-3 form-control inputText"
+                      style={{resize: 'none', width: '33%', backgroundColor : "#fff",opacity:"0.7"}}
+                      readOnly
+                  ></input>
+                                    <textarea class="form-control"  placeholder="Join the discussion and leave a comment!"
+                                    
+                                    rows="3"
+                        cols="10"
                         type="text"
                         name={reply}
                         value={reply}
@@ -276,43 +285,20 @@ class CBoardReply extends Component {
                             this.setState({ reply: event.target.value })
                         }
                             
-                        }
-                    />
-                    {/* input form에 값이 변경되었을 때에(onChange)
-                        해당 값을 props에 setState로 저장함 */}
-                    <br />
-                    <h3>작성자</h3>
-                    <input
-                      
-                        name={replyer}
-                        value={replyer}
-                        className="my-3 form-control inputText"
-                        style={{resize: 'none'}}
-                        onChange={(event) =>
-                            this.setState({ replyer: event.target.value })
-                        }
-                    ></input>
-                    
-                    
-                   
+                        }>
+                                        </textarea>
 
-                    
-                    
-
-                   
-                    
-                    
-
-                    
+                                          
                     <br /> <br />
                         <div className="float-end">
                             {this.createCrudBtn()}
                         </div>
-                        {/* createCrudBtn() method 선언부 참고 */}
-                    </Card>
-                    
-                    
-                </div>
+                                
+
+
+                                
+                            
+                       
 
             </>
 
