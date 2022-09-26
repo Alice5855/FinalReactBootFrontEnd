@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import QBoardServices from "./QBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-
+import AuthService from "../Auth/AuthService";
 
 class QBoardList extends Component{
     constructor(props){
@@ -10,14 +10,18 @@ class QBoardList extends Component{
         this.state = {
             List: [],
             currentPage: 0,
-            maxPage: 0
+            maxPage: 0,
+            nickname: "",
+            role: ""
         };
+
+        this.sendToken();
 
         this.getBoardListData(this.state.currentPage);
     }
 
     btnCreateBoardCheckLogin(){
-        if(localStorage.getItem('token')){
+        if(this.state.role){
             return(
                 <Link to="/QnA/crudInsert">
                     <Button className="btn-sm my-3 float-end" color="primary" outline>
@@ -26,6 +30,17 @@ class QBoardList extends Component{
                 </Link>
             )
         }
+    }
+
+    sendToken(){
+
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            })
+        })
     }
 
 
