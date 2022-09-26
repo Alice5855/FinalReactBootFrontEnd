@@ -113,6 +113,34 @@
   color: #4A75D4;
 }
 
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  left:0%;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.2);
+  z-index: 9999;
+  margin: 0;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  /*overflow: hidden;*/
+}
+
+.bigPicture img {
+  width: 600px;
+  /*object-fit: contain;*/
+  cursor: pointer;
+}
+
 @media (max-width: 991.98px) {
   #spaceFiller {
     opacity: 0 !important;

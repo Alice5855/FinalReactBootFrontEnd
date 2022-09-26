@@ -4,6 +4,7 @@ import { Button } from "reactstrap";
 import CBoardServices from "./CBoardServices";
 import CBoardReply from "./CBoardReply";
 import CBoardReplyList from "./CBoardReplyList";
+import $ from "jquery";
 
 
 class CBoardReadForm extends Component {
@@ -47,9 +48,30 @@ class CBoardReadForm extends Component {
     imgCheck(){
         if (this.state.fullName != null && this.state.fullName != "/s_") {
             return(
-                <img src= {"/CUpload/display?fileName=" + this.state.fullName} />
+                <img src= {"/CUpload/display?fileName=" + this.state.fullName} onClick={() => {this.showImage()}} />
                 )
         }
+    }
+
+    showImage(){
+        console.log(this.state.filePath);
+
+        var original = this.state.filePath.replace("/s_", "/")
+        
+        $(".bigPictureWrapper").css("display", "flex").show();
+        
+        $(".bigPicture")
+        .html("<img src='/NUpload/display?fileName=" + original + "' >")
+        .animate({width:'100%', height: '100%'}, 150);
+    }
+
+    componentDidMount() {
+        $(".bigPictureWrapper").on("click", function(e){
+            $(".bigPicture").animate({width:'0%', height: '0%'}, 150);
+            setTimeout(function(){
+                $('.bigPictureWrapper').hide();
+            }, 150);
+        });
     }
 
     replyResist(){
@@ -65,6 +87,11 @@ class CBoardReadForm extends Component {
         return(
             <>
                 <div className="container readBody px-5 my-5" style={{borderTop: '2px solid', borderBottom: '2px solid', borderColor: '#4C51BD'}}>
+                    <div class='bigPictureWrapper'>
+                        <div class='bigPicture'>
+                            
+                        </div>
+                    </div>
                     <div id="boardTitle" className="border-bottom mx-3 my-5">
                         <div>
                             <h2 className="py-3">
