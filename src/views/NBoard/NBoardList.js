@@ -3,6 +3,7 @@ import NBoardServices from "./NBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import AuthService from "../Auth/AuthService";
+import axios from "axios";
 
 
 class NBoardList extends Component{
@@ -11,10 +12,25 @@ class NBoardList extends Component{
         this.state = {
             List: [],
             currentPage: 0,
-            maxPage: 0
+            maxPage: 0,
+            nickname : "",
+            role: ""
         };
+        
+        this.sendToken();
 
         this.getBoardListData(this.state.currentPage);
+    }
+
+    sendToken(){
+
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            })
+        })
     }
 
     // 페이지 이동 버튼 출력하는 메소드
@@ -77,14 +93,19 @@ class NBoardList extends Component{
         });
     }
 
-    btnCreateBoardCheckLogin(){
-        if(AuthService.roleAdminCheck()){
+    createBoardBtnCheckLogin(role){
+        if(role == 'ROLE_ADMIN'){
             return(
                 <Link to="/Notice/crudInsert">
-                    <Button className="btn-sm my-3 float-end" color="primary" outline>
-                        새 글 쓰기
+                    <Button className="btn-sm my-3" color="primary" outline>
+                            새 글 쓰기
                     </Button>
                 </Link>
+            )
+        }else{
+            return(
+                <>
+                </>
             )
         }
     }
@@ -123,7 +144,7 @@ class NBoardList extends Component{
                     </tbody>
                 </table>
                 <div className="d-flex flex-row-reverse">
-                    {this.btnCreateBoardCheckLogin()}
+                    {this.createBoardBtnCheckLogin(this.state.role)}
                 </div>
                 <div className="d-flex justify-content-center mt-3">
                     <Pagination size="md" aria-label="Page navigation">

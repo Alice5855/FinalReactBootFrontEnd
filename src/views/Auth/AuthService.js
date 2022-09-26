@@ -12,17 +12,11 @@ class AuthenticationService {
         })
     }
 
-    executeHelloService() {
-        console.log("===executeHelloService===")
-        return axios.get('http://localhost:8090/hello');        
-    }
-
     registerSuccessfulLoginForJwt(username, token) {
         console.log("===registerSuccessfulLoginForJwt===")
         localStorage.setItem('token', token);
-        localStorage.setItem('authenticatedUser', username);
         // sessionStorage.setItem('authenticatedUser', username)
-        //this.setupAxiosInterceptors(this.createJWTToken(token))
+        // this.setupAxiosInterceptors(this.createJWTToken(token))
         this.setupAxiosInterceptors();
     }
 
@@ -35,10 +29,11 @@ class AuthenticationService {
             config => {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    config.headers['Authorization'] = 'Bearer ' + token;
+                    // config.headers['Authorization'] = 'Bearer ' + token;
+                    config.headers.Authorization = 'Bearer ' + token;
                 }
                 // config.headers['Content-Type'] = 'application/json';
-                console.log(config);
+                console.log("콘픽머임"+config);
 
                 return config;
             },
@@ -49,12 +44,12 @@ class AuthenticationService {
 
     logout() {
         //sessionStorage.removeItem('authenticatedUser');
-        localStorage.removeItem("authenticatedUser");
         localStorage.removeItem("token");
     }
 
     isUserLoggedIn() {
-        const token = localStorage.getItem('token');
+        const token = "Bearer"
+        token = localStorage.getItem('token');
         console.log("===UserloggedInCheck===");
         console.log(token);
 
@@ -65,30 +60,18 @@ class AuthenticationService {
         return false;
     }
 
-    getLoggedInUserName() {
-        //let user = sessionStorage.getItem('authenticatedUser')
-        let user = localStorage.getItem('authenticatedUser');
-        if(user===null) return '';
-        return user;
-    }
-
     loginSuccessGetUserInfo(accessToken){
         return axios.post(LoginSuccessURL, {accessToken});
     }
 
+    loginSuccessGetUserInfoList(accessToken){
+        return axios.post('/auth/loginCheck', {accessToken});
+    }
+
     getLoggedInUserInfo(user){
-        localStorage.setItem("nickname", user.data.memnickname);
-        localStorage.setItem("role", user.data.memrole);
     }
 
     roleAdminCheck(){
-        if(localStorage.getItem("role") === "ROLE_ADMIN"){
-            console.log("지금 로그인한 계정 어드민임");
-            return true;
-        }else{
-            console.log("이사람 어드민아님");
-            return false;
-        }
     }
 
     roleAnyCheck(){
