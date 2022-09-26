@@ -141,7 +141,7 @@ class NBoardCUD extends Component {
             for(var i = 0; i < arr.length; i++){
                 str += "<div>";
                 str += "<img src='/NUpload/display?fileName=" + arr[i].thumbnailURL + "'>";
-                str += "<button class='removeBtn' data-name='" + arr[i].imageURL + "'>REMOVE</button>"
+                str += "<button class='removeBtn btn btn-close ms-2' data-name='" + arr[i].imageURL + "' aria-label='Close'></button>"
                 str += "<div>"
             }
             divArea.append(str);
