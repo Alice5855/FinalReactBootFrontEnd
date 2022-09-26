@@ -21,7 +21,7 @@ class AuthenticationService {
         console.log("===registerSuccessfulLoginForJwt===")
         localStorage.setItem('token', token);
         localStorage.setItem('authenticatedUser', username);
-        // sessionStorage.setItem('authenticatedUser', username)
+        // localStorage.setItem('authenticatedUser', username)
         //this.setupAxiosInterceptors(this.createJWTToken(token))
         this.setupAxiosInterceptors();
     }
@@ -48,7 +48,7 @@ class AuthenticationService {
     }
 
     logout() {
-        //sessionStorage.removeItem('authenticatedUser');
+        //localStorage.removeItem('authenticatedUser');
         localStorage.removeItem("authenticatedUser");
         localStorage.removeItem("token");
     }
@@ -66,7 +66,7 @@ class AuthenticationService {
     }
 
     getLoggedInUserName() {
-        //let user = sessionStorage.getItem('authenticatedUser')
+        //let user = localStorage.getItem('authenticatedUser')
         let user = localStorage.getItem('authenticatedUser');
         if(user===null) return '';
         return user;
