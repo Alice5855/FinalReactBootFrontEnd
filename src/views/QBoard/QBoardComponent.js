@@ -12,9 +12,9 @@ class QBoardComponent extends Component {
         return(
             <>
             <SpaceFiller/>
-            <div className="container-fluid py-5 px-5" style={{paddingTop:'30%'}}>
+            <div className="container py-5 px-5" style={{paddingTop:'30%'}}>
                 <div>
-                    <h1 className="Title" style={{color: '#25C1FF'}}>
+                    <h1 className="kfont2 fs-2 mcolor1" id="boardtitle">
                         Q&A
                     </h1>
                 </div>
