@@ -16,7 +16,7 @@ class CBoardReplyList extends Component {
 
         localStorage.setItem("rnum",this.state.reply.rnum);
         this.getReplyListData(this.state.bnum);
-        localStorage.removeItem("bnum");
+        
    
         console.log(this.state.bnum);
         console.log(this.state.rnum);
@@ -33,6 +33,7 @@ class CBoardReplyList extends Component {
 
             return(
             <>
+              
                 <h6 className="mb-0">등록된 댓글이 없습니다.</h6>
             </>
             )
@@ -97,7 +98,8 @@ class CBoardReplyList extends Component {
 
         return(
             <>
-             <div id = "replybody" className="list-group w-auto my-5">
+             <div id = "replybody" className="list-group w-auto my-5" style={{borderBottom: '2px solid', borderColor: '#4C51BD'}}>
+                <h3 style={{marginBottom:"10%"}}>댓글 목록</h3>
                 {this.replyCheck()}
                 
                 
@@ -118,6 +120,7 @@ class CBoardReplyList extends Component {
                   {this.state.reply.map(
                     obj=>
                     <div key={obj.rnum}>
+                        
                         <div className="d-flex gap-2 w-100 justify-content-between">
                             <div>
                                 <h6 className="mb-0">{obj.reply}</h6>

@@ -156,11 +156,20 @@ class CBoardReadForm extends Component {
                     </Button>
                 </div>
                 
-            <CBoardReply>
-            </CBoardReply>
+
+            <div className="">
+             
+            
+
             <CBoardReplyList>
 
             </CBoardReplyList>
+
+            <CBoardReply>
+
+            </CBoardReply>
+
+            </div>
 
        
 

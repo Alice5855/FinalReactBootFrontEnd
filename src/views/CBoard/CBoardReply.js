@@ -22,9 +22,8 @@ class CBoardReply extends Component {
             crud: "Insert",
            
         };
-        // this.getData();
-        
-        // localStorage.removeItem('bnum');
+       
+        localStorage.removeItem("bnum");
         
         
         if(this.state.crud === "Insert"){
@@ -164,7 +163,7 @@ class CBoardReply extends Component {
             .then((res) => {
                 console.log(form);
                 console.log(crudType);
-                alert("요청이 처리되었습니다");
+                alert("댓글이 등록 됐습니다.");
                 
             })
             .catch((err) => {
@@ -192,7 +191,7 @@ class CBoardReply extends Component {
             .then((res) => {
                 console.log(form);
                 console.log(crudType);
-                alert("요청이 처리되었습니다");
+                alert("댓글을 삭제 했습니다.");
                 
             })
             .catch((err) => {
@@ -266,8 +265,25 @@ class CBoardReply extends Component {
                     {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
                     <h1>댓글 등록</h1>
                     {this.createArticleIdTag()}
-                    <h3>댓글내용</h3>
+
+                    <h3>작성자</h3>
                     <input
+                      
+                        name={replyer}
+                        value={replyer}
+                        className="my-3 form-control inputText"
+                        style={{resize: 'none', width: '30%'}}
+                        onChange={(event) =>
+                            this.setState({ replyer: event.target.value })
+                        }
+                    ></input>
+
+
+
+                    <h3>댓글내용</h3>
+                    <textarea
+                        rows="3"
+                        cols="10"
                         type="text"
                         name={reply}
                         value={reply}
@@ -281,17 +297,7 @@ class CBoardReply extends Component {
                     {/* input form에 값이 변경되었을 때에(onChange)
                         해당 값을 props에 setState로 저장함 */}
                     <br />
-                    <h3>작성자</h3>
-                    <input
-                      
-                        name={replyer}
-                        value={replyer}
-                        className="my-3 form-control inputText"
-                        style={{resize: 'none'}}
-                        onChange={(event) =>
-                            this.setState({ replyer: event.target.value })
-                        }
-                    ></input>
+                  
                     
                     
                    
