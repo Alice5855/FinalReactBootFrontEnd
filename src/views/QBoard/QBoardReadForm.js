@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
+import AuthService from "../Auth/AuthService";
 import QBoardServices from "./QBoardServices";
 
 class QBoardReadForm extends Component {
@@ -66,24 +67,24 @@ class QBoardReadForm extends Component {
             var imgLink;
             
             if(randomCount === 0){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif.gif"
+                imgLink = "http://localhost:3000/images/no_answer_gif.gif"
             }else if(randomCount === 1){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif2.gif"
+                imgLink = "http://localhost:3000/images/no_answer_gif2.gif"
             }else if(randomCount === 2){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif3.webp"
+                imgLink = "http://localhost:3000/images/no_answer_gif3.webp"
             }else if(randomCount === 3){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif4.webp"
+                imgLink = "http://localhost:3000/images/no_answer_gif4.webp"
             }else if(randomCount === 4){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif4.webp"
+                imgLink = "http://localhost:3000/images/no_answer_gif4.webp"
             }else if(randomCount === 5){
-                imgLink = "http://192.168.0.26:3000/images/no_answer_gif5.webp"
+                imgLink = "http://localhost:3000/images/no_answer_gif5.webp"
             }
 
 
             return(
                 <>
-                    <div>
-                        <div className="w-50 m-auto">
+                    <div className="d-flex flex-row-reverse">
+                        <div className="w-25 m-auto">
                             <img src={imgLink} className="img-fluid m-auto" alt="no answer img"></img>
                             <br/>
                         </div>
@@ -98,84 +99,10 @@ class QBoardReadForm extends Component {
         
     }
 
-    render(){
-        
-        return(
-            <div className="container-fluid readBody px-5 my-5">
-                <Card className="d-flex px-5 py-5">
-                    <div>
-                        <div>
-                            <h2 className="py-3">
-                                    {this.state.btitle}
-                            </h2>
-                        </div>
-                        <div>
-                            <div>
-                                <div className="py-3 pe-4">
-                                    <small className="text-muted float-end">
-                                        {this.state.bwriter}
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p className="px-4 py-3">
-                                    {this.state.btext}
-                                </p>
-                            </div>
-                        </div>
-                        <div>
-                            <small className="text-muted float-end py-3">
-                                {this.state.bregDate}
-                            </small>
-                        </div>
-                    </div>
-                </Card>
-                <br/>
-                <Card className="d-flex px-5 py-5">
-                    {this.createAnswerArea(this.state.banswerText)}
-                    
-
-                </Card>
-                <div className="mt-5">
-                    <Link to={"/QnA"}>
-                        <Button className="btn-info float-end">
-                            리스트
-                        </Button>
-                    </Link>
-
-                        <Button className="btn-md btn-warning me-3" onClick={() => 
-                            this.props.history.push({
-                                pathname: "/QnA/crudUpdate",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            수정
-                        </Button>
-
-                        <Button className="btn-md btn-danger" onClick={() => 
-                            this.props.history.push({
-                                pathname: "/QnA/crudDelete",
-                                state:{
-                                    bnum: this.state.bnum,
-                                    btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
-                                    btext: this.state.btext,
-                                    bregDate: this.state.bregDate
-                                }
-                            })
-                        }>
-                            삭제
-                        </Button>
-
-                        <Button className="btn-md btn-danger" onClick={() => 
+    createAnswerBtnCheckAdmin(){
+        if(AuthService.roleAdminCheck()){
+            return(
+                <Button className="btn-md" outline color="primary" onClick={() => 
                             this.props.history.push({
                                 pathname: "/QnA/answer",
                                 state:{
@@ -187,10 +114,100 @@ class QBoardReadForm extends Component {
                                 }
                             })
                         }>
-                            답변
-                        </Button>
-                </div>
+                    답변
+                </Button>
+            )
+        }
+    }
+
+    createDeleteBtnCheckNickname(){
+        if(localStorage.getItem("nickname")===this.state.bwriter || AuthService.roleAdminCheck()){
+            return(
+                <Button className="btn-md mx-3" outline onClick={() => 
+                    this.props.history.push({
+                        pathname: "/QnA/crudDelete",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    삭제
+                </Button>
+            )
+        }
+    }
+
+    createModifyBtnCheckNickname(){
+        if(localStorage.getItem("nickname")===this.state.bwriter){
+            return(
+                <Button className="btn-md my-1" outline color="primary" onClick={() => 
+                    this.props.history.push({
+                        pathname: "/QnA/crudUpdate",
+                        state:{
+                            bnum: this.state.bnum,
+                            btitle: this.state.btitle,
+                            bwriter: this.state.bwriter,
+                            btext: this.state.btext,
+                            bregDate: this.state.bregDate
+                        }
+                    })
+                }>
+                    수정
+                </Button>
+            )
+    }
+}
+
+    render(){
+        
+        return(
+            <>
+            
+            <div className="container readBody px-5 my-5" style={{borderTop: '2px solid', borderBottom: '2px solid', borderColor: '#4C51BD'}}>
+                    <div id="boardTitle" className="border-bottom mx-3 my-5">
+                        <div className="d-flex flex-row justify-content-between align-items-end">
+                            <h2 className="py-3 d-inline">
+                                    {this.state.btitle}
+                            </h2>
+                            <div className="d-flex align-items-center">
+                                <small className="text-muted mx-2">
+                                            {this.state.bwriter}
+                                </small>
+                                <small className="text-muted py-3">
+                                    {this.state.bregDate}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                        <div className="my-3">
+                            <div className="mb-5">
+                            <p className="px-4 py-3 kfont2" style={{whiteSpace: 'pre'}}>
+                                    {this.state.btext}
+                                </p>
+                            </div>
+                        </div>
+                <br/>
+                <Card className="d-flex px-5 py-5 mb-5">
+                    {this.createAnswerArea(this.state.banswerText)}
+                    
+
+                </Card>
+                
             </div>
+                {this.createModifyBtnCheckNickname()}
+                {this.createDeleteBtnCheckNickname()}
+                {this.createAnswerBtnCheckAdmin()}
+                    <Link to={"/QnA"}>
+                        <Button className="btn-sm float-end" color="primary" outline>
+                            리스트
+                        </Button>
+                    </Link>
+            </>
+            
         )
     }
 }

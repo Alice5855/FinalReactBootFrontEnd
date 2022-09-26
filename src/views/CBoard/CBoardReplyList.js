@@ -3,6 +3,7 @@ import CBoardServices from "./CBoardServices";
 import axios from "axios";
 import CBoardReplyDelete from "./CBoardReplyDelete";
 
+
 class CBoardReplyList extends Component {
     constructor(props){
         super(props);
@@ -25,6 +26,20 @@ class CBoardReplyList extends Component {
         
     }
 
+
+
+    replyCheck(){
+        if (this.state.reply.length == 0) {
+
+            return(
+            <>
+                <h6 className="mb-0">등록된 댓글이 없습니다.</h6>
+            </>
+            )
+        }
+        console.log("댓글 있냐?" + this.state.reply);
+        
+    }
 
     createPageBtn(currentPage, maxPage){
     
@@ -83,6 +98,8 @@ class CBoardReplyList extends Component {
         return(
             <>
              <div id = "replybody" className="list-group w-auto my-5">
+                {this.replyCheck()}
+                
                 
                   {/* {
                     this.state.rnum.map(
