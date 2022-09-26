@@ -120,11 +120,13 @@ class QBoardList extends Component{
                         <col className="col-2"></col>
                     </colgroup>
                     <thead>
-                        <th scope="col" className="text-center">#</th>
-                        <th scope="col" className="text-center">제목</th>
-                        <th scope="col" className="text-center">작성자</th>
-                        <th scope="col" className="text-center">작성일</th>
-                        <th scope="col" className="text-center">답변</th>
+                        <tr>
+                            <th scope="col" className="text-center">#</th>
+                            <th scope="col" className="text-center">제목</th>
+                            <th scope="col" className="text-center">작성자</th>
+                            <th scope="col" className="text-center">작성일</th>
+                            <th scope="col" className="text-center">답변</th>
+                        </tr>
                     </thead>
                     <tbody>
                     {this.state.List.map(board =>
