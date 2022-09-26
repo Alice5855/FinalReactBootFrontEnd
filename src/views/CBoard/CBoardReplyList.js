@@ -126,9 +126,9 @@ class CBoardReplyList extends Component {
                             <small className="opacity-50 text-nowrap">{obj.replyDate}</small>
                             
                         </div>
-                        <button onClick={()=>this.CBoardReplyDelete(obj.rnum)}>
+                        <button onClick={()=>this.CBoardReplyDelete(obj.rnum)} className='removeBtn btn btn-close ms-2' style={{float:"right"}} >
                             <input type={"hidden"} value={obj.rnum} ></input>
-                            삭제하기
+                           
                         </button>
                     </div>
                   )}
