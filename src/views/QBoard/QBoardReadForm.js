@@ -63,7 +63,7 @@ class QBoardReadForm extends Component {
                 )
         }else{
 
-            var randomCount = Math.floor(Math.random()*4);
+            var randomCount = Math.floor(Math.random()*5);
             var imgLink;
             
             if(randomCount === 0){
@@ -75,8 +75,6 @@ class QBoardReadForm extends Component {
             }else if(randomCount === 3){
                 imgLink = "http://localhost:3000/images/no_answer_gif4.webp"
             }else if(randomCount === 4){
-                imgLink = "http://localhost:3000/images/no_answer_gif4.webp"
-            }else if(randomCount === 5){
                 imgLink = "http://localhost:3000/images/no_answer_gif5.webp"
             }
 
