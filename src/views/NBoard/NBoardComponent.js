@@ -18,9 +18,6 @@ class NBoardComponent extends Component {
                         공지사항
                     </p>
                 </div>
-                <div className="w-50 m-auto">
-                    <img className="img-fluid rounded" src="http://localhost:3000/images/bleh.webp" />
-                </div>
                 <Route path={"/Notice"} component={NBoardList} exact={true} />
                 <Route path={"/Notice/crud:crud"} component={NBoardCUD} />
                 <Route path={"/Notice/view/bnum=:bnum"} component={NBoardReadForm} />

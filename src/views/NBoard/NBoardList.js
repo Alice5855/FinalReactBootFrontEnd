@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NBoardServices from "./NBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import AuthService from "../Auth/AuthService";
 
 
 class NBoardList extends Component{
@@ -75,6 +76,18 @@ class NBoardList extends Component{
             });
         });
     }
+
+    btnCreateBoardCheckLogin(){
+        if(AuthService.roleAdminCheck()){
+            return(
+                <Link to="/Notice/crudInsert">
+                    <Button className="btn-sm my-3 float-end" color="primary" outline>
+                        새 글 쓰기
+                    </Button>
+                </Link>
+            )
+        }
+    }
     
     render(){
         return(
@@ -110,11 +123,7 @@ class NBoardList extends Component{
                     </tbody>
                 </table>
                 <div className="d-flex flex-row-reverse">
-                    <Link to="/Notice/crudInsert">
-                        <Button className="btn-sm my-3" color="primary" outline>
-                            새 글 쓰기
-                        </Button>
-                    </Link>
+                    {this.btnCreateBoardCheckLogin()}
                 </div>
                 <div className="d-flex justify-content-center mt-3">
                     <Pagination size="md" aria-label="Page navigation">

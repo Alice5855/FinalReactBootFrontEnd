@@ -48,7 +48,7 @@ class LoginForm extends Component {
     const id = this.state.userid;
     const pw = this.state.password;
     return (
-     <>
+      <>
           <div id="spaceFiller"></div>
           <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -63,7 +63,6 @@ class LoginForm extends Component {
                             <h4 class="mt-1 mb-5 pb-1"></h4>
                         </div>
 
-                        
                           <p>Please login to your account</p>
 
                           <div class="form-outline mb-2">
