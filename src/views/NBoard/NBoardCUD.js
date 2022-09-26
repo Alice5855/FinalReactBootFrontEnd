@@ -1,8 +1,13 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 import $ from "jquery";
+import AuthService from "../Auth/AuthService";
+import NBoardList from "./NBoardList";
+
+
+
 
 class NBoardCUD extends Component {
     constructor(props) {
@@ -14,6 +19,8 @@ class NBoardCUD extends Component {
             fileName:"",
             folderPath:"",
             uuid:"",
+            nickname:"",
+            role:"",
             crud: props.match.params.crud
         };
 
@@ -49,7 +56,44 @@ class NBoardCUD extends Component {
                 crud: "Delete"
             };
         }
+
+        
+
+        this.sendToken();
+
     }
+
+    sendToken(){
+            AuthService.setupAxiosInterceptors();
+            AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+                console.log(res);
+                this.setState({
+                    nickname:res.data.memnickname,
+                    role:res.data.memrole
+                }
+            )
+        })
+    }
+
+    checkAdmin(){
+        console.log(this.state.role);
+        if(this.state.role != "ROLE_ADMIN"){
+            alert("비정상적인 접근입니다");
+            window.location.href="/";
+        }
+    }
+
+    checkRole(){
+        if(this.state.role == null){
+            console.log("이거실행했음????")
+            this.checkAdmin();
+        }else{
+            console.log("이거실행했음????")
+        }
+    }
+
+    
+
     /*
     props에 VO에 저장된 column명으로 data를 저장할 수 있도록 함
     crud: 각각의 기능을 'view','update','delete','insert'로 구분
@@ -313,6 +357,13 @@ class NBoardCUD extends Component {
                 folderPath: data.folderPath,
             });
         });
+    }
+
+    componentDidCatch(error, info) {
+        // Display fallback UI
+        this.setState({ hasError: true });
+        // You can also log the error to an error reporting service
+        
     }
 
     createArticleIdTag() {

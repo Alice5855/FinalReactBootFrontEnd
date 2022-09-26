@@ -15,12 +15,29 @@ class QBoardReadForm extends Component {
             bnum: props.match.params.bnum,
             bregDate: "",
             banswerText: "",
-            banswerRegdate: ""
+            banswerRegdate: "",
+            nickname: "",
+            role: ""
         };
 
         console.log(this.state.bnum);
+
+        this.sendToken();
+
         this.getBoardData(this.state.bnum);
     }
+
+    sendToken(){
+
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            })
+        })
+    }
+
 
     getBoardData(bnum){
         console.log("겟보드데이터 실행")
@@ -63,7 +80,7 @@ class QBoardReadForm extends Component {
                 )
         }else{
 
-            var randomCount = Math.floor(Math.random()*4);
+            var randomCount = Math.floor(Math.random()*5);
             var imgLink;
             
             if(randomCount === 0){
@@ -75,8 +92,6 @@ class QBoardReadForm extends Component {
             }else if(randomCount === 3){
                 imgLink = "http://localhost:3000/images/no_answer_gif4.webp"
             }else if(randomCount === 4){
-                imgLink = "http://localhost:3000/images/no_answer_gif4.webp"
-            }else if(randomCount === 5){
                 imgLink = "http://localhost:3000/images/no_answer_gif5.webp"
             }
 
@@ -100,7 +115,7 @@ class QBoardReadForm extends Component {
     }
 
     createAnswerBtnCheckAdmin(){
-        if(AuthService.roleAdminCheck()){
+        if(this.state.role==="ROLE_ADMIN"){
             return(
                 <Button className="btn-md" outline color="primary" onClick={() => 
                             this.props.history.push({
@@ -121,7 +136,7 @@ class QBoardReadForm extends Component {
     }
 
     createDeleteBtnCheckNickname(){
-        if(localStorage.getItem("nickname")===this.state.bwriter || AuthService.roleAdminCheck()){
+        if(this.state.nickname===this.state.bwriter || this.state.role==="ROLE_ADMIN"){
             return(
                 <Button className="btn-md mx-3" outline onClick={() => 
                     this.props.history.push({
@@ -142,7 +157,7 @@ class QBoardReadForm extends Component {
     }
 
     createModifyBtnCheckNickname(){
-        if(localStorage.getItem("nickname")===this.state.bwriter){
+        if(this.state.nickname===this.state.bwriter){
             return(
                 <Button className="btn-md my-1" outline color="primary" onClick={() => 
                     this.props.history.push({
