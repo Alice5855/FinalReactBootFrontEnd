@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
+import AuthService from "../Auth/AuthService";
 
 class QBoardCUD extends Component {
     constructor(props) {
@@ -11,16 +12,19 @@ class QBoardCUD extends Component {
             btitle: "",
             btext: "",
             bwriter: "",
-            crud: props.match.params.crud
+            crud: props.match.params.crud,
+            nickname: "",
+            role: ""
         };
-
-        console.log(this.state);
         
+        
+        this.sendToken();
+        console.log(this.state);
         if(this.state.crud === "Insert"){
             this.state = {
                 btitle: "",
                 btext: "",
-                bwriter: localStorage.getItem('nickname'),
+                bwriter: this.state.nickname,
                 crud:"Insert"
             }
         } else if (this.state.crud === "Update") {
@@ -50,6 +54,20 @@ class QBoardCUD extends Component {
     Insert의 경우 현재 form에 입력된 값을 data로 저장해 axios로
     값을 백으로 넘기게 됨
     */
+
+    sendToken(){
+        AuthService.setupAxiosInterceptors();
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                bwriter:res.data.memnickname,
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            }
+        )
+        console.log(this.state);
+    })
+}
 
     createHeaderName() {
         const crud = this.state.crud;
