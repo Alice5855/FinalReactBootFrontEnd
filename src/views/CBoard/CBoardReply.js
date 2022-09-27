@@ -261,8 +261,12 @@ class CBoardReply extends Component {
     // Insert를 제외한 기능의 경우 이미 존재하는 값을 받아오기 때문에
     // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
-    replyInsert(){
-        
+    btnCreateBoardCheckLogin(){
+        if(localStorage.getItem('token')){
+            return(
+                this.createCrudBtn()
+            )
+        }
     }
    
 
