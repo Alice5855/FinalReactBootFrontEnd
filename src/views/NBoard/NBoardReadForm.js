@@ -51,7 +51,7 @@ class NBoardReadForm extends Component {
     }
 
     imgCheck(){
-        if (this.state.filePath != null && this.state.filePath != "/s_") {
+        if (this.state.filePath != null && this.state.filePath != "/s__") {
             return(
                 <img src={"/NUpload/display?fileName=" + this.state.filePath} onClick={() => {this.showImage()}} />
                 )
