@@ -88,13 +88,12 @@ class LoginForm extends Component {
 
                           <div class="text-center pt-1 mb-5 pb-1">
                             <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" onClick={() =>
-                              this.loginProcess(id, pw)}>Log
-                              in</button>
+                              this.loginProcess(id, pw)}>Log in</button>
                           </div>
 
                           <div class="d-flex align-items-center justify-content-center pb-4">
                             <p class="mb-0 me-2">Don't have an account?</p>
-                            <a href= 'http://192.168.0.95:9005/member/join'>Create new</a>
+                            <a href= 'http://192.168.0.26:9005/member/join'>Create new</a>
                           </div>
                       </div>
                     </div>
