@@ -19,6 +19,7 @@ class CBoardReadForm extends Component {
             bnum: props.match.params.bnum,
             fullName:"",
             bregDate: "",
+            hits:"",
             nickname: "",
             role: ""
         };
@@ -28,6 +29,8 @@ class CBoardReadForm extends Component {
         console.log(this.state.bnum);
         console.log(this.state.fullName);
         this.getBoardData(this.state.bnum);
+      
+        console.log("조회수" + this.state.hits);
         localStorage.setItem("bnum",this.state.bnum);
     }
 
@@ -43,11 +46,8 @@ class CBoardReadForm extends Component {
         })
     }
 
-   UpdateHits(bnum){
-    axios.post("/Community/updateHit").then((res)=>{
+   
 
-    })
-   }
 
     getBoardData(bnum){
         console.log("겟보드데이터 실행")
@@ -58,6 +58,7 @@ class CBoardReadForm extends Component {
                 bwriter: res.data.board.bwriter,
                 btext: res.data.board.btext,
                 bregDate: res.data.board.bregDate,
+                hits:res.data.board.hits,
                 fullName:res.data.board.fullName,
                 
             })
@@ -172,10 +173,19 @@ class CBoardReadForm extends Component {
                             <h2 className="py-3">
                                         {this.state.btitle}
                             </h2>
+                            <p className="py-3">
+                                    조회수:{this.state.hits}
+                            </p>
+
+                          
                         </div>
+
+                       
+                        
+
                         <div className="d-flex flex-row-reverse py-3">
-                            <small className="text-muted">
-                                {this.state.bwriter}
+                            <small >
+                               글쓴이:<p className="text-muted">{this.state.bwriter}</p>
                             </small>
                         </div>
                         <div className="d-flex flex-row-reverse py-3">
