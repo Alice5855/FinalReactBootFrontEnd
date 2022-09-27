@@ -6,6 +6,7 @@ import CBoardReadForm from "./CBoardReadForm";
 import {useState} from "react";
 import CBoardServices from "./CBoardServices";
 import CBoardReplyList from "./CBoardReplyList";
+import AuthService from "../Auth/AuthService";
 
 
 
@@ -20,9 +21,11 @@ class CBoardReply extends Component {
             replyer:"",
             replyDate:"",
             crud: "Insert",
+            nickname: "",
+            role: ""
            
         };
-       
+        this.sendToken();
         localStorage.removeItem("bnum");
         
         
@@ -69,7 +72,19 @@ class CBoardReply extends Component {
     
 
    
-    
+    sendToken(){
+        AuthService.setupAxiosInterceptors();
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                replyer:res.data.memnickname,
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            })
+        })
+    }
+
+
 
     createHeaderName() {
         const crud = this.state.crud;
