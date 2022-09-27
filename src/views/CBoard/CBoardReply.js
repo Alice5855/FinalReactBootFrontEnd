@@ -69,6 +69,13 @@ class CBoardReply extends Component {
     값을 백으로 넘기게 됨
     */
 
+    btnCreateBoardCheckLogin(){
+        if(localStorage.getItem('token')){
+            return(
+                this.createCrudBtn()
+            )
+        }
+    }
     
 
    
@@ -306,7 +313,7 @@ class CBoardReply extends Component {
                                           
                     <br /> <br />
                         <div className="float-end">
-                            {this.createCrudBtn()}
+                            {this.btnCreateBoardCheckLogin()}
                         </div>
                                 
 
