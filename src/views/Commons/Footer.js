@@ -9,7 +9,7 @@ class Footer extends Component {
                     <div className="row align-items-center">
                         <div className="col-lg-3 text-lg-start">Copyright &copy; Alternative Society 2022</div>
                         <div className="col-lg-6 my-3 my-lg-0">
-                            <a className="text-decoration-none font4" href="http://localhost:3000/">
+                            <a className="text-decoration-none font4" href="http://localhost:8085/">
                                 <img className="me-2 footlogo" src="http://localhost:3000/images/testlogo2.png" />
                                 <span className="mcolor2 fs-4 fw-bold">
                                     Anibucket Shop

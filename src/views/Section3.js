@@ -9,7 +9,7 @@ class Section3 extends Component {
                 <div className="container">
                     <div className="text-center">
                         <h2 className="section-heading text-uppercase">Contact Us</h2>
-                        <h3 className="section-subheading text-muted">궁금하신 점이나 건의하실 점을 메시지로 남겨주세요</h3>
+                        <h3 className="section-subheading text-light">궁금하신 점이나 건의하실 점을 메시지로 남겨주세요</h3>
                     </div>
                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <div className="row align-items-stretch mb-5">
