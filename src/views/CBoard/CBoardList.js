@@ -113,7 +113,7 @@ class CBoardList extends Component{
                 <table id="boardtable" className="table table-hover col-12">
                     <colgroup>
                         <col className="col-1"></col>
-                        <col className="col-6"></col>
+                        <col className="col-5"></col>
                         <col className="col-2"></col>
                         <col className="col-1"></col>
                         <col className="col-2"></col>
@@ -135,7 +135,7 @@ class CBoardList extends Component{
                                 <td scope="row" className="text-center">{board.bnum}</td>
                                 <td>
                                     <Link to={`/Community/view/bnum=${board.bnum}`} className="text-decoration-none d-block w-100 mcolor2" aria-current="true">
-                                        {board.btitle} 
+                                    <span style={{color:"black"}}>{board.btitle}</span>  [{board.replies}]
                                     </Link>
                                 </td>
                                 
