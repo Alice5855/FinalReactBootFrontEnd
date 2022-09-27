@@ -14,6 +14,7 @@ class CBoardComponent extends Component {
             <SpaceFiller/>
             <div className="container py-5 px-5" style={{paddingTop:'30%'}}>
                 <div className="mb-5">
+                    
                     <p id="boardtitle" className="kfont2 fs-2 mcolor1">
                         커뮤니티
                     </p>
