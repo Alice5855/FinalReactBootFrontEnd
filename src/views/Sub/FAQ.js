@@ -65,7 +65,7 @@ class FAQ extends Component {
                                 </h2>
                                 <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div className="accordion-body bg-light">
-                                    온라인 쇼핑몰 사이트의 링크는 <a href="#">여기</a>를 클릭해주세요. 페이지 최 하단의 로고를 통해서도 온라인 몰로 이동하실 수 있습니다.
+                                    온라인 쇼핑몰 사이트의 링크는 <a href="http://localhost:9005">여기</a>를 클릭해주세요. 페이지 최 하단의 로고를 통해서도 온라인 몰로 이동하실 수 있습니다.
                                     <br/>
                                     쇼핑몰과 커뮤니티의 회원 정보는 공유되기 때문에 한 곳에서 회원가입해도 모든 서비스를 이용할 수 있습니다.
                                 </div>
@@ -115,7 +115,7 @@ class FAQ extends Component {
                                 </h2>
                                 <div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                                 <div className="accordion-body bg-light">
-                                    최신 상품의 구매정보는 <a href="#">쇼핑몰</a>에서 확인할 수 있습니다. <br/>
+                                    최신 상품의 구매정보는 <a href="http://localhost:9005">쇼핑몰</a>에서 확인할 수 있습니다. <br/>
                                     현재 웹사이트의 <Link to={"/Notice"}>공지사항</Link> 페이지에서도 확인 가능하니 많은 이용 부탁드립니다.
                                 </div>
                                 </div>

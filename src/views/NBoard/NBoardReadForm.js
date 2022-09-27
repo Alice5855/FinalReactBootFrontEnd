@@ -14,14 +14,27 @@ class NBoardReadForm extends Component {
             btext: "",
             bnum: props.match.params.bnum,
             filePath: "",
-            bregDate: ""
+            bregDate: "",
+            nickname: "",
+            role: ""
         };
 
         console.log(this.state.bnum);
         console.log(this.state.filePath);
+        this.sendToken();
         this.getBoardData(this.state.bnum);
     }
 
+    sendToken(){
+
+        AuthService.loginSuccessGetUserInfoList(localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            this.setState({
+                nickname:res.data.memnickname,
+                role:res.data.memrole
+            })
+        })
+    }
     getBoardData(bnum){
         console.log("겟보드데이터 실행")
         NBoardServices.getBoard(bnum).then((res)=>{
@@ -67,7 +80,7 @@ class NBoardReadForm extends Component {
     }
 
     createBtnAdmin(){
-        if(AuthService.roleAdminCheck()){
+        if(this.state.role=="ROLE_ADMIN"){
             return(
                 <>
                 <Button className="me-3" color="primary" outline onClick={() => 
