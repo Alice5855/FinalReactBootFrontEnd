@@ -5,7 +5,6 @@ import CBoardServices from "./CBoardServices";
 import CBoardReply from "./CBoardReply";
 import CBoardReplyList from "./CBoardReplyList";
 import $ from "jquery";
-import axios from "axios";
 import AuthService from "../Auth/AuthService";
 
 class CBoardReadForm extends Component {

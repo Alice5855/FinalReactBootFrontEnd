@@ -3,7 +3,6 @@ import NBoardServices from "./NBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import AuthService from "../Auth/AuthService";
-import axios from "axios";
 
 
 class NBoardList extends Component{
