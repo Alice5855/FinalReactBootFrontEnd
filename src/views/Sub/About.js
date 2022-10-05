@@ -30,7 +30,7 @@ class About extends Component {
                                 <div className="col-lg-6">
                                     <p className="display-6 fw-bold lh-1 mb-3 font1">Alternative Society</p>
                                     <p className="lead font2">
-                                        We claims it is not <span className="fst-italic">'Sub Culture'</span> , it is <span className="fw-bold">'Alternative Society'</span>.
+                                        We claim it is not <span className="fst-italic">'Sub Culture'</span> , it is <span className="fw-bold">'Alternative Society'</span>.
                                     </p>
                                     <p className="lead kfont2">
                                         Alternative Society는 <span className="fst-italic">'하위 문화'</span> 가 아닌, <span className="fw-bold">'또 다른 사회'</span> 를 꿈꿉니다.
