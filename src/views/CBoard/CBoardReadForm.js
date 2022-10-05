@@ -198,7 +198,7 @@ class CBoardReadForm extends Component {
                             <div className="my-2 mx-4">
                                 {this.imgCheck()}
                             </div>
-                            <p className="px-4 py-3 kfont2" style={{whiteSpace: 'pre'}}>
+                            <p className="px-4 py-3 kfont2" style={{whiteSpace: 'break-spaces'}}>
                                 {this.state.btext}
                             </p>
                         </div>
