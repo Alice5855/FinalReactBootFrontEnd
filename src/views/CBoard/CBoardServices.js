@@ -22,7 +22,7 @@ class CBoardServices{
      }
 
     getReply(bnum){
-        console.log("보여줘" + bnum);
+        console.log("getReply 실행 : " + bnum);
         return axios.get(REPLY_API_BASE_URL + "/ReplyRead?bnum=" + bnum);
     }
 

@@ -132,7 +132,7 @@ class CBoardReply extends Component {
  
 
     crud() {
-        const {bnum, rnum, reply, replyer, crud, replyDate} = this.state;
+        const {bnum, rnum, reply, replyer, crud} = this.state;
         let crudType = "";
         console.log("rnum : " + rnum);
         console.log("reply : " + reply);
@@ -264,18 +264,8 @@ class CBoardReply extends Component {
    
 
     render() {
-  
-        
-   
-     
         const reply = this.state.reply;
         const replyer = this.state.replyer;
-        const replyDate = this.state.replyDate;
-       
-     
-
-          
-
         return (
             
             <>
@@ -291,7 +281,9 @@ class CBoardReply extends Component {
                       className="my-3 form-control inputText"
                       style={{resize: 'none', width: '33%', backgroundColor : "#fff",opacity:"0.7"}}
                       readOnly
-                  ></input>
+                  >
+                    
+                  </input>
                                     <textarea class="form-control"  placeholder="Join the discussion and leave a comment!"
                                     
                                     rows="3"

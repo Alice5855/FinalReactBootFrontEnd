@@ -81,7 +81,7 @@ class CBoardList extends Component{
         )
     }
 
-    getBoardListData(pageNum){  // 게시물 리스트를 초기화하는 메소드. 
+    getBoardListData(pageNum){ 
         CBoardServices.getBoardPage(pageNum).then((res)=>{
             this.setState({
                 List: res.data.list,

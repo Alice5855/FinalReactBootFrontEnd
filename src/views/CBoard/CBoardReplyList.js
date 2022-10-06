@@ -10,12 +10,7 @@ class CBoardReplyList extends Component {
         this.state = {
             bnum:localStorage.getItem('bnum'),
             reply:[],
-            
-
-        };
-
-        
-
+        };  
         localStorage.setItem("rnum",this.state.reply.rnum);
         this.getReplyListData(this.state.bnum);
         
@@ -47,19 +42,7 @@ class CBoardReplyList extends Component {
     }
 
     createPageBtn(currentPage, maxPage){
-    
-        // 페이지 버튼 조건 정리
-        // 1. 최대 보여주는 버튼 갯수는 5개 
-        // → ([First] [prev] [2] [3] {4} [5] [6] [next] [Last])
-        // 2. 본인이 첫 페이지인 경우 3페이지까지 보여줌.
-        // → {1} [2] [3] [next] [Last]
-        // 3. prev, next버튼
-        // 3.1. 출력 조건 : currentPage 기준 +- 3 범위에 첫, 마지막 페이지 없는 경우
-        // 3.2. prev, next버튼을 누르면 각각 본인의 -, + 3페이지로 이동
-        // 4. First, Last버튼
-        // 4.1. First, Last 버튼은 첫 번째, 마지막 페이지가 안보일 때 출력
-        // 4.2. First, Last 버튼 누르면 각각 첫, 마지막 페이지로 이동
-      
+
     }
 
 
@@ -72,14 +55,7 @@ class CBoardReplyList extends Component {
                     reply: res.data.reply
                 });
             console.log(res.data.reply);
-            console.log(this.state.reply);
-
-
-
-                
-              
-              
-              
+            console.log(this.state.reply);                                
         });
     }
 
@@ -89,9 +65,11 @@ class CBoardReplyList extends Component {
 
     CBoardReplyDelete(RNum){
         
-        console.log("왜 안돼 씨팔" + RNum);
+        
         let form = new FormData();
-        form.append("RNum", RNum)
+        form.append("RNum", RNum);
+        form.append("Replyer",this.state.reply);
+        console.log("이거 뭔고" + this.state.reply.replyer);
         axios.post("/Community/deleteReply", form);
 
         window.location.reload();
@@ -99,6 +77,16 @@ class CBoardReplyList extends Component {
         
 
         
+    }
+
+    btnReplyDeleteCheck(rnum){
+        if(localStorage.getItem('token')){
+            return(
+                <button onClick={()=>this.CBoardReplyDelete(rnum)} className='removeBtn btn btn-close ms-2' style={{float:"right"}} >
+                        <input type={"hidden"} value={rnum} ></input>
+                </button>
+            )
+        }
     }
 
     render(){
@@ -135,12 +123,9 @@ class CBoardReplyList extends Component {
                                 <h6 className="">{obj.reply}</h6>
                             </div>
                             <small className="opacity-50 text-nowrap">{obj.replyDate}</small>
-                            
+                            {this.btnReplyDeleteCheck(obj.rnum)}
                         </div>
-                        <button onClick={()=>this.CBoardReplyDelete(obj.rnum)} className='removeBtn btn btn-close ms-2' style={{float:"right"}} >
-                            <input type={"hidden"} value={obj.rnum} ></input>
-                           
-                        </button>
+                        
                     </div>
                   )}
 
