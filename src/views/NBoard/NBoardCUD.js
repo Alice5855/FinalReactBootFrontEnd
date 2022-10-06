@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 import $ from "jquery";
 import AuthService from "../Auth/AuthService";
-import NBoardList from "./NBoardList";
 
 
 

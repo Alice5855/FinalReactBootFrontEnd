@@ -22,17 +22,17 @@ class About extends Component {
                         </p>
                     </div>
                     <div>
-                        <div class="container col-xxl-8 px-4 py-5">
-                            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                                <div class="col-10 col-sm-8 col-lg-6">
+                        <div className="container col-xxl-8 px-4 py-5">
+                            <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
+                                <div className="col-10 col-sm-8 col-lg-6">
                                     <img src="http://localhost:3000/images/Commu.png" className="rounded shadow d-block mx-lg-auto img-fluid" alt="Introduce" loading="lazy" />
                                 </div>
-                                <div class="col-lg-6">
-                                    <p class="display-6 fw-bold lh-1 mb-3 font1">Alternative Society</p>
-                                    <p class="lead font2">
-                                        We claims it is not <span className="fst-italic">'Sub Culture'</span> , it is <span className="fw-bold">'Alternative Society'</span>.
+                                <div className="col-lg-6">
+                                    <p className="display-6 fw-bold lh-1 mb-3 font1">Alternative Society</p>
+                                    <p className="lead font2">
+                                        We claim it is not <span className="fst-italic">'Sub Culture'</span> , it is <span className="fw-bold">'Alternative Society'</span>.
                                     </p>
-                                    <p class="lead kfont2">
+                                    <p className="lead kfont2">
                                         Alternative Society는 <span className="fst-italic">'하위 문화'</span> 가 아닌, <span className="fw-bold">'또 다른 사회'</span> 를 꿈꿉니다.
                                     </p>
                                 </div>

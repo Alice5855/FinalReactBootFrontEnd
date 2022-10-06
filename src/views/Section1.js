@@ -10,7 +10,7 @@ const Section1 = () => {
                     </div>
                     <div className="row text-center">
                         <div className="col-md-4">
-                            <i class="bi bi-wechat display-1 scolor2"></i>
+                            <i className="bi bi-wechat display-1 scolor2"></i>
                             <h4 className="my-3">Alternative Society</h4>
                             <p className="text-muted">Beyond Subculture</p>
                         </div>
@@ -20,7 +20,7 @@ const Section1 = () => {
                             <p className="text-muted">Meta-Society</p>
                         </div>
                         <div className="col-md-4">
-                            <i class="bi bi-bucket-fill display-1 scolor2"></i>
+                            <i className="bi bi-bucket-fill display-1 scolor2"></i>
                             <h4 className="my-3">Anibucket</h4>
                             <p className="text-muted">Online/Offline shop</p>
                         </div>

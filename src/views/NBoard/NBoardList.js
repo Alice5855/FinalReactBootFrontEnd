@@ -3,7 +3,6 @@ import NBoardServices from "./NBoardServices";
 import { Link } from "react-router-dom";
 import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import AuthService from "../Auth/AuthService";
-import axios from "axios";
 
 
 class NBoardList extends Component{
@@ -48,7 +47,7 @@ class NBoardList extends Component{
         // 4.1. First, Last 버튼은 첫 번째, 마지막 페이지가 안보일 때 출력
         // 4.2. First, Last 버튼 누르면 각각 첫, 마지막 페이지로 이동
         return(
-            <div className="pageMoveBtnContainer">
+            <div className="pageMoveBtnContainer flex-row d-flex">
                 {this.createPageBtnElement(currentPage-2, maxPage)}
                 {this.createPageBtnElement(currentPage-1, maxPage)}
                 {this.createPageBtnElement(currentPage, maxPage)}
@@ -77,7 +76,7 @@ class NBoardList extends Component{
         return( // pageNum 크기가 정상 범주인 경우 출력
             <>
                 <PaginationItem>
-                    <PaginationLink onClick={() => this.getBoardListData(pageNum)}>{screenNum}</PaginationLink>
+                    <PaginationLink onClick={() => this.getBoardListData(pageNum-1)}>{screenNum}</PaginationLink>
                 </PaginationItem>
             </>
         )
